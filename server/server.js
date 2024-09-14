@@ -2,6 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const trailerRoute = require('./routes/trailer');
+const userRoute = require("./routes/user");
 
 
 dotenv.config();
@@ -28,6 +30,7 @@ app.use((req, res, next) => { // logger middleware
 
 // Routes
 app.use('/api/trailer', trailerRoute);
+app.use("/api/user", userRoute);
 
 // Connect to MongoDB
 mongoose
