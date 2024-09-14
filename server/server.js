@@ -1,9 +1,8 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
-const dotenv = require("dotenv");
-const rubberDucksRoutes = require("./routes/rubberDucks");
-const userRoute = require("./routes/user");
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const dotenv = require('dotenv');
+
 
 dotenv.config();
 
@@ -21,14 +20,14 @@ app.use(
   })
 );
 
-app.use((req, res, next) => {
-  console.log(req.path, req.method);
-  next();
-});
+
+app.use((req, res, next) => { // logger middleware
+  console.log(req.path, req.method)
+  next()
+})
 
 // Routes
-app.use("/api/rubberDucks", rubberDucksRoutes);
-app.use("/api/user", userRoute);
+app.use('/api/trailer', trailerRoute);
 
 // Connect to MongoDB
 mongoose
