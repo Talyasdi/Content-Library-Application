@@ -1,0 +1,66 @@
+import { useState } from "react";
+
+const Signup = () => {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [repPassword, setRepPassword] = useState("");
+  const [age, setAge] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(username, email, password, repPassword, age);
+  };
+  return (
+    <form className="signup" onSubmit={handleSubmit}>
+      <label>
+        Username:
+        <input
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+        />
+      </label>
+      <label>
+        Email:
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+      </label>
+      <label>
+        Password:
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+      </label>
+      <label>
+        Repeat Password:
+        <input
+          type="password"
+          value={repPassword}
+          onChange={(e) => setRepPassword(e.target.value)}
+          required
+        />
+      </label>
+      <label>
+        Age:
+        <input
+          type="number"
+          value={age}
+          onChange={(e) => setAge(e.target.value)}
+          required
+        />
+      </label>
+      <button>Signup</button>
+    </form>
+  );
+};
+
+export default Signup;
