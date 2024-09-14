@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
-const rubberDucksRoutes = require('./routes/rubberDucks')
+const trailerRoute = require('./routes/trailer');
 
 dotenv.config();
 
@@ -18,13 +18,14 @@ app.use(cors({
   origin: process.env.CLIENT_URL
 }));
 
-app.use((req, res, next) => {
+
+app.use((req, res, next) => { // logger middleware
   console.log(req.path, req.method)
   next()
 })
 
 // Routes
-app.use('/api/rubberDucks', rubberDucksRoutes)
+app.use('/api/trailer', trailerRoute);
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
