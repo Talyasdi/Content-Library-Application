@@ -1,14 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './styles/global.css'; 
-import App from './App';
-import { DuckProvider } from './context/DuckContext';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./styles/global.css";
+import "./styles/index.css";
+import App from "./App";
+import { AuthContextProvider } from "./context/AuthContext";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <DuckProvider>
-      <App /> 
-    </DuckProvider>
+    <AuthContextProvider>
+        <App />
+    </AuthContextProvider>
   </React.StrictMode>
 );

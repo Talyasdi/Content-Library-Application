@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const trailerRoute = require('./routes/trailer');
+const userRoute = require("./routes/user");
+
 
 dotenv.config();
 
@@ -13,10 +15,12 @@ const PORT = process.env.PORT;
 const app = express();
 
 // Middleware
-app.use(express.json())
-app.use(cors({
-  origin: process.env.CLIENT_URL
-}));
+app.use(express.json());
+app.use(
+  cors({
+    origin: process.env.CLIENT_URL,
+  })
+);
 
 
 app.use((req, res, next) => { // logger middleware
@@ -26,18 +30,17 @@ app.use((req, res, next) => { // logger middleware
 
 // Routes
 app.use('/api/trailer', trailerRoute);
+app.use("/api/user", userRoute);
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI)
+mongoose
+  .connect(process.env.MONGO_URI)
   .then(() => {
     // listen for requests
     app.listen(PORT, () => {
-      console.log('connected to mongoDB & listening on port', process.env.PORT)
-    })
-  }).catch((err) => {
-    console.log(err)
+      console.log("connected to mongoDB & listening on port", process.env.PORT);
+    });
+  })
+  .catch((err) => {
+    console.log(err);
   });
-
-
-
-

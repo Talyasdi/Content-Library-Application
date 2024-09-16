@@ -1,28 +1,24 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
-import Home from './pages/HomePage/HomePage';
-import styles from './styles/App.module.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+//pages & components
+import NavBar from "./components/NavBar";
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
+
 
 function App() {
   return (
-    <BrowserRouter>
-      <div className={styles.app}>
-        <header className={styles.appHeader}>
-          <img src="/project-logo.png" alt="Logo" className={styles.appLogo} />
-          <nav className={styles.appNav}>
-            <Link to="/" className={styles.appLink}>Home</Link>
-          </nav>
-        </header>
-        <main className={styles.main}>
+    <div className="App">
+      <BrowserRouter>
+        <NavBar />
+        <div className="pages">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={<Login />} />
           </Routes>
-        </main>
-        <footer className={styles.footer}>
-          <p>&copy; 2024 My App</p>
-        </footer>
-      </div>
-    </BrowserRouter>
+        </div>
+      </BrowserRouter>
+    </div>
   );
 }
 
