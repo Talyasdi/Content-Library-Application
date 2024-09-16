@@ -72,13 +72,14 @@ nav {
   align-items: center;
 }
 nav a {
-  margin-left: 10px;
+  margin-right: 10px;
 }
 /* auth forms */
-form.signup {
+form.signup, form.login {
+  display: flexbox;
   max-width: 400px;
   margin: 40px auto;
   padding: 20px;
   background: #fff;
-  border-radius: 4px;
+  border-radius: 10px;
 }
