@@ -62,7 +62,7 @@ const UserContentDashboard = () => {
 
   return (
     <div>
-      <h1>My Trailers</h1>
+      <h1><center>My Trailers</center></h1>
       {error && <p>{error}</p>}
       {trailers.length > 0 ? (
         <>

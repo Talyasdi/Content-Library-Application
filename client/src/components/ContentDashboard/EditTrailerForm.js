@@ -36,7 +36,7 @@ const EditTrailerForm = ({ trailer, onClose, onUpdate }) => {
 
   return (
     <div className="form-group">
-      <form onSubmit={handleSubmit} >
+      <form className="editTrailer" onSubmit={handleSubmit} >
         <label>
           Trailer Name:
           <input

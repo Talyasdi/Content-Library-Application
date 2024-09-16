@@ -32,6 +32,17 @@ header a {
   margin: 0 auto;
 }
 
+.button{
+  background: var(--primary);
+  border: 0;
+  color: #fff;
+  padding: 10px;
+  font-family: "Poppins";
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 0.1rem;
+}
+
 /* form */
 label, input {
   display: block;
@@ -75,7 +86,7 @@ nav a {
   margin-right: 10px;
 }
 /* auth forms */
-form.signup, form.login {
+form.signup, form.login, form.editTrailer {
   display: flexbox;
   max-width: 400px;
   margin: 40px auto;

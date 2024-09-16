@@ -14,9 +14,6 @@ function App() {
       <BrowserRouter>
         <NavBar />
         <div className="pages">
-        <Link to="/dashboard">
-        <button className={styles.dashboardButton}>My Dashboard</button>
-        </Link>
           <Routes>
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
