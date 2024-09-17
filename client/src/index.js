@@ -1,17 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './styles/global.css'; 
+import "./styles/index.css";
 import App from './App';
-import { TrailersProvider } from './context/TrailersContext';
 import { TrailerProvider } from './context/TrailerContext';
+import { AuthContextProvider } from "./context/AuthContext";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    {/* <TrailersProvider> */}
+    <AuthContextProvider>
       <TrailerProvider>
         <App /> 
       </TrailerProvider>
-    {/* </TrailersProvider> */}
+    </AuthContextProvider>
   </React.StrictMode>
 );
