@@ -20,7 +20,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/trailers" element={<LibraryView />} />
-            <Route path="/trailers/:trailerId" element={<TrailerPage  />} />
+            <Route path="/trailers/:trailerName" element={<TrailerPage  />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>

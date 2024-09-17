@@ -10,7 +10,7 @@ const Home = () => {
     <div className={styles.home}>
       {/* <Link to={`/trailers/`} className={styles.trailerLink}> */}
       {/* <FirstButton >Trailers Library</FirstButton> */}
-      <LibraryView /> 
+      {/* <LibraryView />  */}
       {/* </Link> */}
     </div>
   );
