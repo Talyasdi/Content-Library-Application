@@ -1,7 +1,7 @@
 const express = require('express');
 const { filterTrailers,
-    getAllTrailers,
-    getSingleTrailer,
+        getAllTrailers,
+        getSingleTrailer
  } = require('../controllers/trailerController')
 
 const router = express.Router()

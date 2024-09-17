@@ -8,8 +8,6 @@ import { Link } from 'react-router-dom';
 const Home = () => {
   return (
     <div className={styles.home}>
-      <h1 className={styles.headline}>Duck It</h1>
-      {/* <LibraryView blogs={blogs} title="All Blogs" /> */}
       {/* <Link to={`/trailers/`} className={styles.trailerLink}> */}
       {/* <FirstButton >Trailers Library</FirstButton> */}
       <LibraryView /> 

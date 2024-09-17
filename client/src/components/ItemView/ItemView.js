@@ -35,4 +35,3 @@ const ItemView = ({ item }) =>{
 }
 
 export default ItemView;
-
