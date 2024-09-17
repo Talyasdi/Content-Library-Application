@@ -25,28 +25,4 @@ function App() {
     </div>
   ); }
 
-// function App() {
-//   return (
-//     <BrowserRouter>
-//       <div className={styles.app}>
-//         <header className={styles.appHeader}>
-//           <img src="/project-logo.png" alt="Logo" className={styles.appLogo} />
-//           <nav className={styles.appNav}>
-//             <Link to="/" className={styles.appLink}>Home</Link>
-//             <Link to="/dashboard">
-//           <button className={styles.dashboardButton}>My Dashboard</button>
-//           </Link>
-//           </nav>
-//         </header>
-//         <main className={styles.main}>
-//           <Routes>
-//             <Route path="/" element={<Home />} />
-//             <Route path="/dashboard" element={<UserContentDashboard />} />
-//           </Routes>
-//         </div>
-//       </BrowserRouter>
-//     </div>
-//   );
-// }
-
 export default App;
