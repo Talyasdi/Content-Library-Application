@@ -1,0 +1,49 @@
+.trailerList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjust the width */
+  gap: 20px; /* Space between trailer cards */
+}
+
+/* Default layout: 1 card per row for small screens*/
+.trailersContainer {
+  display: flexbox;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 20px;
+  padding: 10px;
+}
+
+/* For tablets and medium-sized screens (2 cards per row) */
+@media (min-width: 600px) {
+  .trailersContainer {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Bigger min size on tablets */
+  }
+}
+
+/* For desktops and larger screens (3 or more cards per row) */
+@media (min-width: 1024px) {
+  .trailersContainer {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Adjust to show more cards on desktop */
+  }
+}
+
+
+/* .trailersContainer {
+  display: flex; */
+  /* Create grid columns with a minimum size */
+  /* grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));  */
+  /* Adds space between trailer cards both vertically and horizontally */
+  /* gap: 10px; 
+   display: flex;
+  row-gap:20px;
+  justify-content: space-between; */
+  /* Allows items to wrap to the next row */
+  /* flex-wrap: wrap; 
+  flex-direction: column; 
+
+
+  max-width: 1200px; /* Set a max width for the container */
+   /* Centers the container with equal left and right margins */
+  /* margin: 0 auto; */
+   /* Optional padding for small spacing on the left and right */
+  /* padding: 0 20px;
+}  */

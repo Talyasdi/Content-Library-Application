@@ -1,0 +1,80 @@
+
+/* .trailerCard {
+    background-color: #ff799d;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 10px 20px;
+    /* padding-left: 0px;
+    padding-right: 0px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 150px;
+    width: 150px;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+  } */
+
+
+
+
+  
+
+  .trailerCard {
+    background-color: #ff799d;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 200px; /* Increased height to allow for fixed content */
+    width: 150px;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Ensures equal spacing */
+    align-items: center;
+    text-decoration: none;
+}
+.trailerCard:hover {
+  box-shadow: 5px 5px 5px rgba(58, 121, 94, 0.524);
+}
+
+.trailerLink {
+    text-decoration: none;
+}
+
+.appLogo {
+    height: 40px;
+    width: 40px;
+    margin-bottom: 5px; /* Fixed margin for spacing */
+}
+
+.trailerName {
+    font-size: 20px;
+    color: #fff;
+    margin: 5px 0;
+    height: 150px; /* Fixed height to keep the title area consistent */
+}
+
+.genresList {
+    list-style-type: none;
+    padding: 5px;
+    /* margin: 5px 0 0; */
+    display:flex;
+    /* justify-content: center; */
+    flex-wrap: wrap;
+    height: 200px; /* Fixed height for the genres area */  
+}
+
+.genreItem {
+    background-color: #ffe0e9;
+    border-radius: 12px;
+    height: 20px;
+    padding: 5px 5px;
+    margin: 5px;
+    font-size: 14px;
+    color: #ff799d;
+}
