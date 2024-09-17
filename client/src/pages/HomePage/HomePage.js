@@ -1,14 +1,13 @@
 import React from 'react';
 import styles from './Home.module.css';
-import RandomDuck from '../../components/RandomDuck/RandomDuck';
+import FilterBox from '../../components/FilterAndSort/FilterBox';
 
 
 const Home = () => {
   return (
     <div className={styles.home}>
-      <h1 className={styles.headline}>Duck It</h1>
-      <RandomDuck />
-    </div>
+        <FilterBox />
+      </div>
   );
 };
 
