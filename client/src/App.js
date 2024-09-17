@@ -2,6 +2,9 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import Home from './pages/HomePage/HomePage';
 import styles from './styles/App.module.css';
+import LibraryView from './pages/LibraryViewPage/LibraryViewPage';
+import TrailerPage  from './pages/TrailerPage/TrailerPage';
+import NotFound from './pages/NotFoundPage/NotFound';
 
 function App() {
   return (
@@ -16,6 +19,9 @@ function App() {
         <main className={styles.main}>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/trailers" element={<LibraryView />} />
+            <Route path="/trailers/:trailerName" element={<TrailerPage  />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
         <footer className={styles.footer}>
