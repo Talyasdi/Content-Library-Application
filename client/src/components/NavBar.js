@@ -5,6 +5,7 @@ const NavBar = () => {
     <header>
       <div className="container">
         <nav>
+          <Link to="/homepage">HomePage</Link>
           <Link to="/signup">Signup</Link>
           <Link to="/login">Login</Link>
           <Link to="/dashboard">My Dashboard</Link>
