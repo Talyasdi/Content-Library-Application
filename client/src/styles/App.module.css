@@ -47,3 +47,17 @@
   text-align: center;
 }
   
+.dashboardButton {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  background-color: #fd2cbedf;
+  color: #fff;
+  text-align: center; 
+}
+
+.dashboardButton:hover {
+  opacity: 0.8;
+}

@@ -1,14 +1,15 @@
 import React from 'react';
 import styles from './Home.module.css';
-import FilterBox from '../../components/FilterAndSort/FilterBox';
+import RandomDuck from '../../components/RandomDuck/RandomDuck';
 
 
 const Home = () => {
   return (
     <div className={styles.home}>
-        <FilterBox />
-      </div>
+      <h1 className={styles.headline}>Duck It</h1>
+      <RandomDuck />
+    </div>
   );
 };
 
-export default Home;
+// export default Home;
