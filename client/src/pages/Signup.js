@@ -7,7 +7,7 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [repPassword, setRepPassword] = useState("");
   const [age, setAge] = useState("");
-  const { signup, isLoading, err } = useSignup();
+  const { signup, isLoading, err, success } = useSignup();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -63,6 +63,7 @@ const Signup = () => {
       </label>
       <button disabled={isLoading}>Signup</button>
       {err && <div className="error">{err}</div>}
+      {success && <div className="success">You've successfully signed up</div>}
     </form>
   );
 };
