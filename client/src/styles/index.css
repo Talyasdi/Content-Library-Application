@@ -5,6 +5,7 @@
 :root {
   --primary: #a375d5;
   --error: #e7195a;
+  --success: #30c68a;
 }
 body {
   background: #f1f1f1;
@@ -77,6 +78,14 @@ input.error {
   border: 1px solid var(--error);
 }
 
+div.success {
+  padding: 10px;
+  background: #e6fbe6;
+  border: 1px solid var(--success);
+  color: var(--success);
+  border-radius: 4px;
+  margin: 20px 0;
+}
 /* navbar */
 nav {
   display: flex;
@@ -84,6 +93,9 @@ nav {
 }
 nav a {
   margin-right: 10px;
+}
+nav span {
+  margin: 10px;
 }
 /* auth forms */
 form.signup, form.login, form.editTrailer {

@@ -1,12 +1,13 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route} from 'react-router-dom'
-import Home from './pages/HomePage/HomePage';
+
+
 import LibraryView from './pages/LibraryViewPage/LibraryViewPage';
 import TrailerPage  from './pages/TrailerPage/TrailerPage';
 import NotFound from './pages/NotFoundPage/NotFound';
-// import styles from './styles/App.module.css';
 import UserContentDashboard from './components/ContentDashboard/ContentDashboard';
 //pages & components
+import Home from './pages/HomePage/HomePage';
 import NavBar from "./components/NavBar";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
