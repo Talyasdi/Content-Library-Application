@@ -94,6 +94,9 @@ nav {
 nav a {
   margin-right: 10px;
 }
+nav span {
+  margin: 10px;
+}
 /* auth forms */
 form.signup, form.login, form.editTrailer {
   display: flexbox;
