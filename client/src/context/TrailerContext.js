@@ -74,11 +74,11 @@ const TrailerContext = createContext();
 
 const TrailerProvider = ({ children }) => {
   const [trailer, setTrailer] = useState(null);
-  const [trailerName, setTrailerName] = useState(null); // State to manage trailer name
+  const [id, setTrailerId] = useState(null); // State to manage trailer name
 
-  const getSingleTrailer = async (name) => {
+  const getSingleTrailer = async (id) => {
     try {
-      const response = await api.get(`/trailer/trailers/${name}`); 
+      const response = await api.get(`/trailer/trailers/${id}`); 
       setTrailer(response.data.trailer); // Access `trailer` from response
     } catch (error) {
       console.error('Error fetching trailer:', error);
@@ -86,13 +86,13 @@ const TrailerProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    if (trailerName) {
-      getSingleTrailer(trailerName);
+    if (id) {
+      getSingleTrailer(id);
     }
-  }, [trailerName]);
+  }, [id]);
 
   return (
-    <TrailerContext.Provider value={{ trailer, setTrailerName }}>
+    <TrailerContext.Provider value={{ trailer, setTrailerId }}>
       {children}
     </TrailerContext.Provider>
   );

@@ -1,15 +1,11 @@
-.trailerList {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjust the width */
-  gap: 20px; /* Space between trailer cards */
-}
-
 /* Default layout: 1 card per row for small screens*/
 .trailersContainer {
-  display: flexbox;
+  display: flex;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 20px;
-  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  /* gap: 0px; */
+  /* padding:0px; */
 }
 
 /* For tablets and medium-sized screens (2 cards per row) */
@@ -24,4 +20,30 @@
   .trailersContainer {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Adjust to show more cards on desktop */
   }
+}
+/* Pagination styles */
+.pagination {
+  display: flex;
+  justify-content: center; /* Centers the pagination buttons */
+  align-items: center;
+  margin-top: 20px; /* Adds space between trailers and pagination */
+}
+
+.pagination button {
+  background-color: #007bff; /* Change this to your desired color */
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  margin: 0 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pagination button:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
+
+.pagination button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
 }

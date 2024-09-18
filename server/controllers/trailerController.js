@@ -46,10 +46,11 @@ const getAllTrailers = async (req, res) => {
 //get a single trailer
 //suppose that name is unique
 const getSingleTrailer = async (req, res) => {
-    const {trailerName} = req.params;
+    const {id} = req.params;
 
     try {
-        const trailer = await Trailer.findOne({trailerName:trailerName});
+        // const trailer = await Trailer.findOne({trailerName:trailerName});
+        const trailer = await Trailer.findById(id);
        if(!trailer){
         console.error('Error finding trailer');
         return res.status(404).json({msg: 'Trailer not found' });

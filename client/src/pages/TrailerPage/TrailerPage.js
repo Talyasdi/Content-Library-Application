@@ -4,12 +4,12 @@ import { TrailerContext } from '../../context/TrailerContext';
 import ItemView from '../../components/ItemView/ItemView';
 
 const TrailerPage = () => {
-  const { trailerName } = useParams(); // Get trailerName from URL
-  const { trailer, setTrailerName } = useContext(TrailerContext); // Get context values
+  const { id } = useParams(); // Get trailerName from URL
+  const { trailer, setTrailerId } = useContext(TrailerContext); // Get context values
 
   useEffect(() => {
-    setTrailerName(trailerName); // Set trailerName to trigger fetch
-  }, [trailerName, setTrailerName]);
+    setTrailerId(id); // Set trailerName to trigger fetch
+  }, [id, setTrailerId]);
 
   if (!trailer) {
     return <div>Loading...</div>;

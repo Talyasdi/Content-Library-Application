@@ -3,6 +3,7 @@ import axios from 'axios';
 import Pagination from '../Pagination/Pagination';
 import EditTrailerForm from './EditTrailerForm';
 import './ContentDashboard.css';
+import Trailer from '../../components/TrailerLibraryView/TrailerView';
 
 const UserContentDashboard = () => {
   const [trailers, setTrailers] = useState([]);
@@ -76,17 +77,19 @@ const UserContentDashboard = () => {
                   onUpdate={handleUpdate}
                 />
               ) : (
-                <>
-              <h3>{trailer.trailerName}</h3>
+                <div className='Container'>
+                  <Trailer trailer={trailer} />
+              {/* <h3>{trailer.trailerName}</h3>
               <p>Genres: {trailer.genres.join(', ')}</p>
               <p>Cast: {trailer.cast.join(', ')}</p>
               <p>Release Year: {trailer.releaseYear}</p>
-              <a href={trailer.link} target="_blank" rel="noopener noreferrer">Watch Trailer</a>
+              <a href={trailer.link} target="_blank" rel="noopener noreferrer">Watch Trailer</a> */}
+              
               <div>
                 <button onClick={() => handleEdit(trailer)}>Edit</button>
                 <button onClick={() => deleteTrailer(trailer._id)}>Delete</button>
               </div>
-              </>
+              </div>
               )}
             </li>
           ))}

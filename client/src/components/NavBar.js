@@ -19,6 +19,8 @@ const NavBar = () => {
             <div>
               <Link to="/signup">Signup</Link>
               <Link to="/login">Login</Link>
+              <Link to="/trailers">Trailers</Link>
+              <Link to="/dashboard">My Dashboard</Link>
             </div>
           )}
           {user && (

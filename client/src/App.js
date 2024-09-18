@@ -25,7 +25,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/dashboard" element={<UserContentDashboard />} />
             <Route path="/trailers" element={<LibraryView />} />
-            <Route path="/trailers/:trailerName" element={<TrailerPage  />} />
+            <Route path="/trailers/:id" element={<TrailerPage  />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
