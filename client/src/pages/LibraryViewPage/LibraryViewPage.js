@@ -1,16 +1,11 @@
 import useTrailers from '../../hooks/useTrailers';
-import styles from './LibraryView.module.css';
 import Trailer from '../../components/TrailerLibraryView/TrailerView';
 import Pagination from '../../components/Pagination/Pagination';
+import styles from '../../styles/index.css';
+//import styles from './LibraryView.module.css';
 
 const LibraryView = () => {
   const { trailers, loading, error, pagination, notFound } = useTrailers();
-
-  // if (error) return <p>{error}</p>;
-
-  // if (loading) return <p>Loading Trailers...</p>;
-
-  // if(notFound && !loading) return <p>No appropriate trailers found for this user.</p>
 
   return (
     <div>
@@ -36,10 +31,8 @@ const LibraryView = () => {
       ) : loading ? (
         <p>Loading Trailers...</p>
 
-  ): 
-        //  ):
-          (
-            // this will appear on screen for ms before updating loading and trailers
+  ): (
+    // this will appear on screen for ms before updating loading and trailers
     <p>No appropriate trailers found for this user.</p> 
   )
   }

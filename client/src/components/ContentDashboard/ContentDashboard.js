@@ -4,6 +4,7 @@ import Pagination from '../Pagination/Pagination';
 import EditTrailerForm from './EditTrailerForm';
 import './ContentDashboard.css';
 import Trailer from '../../components/TrailerLibraryView/TrailerView';
+import {useAuthContext} from '../../hooks/useAuthContext'
 
 const UserContentDashboard = () => {
   const [trailers, setTrailers] = useState([]);
@@ -13,14 +14,23 @@ const UserContentDashboard = () => {
   const trailersPerPage = 2;
   const [isEditing, setIsEditing] = useState(null);
 
+
+  const user = useAuthContext();
   // Temporarily hardcoding the user's email
-  const userEmail = 'userName1@example.com';
+  // const userEmail = 'userName1@example.com';
 
   const fetchTrailers = useCallback(async () => {
+    if (!user) return;  // Skip fetching if email isn't available
+
     try {
-      const response = await axios.get(`http://localhost:5000/api/trailer/email?email=${userEmail}`, {
+      // const response = await axios.get(`http://localhost:5000/api/trailer/email?email=${userEmail}`, {
+        const response = await axios.get(`http://localhost:5000/api/trailer/email`, {  
+      headers : {
+          Authorization: `Bearer ${user.token}`
+        },
         params: {
-          email: userEmail,
+          // email: userEmail,
+          email: user.email,
           _page: activePage,
           _limit: trailersPerPage,
         },
@@ -33,7 +43,7 @@ const UserContentDashboard = () => {
     } catch (err) {
       setError('Error fetching trailers');
     }
-  }, [activePage, trailersPerPage, userEmail]);
+  }, [activePage, trailersPerPage,  user]);
 
   useEffect(() => {
     fetchTrailers();

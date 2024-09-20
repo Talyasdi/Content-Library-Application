@@ -19,8 +19,7 @@ const NavBar = () => {
             <div>
               <Link to="/signup">Signup</Link>
               <Link to="/login">Login</Link>
-              <Link to="/trailers">Trailers</Link>
-              <Link to="/dashboard">My Dashboard</Link>
+              {/* <Link to="/trailers">Trailers</Link> */}
             </div>
           )}
           {user && (
@@ -28,7 +27,7 @@ const NavBar = () => {
               <span>Welcome {user.userName}!</span>
               <Link to="/homepage">HomePage</Link>
               <Link to="/dashboard">My Dashboard</Link>
-              <Link to="/trailers">Trailers</Link>
+              <Link to="/trailers">Suggested Trailers</Link>
               <button onClick={handleLogout}>Logout</button>
             </div>
           )}

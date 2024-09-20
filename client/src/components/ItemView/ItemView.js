@@ -162,14 +162,6 @@ import styles from './ItemView.module.css';
 
 
 const ItemView = ({ item }) => {
-  const formatDailymotionLink = (url) => {
-    if (url.includes('dailymotion.com') && !url.includes('/embed/')) {
-      const videoID = url.split('/video/')[1]; // Extract video ID
-      return `https://www.dailymotion.com/embed/video/${videoID}`;
-    }
-    return url;
-  };
-  const link = formatDailymotionLink(item.link);
   return (
     <div className={styles.trailerCard}>
       <img src="/project-logo.png" alt="Logo" className={styles.appLogo} />
@@ -179,10 +171,10 @@ const ItemView = ({ item }) => {
       <p className={styles.minAge}><b>Minimum age limit:</b> {item.minAgeLimit}</p>
 
       {/* Render the trailer video using ReactPlayer */}
-      {link && (
+      {item.link && (
         <div className={styles.videoContainer}>
           <ReactPlayer 
-            url={link}  // ReactPlayer will handle different platforms
+            url={item.link}  // ReactPlayer will handle different platforms
             className={styles.trailerVideo}
             width="560" 
             height="315"

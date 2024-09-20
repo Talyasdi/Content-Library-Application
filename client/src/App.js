@@ -23,13 +23,7 @@ function App() {
         <div className="pages">
           <Routes>
             <Route path="/" element={<Home />} />
-          {/* <Route path="/homepage" element={<Home />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/dashboard" element={<UserContentDashboard />} />
-            <Route path="/trailers" element={<LibraryView />} />
-            <Route path="/trailers/:id" element={<TrailerPage  />} />
-            <Route path="*" element={<NotFound />} /> */}
+            <Route path="*" element={<NotFound />} />
             <Route
               path="/homepage"
               element={user ? <Home /> : <Navigate to="/login" />}
@@ -48,14 +42,14 @@ function App() {
                 user ? <UserContentDashboard /> : <Navigate to="/login" />
               }
             />
-            {/* <Route
+            <Route
               path="/trailers"
               element={user ? <LibraryView /> : <Navigate to="/login" />}
             />
             <Route
               path="/trailers/:id"
               element={user ? <TrailerPage /> : <Navigate to="/login" />}
-            /> */}
+            />
           </Routes>
         </div>
       </BrowserRouter>

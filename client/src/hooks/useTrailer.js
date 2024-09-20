@@ -7,10 +7,23 @@ const useTrailer = (trailerId) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  const {user} = useAuthContext(); 
+
   const getSingleTrailer = async (trailerId) => {
+    if (!user) {
+      console.log("No user found");
+      return;
+    }
+
     setLoading(true);
+    
     try {
-      const response = await api.get(`/trailer/trailers/${trailerId}`);
+      const response = await api.get(`/trailer/trailers/${trailerId}`,{
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+    });
+    
       setTrailer(response.data.trailer); // Access `trailer` from response
     } catch (err) {
       setError('Error fetching trailer');
@@ -21,9 +34,7 @@ const useTrailer = (trailerId) => {
   };
 
   useEffect(() => {
-    // if (trailerId) {
     getSingleTrailer(trailerId);
-    // }
   }, [trailerId]);
 
   return { trailer, loading, error };

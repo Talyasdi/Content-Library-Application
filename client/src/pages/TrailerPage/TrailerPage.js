@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { TrailerContext } from '../../context/TrailerContext';
 import ItemView from '../../components/ItemView/ItemView';
+import Trailer from '../../components/Trailer/Trailer';
 
 const TrailerPage = () => {
   const { id } = useParams(); // Get trailerName from URL
@@ -12,10 +13,9 @@ const TrailerPage = () => {
   }, [id, setTrailerId]);
 
   if (!trailer) {
-    return <div>Loading...</div>;
+    return <div>Loading...</div>; //use not found if you try to pass not found id
   }
-
-  return <ItemView item={trailer} />;
+   return <Trailer trailer={trailer} />;
 };
 
 export default TrailerPage;

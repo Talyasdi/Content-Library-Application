@@ -106,3 +106,54 @@ form.signup, form.login, form.editTrailer {
   background: #fff;
   border-radius: 10px;
 }
+
+
+/* Default layout: 1 card per row for small screens*/
+.trailersContainer {
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  justify-content: center;
+  gap: 20px; 
+  padding:20px;
+}
+
+/* For tablets and medium-sized screens (2 cards per row) */
+@media (min-width: 600px) {
+  .trailersContainer {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Bigger min size on tablets */
+  }
+}
+
+/* For desktops and larger screens (3 or more cards per row) */
+@media (min-width: 1024px) {
+  .trailersContainer {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Adjust to show more cards on desktop */
+  }
+}
+/* Pagination styles */
+.pagination {
+  display: flex;
+  justify-content: center; /* Centers the pagination buttons */
+  align-items: center;
+  margin-top: 20px; /* Adds space between trailers and pagination */
+}
+
+.pagination button {
+  background-color: #007bff; /* Change this to your desired color */
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  margin: 0 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pagination button:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
+
+.pagination button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
