@@ -4,7 +4,6 @@ const requireAuth = require("../middleware/requireAuth");
 const {
   filterTrailers,
   getDistinctGenres,
-  sortTrailers,
   getUserTrailers,
   updateTrailer,
   deleteTrailer,
@@ -22,9 +21,6 @@ router.get("/trailers/filter", filterTrailers);
 
 // GET distinct genres
 router.get('/genres', getDistinctGenres);
-
-// GET sort trailers
-router.get("/trailers/sort", sortTrailers);
 
 // GET user's trailers
 router.get("/email", getUserTrailers);

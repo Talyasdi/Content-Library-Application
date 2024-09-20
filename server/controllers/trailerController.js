@@ -34,22 +34,6 @@ const getDistinctGenres = async (req, res) => {
   }
 };
 
-const sortTrailers = async (req, res) => {
-  try {
-      const { sortBy, order } = req.query; // Get sort parameters
-      const sortOptions = {};
-      
-      if (sortBy) {
-          sortOptions[sortBy] = order === 'desc' ? -1 : 1; // Determine order
-      }
-
-      const trailers = await Trailer.find().sort(sortOptions); // Sort trailers
-      res.status(200).json(trailers);
-  } catch (error) {
-      console.error('Error sorting trailers:', error);
-      res.status(400).json({ message: 'Error sorting trailers', error });
-  }
-};
 
 
 const getUserTrailers = async(req, res) => {
@@ -108,4 +92,4 @@ const updateTrailer = async (req, res) => {
   };
 
 
-module.exports = { filterTrailers, getDistinctGenres, sortTrailers, getUserTrailers, updateTrailer, deleteTrailer };
+module.exports = { filterTrailers, getDistinctGenres, getUserTrailers, updateTrailer, deleteTrailer };

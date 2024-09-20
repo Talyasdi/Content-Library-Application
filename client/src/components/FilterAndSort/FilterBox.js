@@ -136,8 +136,8 @@ const FilterBox = () => {
             </div>
 
             {/* Min Age Limit */}
+            <h3>Minimum Age Limit:</h3>
             <label>
-              Minimum Age Limit:
               <input
                 type="number"
                 name="minAgeLimit"
@@ -148,8 +148,8 @@ const FilterBox = () => {
             </label>
 
             {/* Release Year */}
+            <h3>Release Year:</h3>
             <label>
-              Release Year:
               <input
                 type="number"
                 name="releaseYear"
