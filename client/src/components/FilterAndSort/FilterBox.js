@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import api from '../../services/api';
 import Trailer from '../Trailer/Trailer';
+import {useAuthContext} from '../../hooks/useAuthContext'
 
 const FilterBox = () => {
   const [filters, setFilters] = useState({
@@ -10,6 +11,7 @@ const FilterBox = () => {
   });
 
   const [trailers, setTrailers] = useState([]);
+  const {user} = useAuthContext();
 
   // Handle form input changes
   const handleInputChange = (e) => {
@@ -31,7 +33,11 @@ const FilterBox = () => {
       const queryString = queryParams.toString();
       console.log(queryString);
 
-      const response = await api.get(`/trailer/trailers/filter?${queryString}`);
+      const response = await api.get(`/trailer/trailers/filter?${queryString}`, {
+        headers: {
+          Authorization: `Bearer ${user.token}`
+        }
+      });
       setTrailers(response.data);
     } catch (error) {
       console.error('Error fetching trailers:', error);

@@ -1,22 +1,28 @@
-const express = require('express');
-const { filterTrailers,
-        getUserTrailers,
-        updateTrailer,
-        deleteTrailer
- } = require('../controllers/trailerController')
+const express = require("express");
+const requireAuth = require("../middleware/requireAuth");
 
-const router = express.Router()
+const {
+  filterTrailers,
+  getUserTrailers,
+  updateTrailer,
+  deleteTrailer,
+} = require("../controllers/trailerController");
+
+const router = express.Router();
+
+//require authentication for all trailer routes
+router.use(requireAuth);
 
 // Route to filter trailers
-router.get('/trailers/filter', filterTrailers);
+router.get("/trailers/filter", filterTrailers);
 
 // GET user's trailers
-router.get('/email', getUserTrailers);
+router.get("/email", getUserTrailers);
 
 // PUT - update user's trailer
-router.put('/:id', updateTrailer)
+router.put("/:id", updateTrailer);
 
 // DELETE user's trailer
-router.delete('/:id', deleteTrailer)
+router.delete("/:id", deleteTrailer);
 
-module.exports = router
+module.exports = router;
