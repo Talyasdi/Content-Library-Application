@@ -3,7 +3,7 @@
 
 /* Layout */
 :root {
-  --primary: #a375d5;
+  --primary: #8e5bb0;
   --error: #e7195a;
   --success: #30c68a;
 }
@@ -80,35 +80,39 @@ h3 {
 
 /* Title Styles */
 .modal-content h2 {
-  margin-bottom: 20px;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--primary);
+  margin-top: 10px; 
+  margin-bottom: 0px;
 }
 
 /* Genres List */
 .genres-list {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.genres-list button {
-  padding: 8px 12px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  cursor: pointer;
-  background-color: #ccb5dc;
-  transition: background-color 0.3s, border-color 0.3s;
-}
-
-.genres-list button:hover {
-  background-color: #e6e6e6;
-}
-
-.genres-list button.selected {
-  background-color: var(--primary);
-  color: white;
-}
+    display: flex;
+    gap: 10px; /* Space between buttons */
+    flex-wrap: wrap; /* Allow wrapping to the next line */
+    justify-content: center; /* Center the items horizontally */
+    margin: 0; /* Optional: add some vertical spacing */
+  }
+  
+  .genres-list button {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #ccb5dc;
+    transition: background-color 0.3s, border-color 0.3s;
+  }
+  
+  .genres-list button:hover {
+    background-color: #e6e6e6;
+  }
+  
+  .genres-list button.selected {
+    background-color: var(--primary);
+    color: white;
+  }
+  
 
 /* Input Fields */
 label {
@@ -120,17 +124,40 @@ input {
   padding: 10px;
   margin-top: 5px;
   margin-bottom: 20px;
-  width: 100%;
+  width: 50%;
   border: 1px solid #ddd;
   border-radius: 4px;
   box-sizing: border-box;
   transition: border-color 0.3s;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 input:focus {
   border-color: var(--primary);
   outline: none;
 }
+
+.filter-container {
+    margin-top: 20px; 
+    display: flex;
+    gap: 20px; /* Space between the items */
+    align-items: center; /* Align items vertically */
+    justify-content: center; /* Center items horizontally */
+  }
+  
+  .filter-item {
+    display: flex;
+    flex-direction: column; /* Keep label and input stacked */
+    align-items: center; /* Center label and input horizontally */
+  }
+  
+  .filter-item input {
+    width: 100%; /* Adjust the width as needed */
+    max-width: 200px; /* Optional: Set a max width for the inputs */
+  }
+  
 
 /* Button Styles */
 button {

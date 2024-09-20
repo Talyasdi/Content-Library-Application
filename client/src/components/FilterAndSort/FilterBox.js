@@ -135,29 +135,29 @@ const FilterBox = () => {
               </div>
             </div>
 
-            {/* Min Age Limit */}
-            <h3>Minimum Age Limit:</h3>
-            <label>
-              <input
-                type="number"
-                name="minAgeLimit"
-                value={filters.minAgeLimit}
-                onChange={handleInputChange}
-                placeholder="Enter minimum age limit"
-              />
-            </label>
+          <div className="filter-container">
+              <div className="filter-item">
+                <h3>Minimum Age Limit:</h3>
+                <input
+                  type="number"
+                  name="minAgeLimit"
+                  value={filters.minAgeLimit}
+                  onChange={handleInputChange}
+                  placeholder="Enter minimum age limit"
+                />
+              </div>
+              <div className="filter-item">
+                <h3>Release Year:</h3>
+                <input
+                  type="number"
+                  name="releaseYear"
+                  value={filters.releaseYear}
+                  onChange={handleInputChange}
+                  placeholder="Enter release year"
+                />
+              </div>
+            </div>
 
-            {/* Release Year */}
-            <h3>Release Year:</h3>
-            <label>
-              <input
-                type="number"
-                name="releaseYear"
-                value={filters.releaseYear}
-                onChange={handleInputChange}
-                placeholder="Enter release year"
-              />
-            </label>
 
             {/* Filter Button */}
             <button onClick={handleFilter}>Apply Filters</button>
