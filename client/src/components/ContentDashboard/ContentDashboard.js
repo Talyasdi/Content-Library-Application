@@ -3,26 +3,31 @@ import axios from 'axios';
 import Pagination from '../Pagination/Pagination';
 import EditTrailerForm from './EditTrailerForm';
 import './ContentDashboard.css';
+import { useAuthContext } from '../../hooks/useAuthContext';
 
 const UserContentDashboard = () => {
   const [trailers, setTrailers] = useState([]);
   const [error, setError] = useState('');
   const [activePage, setActivePage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const trailersPerPage = 2;
+  const trailersPerPage = 3;
   const [isEditing, setIsEditing] = useState(null);
-
-  // Temporarily hardcoding the user's email
-  const userEmail = 'userName1@example.com';
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [trailerToDelete, setTrailerToDelete] = useState(null);
+  const { user } = useAuthContext();
 
   const fetchTrailers = useCallback(async () => {
+    if (!user) return;
     try {
-      const response = await axios.get(`http://localhost:5000/api/trailer/email?email=${userEmail}`, {
+      const response = await axios.get(`http://localhost:5000/api/trailer/email`, {
         params: {
-          email: userEmail,
+          email: user.email,
           _page: activePage,
           _limit: trailersPerPage,
         },
+        headers: {
+          Authorization: `Bearer ${user.token}`
+        }
       });
 
       setTrailers(response.data);
@@ -32,7 +37,7 @@ const UserContentDashboard = () => {
     } catch (err) {
       setError('Error fetching trailers');
     }
-  }, [activePage, trailersPerPage, userEmail]);
+  }, [activePage, user]);
 
   useEffect(() => {
     fetchTrailers();
@@ -42,13 +47,34 @@ const UserContentDashboard = () => {
     setActivePage(page);
   };
 
-  const deleteTrailer = async (id) => {
-    try {
-      await axios.delete(`http://localhost:5000/api/trailer/${id}`);
-      setTrailers(trailers.filter((trailer) => trailer._id !== id));
-    } catch (err) {
-      setError('Error deleting trailer');
+  const confirmDelete = (id) => {
+    setTrailerToDelete(id);
+    setShowConfirmation(true);
+  };
+
+  const deleteTrailer = async () => {
+    if (trailerToDelete) {
+      try {
+        await axios.delete(`http://localhost:5000/api/trailer/${trailerToDelete}`, {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        });
+        setShowConfirmation(false);
+        setTrailerToDelete(null);
+        setTrailers(trailers.filter((trailer) => trailer._id !== trailerToDelete));
+      }
+     catch (err) {
+      alert('Failed to delete trailer. Please try again.');
+      setShowConfirmation(false);
+      setTrailerToDelete(null);
     }
+  }
+  };
+
+  const cancelDelete = () => {
+    setShowConfirmation(false);
+    setTrailerToDelete(null);
   };
 
   const handleEdit = (trailer) => {
@@ -60,13 +86,25 @@ const UserContentDashboard = () => {
     fetchTrailers();
   };
 
+  const ConfirmationDialog = () => (
+    <div className="overlay">
+    <div className="confirmation-dialog">
+      <p>Are you sure you want to delete?</p>
+      <button onClick={deleteTrailer}>Yes</button>
+      <button onClick={cancelDelete}>No</button>
+    </div>
+    </div>
+  );
+
   return (
     <div>
-      <h1><center>My Trailers</center></h1>
+      <h1  style={{ fontSize: '2.5rem' }}><center>My Trailers</center></h1>
       {error && <p>{error}</p>}
       {trailers.length > 0 ? (
         <>
-        <ul style={{ listStyleType: 'none', padding: 0, textAlign: 'center', margin: '0 auto' }}>
+        <ul style={{ listStyleType: 'none', padding: 0, textAlign: 'center', margin: '0 auto', 
+          display: 'flex', flexWrap: 'wrap', justifyContent: 'center'
+        }}>
           {trailers.map((trailer) => (
             <li key={trailer._id}>
               {isEditing === trailer._id ? (
@@ -77,21 +115,44 @@ const UserContentDashboard = () => {
                 />
               ) : (
                 <>
-              <h3>{trailer.trailerName}</h3>
-              <p>Genres: {trailer.genres.join(', ')}</p>
-              <p>Cast: {trailer.cast.join(', ')}</p>
-              <p>Release Year: {trailer.releaseYear}</p>
-              <a href={trailer.link} target="_blank" rel="noopener noreferrer">Watch Trailer</a>
-              <div>
-                <button onClick={() => handleEdit(trailer)}>Edit</button>
-                <button onClick={() => deleteTrailer(trailer._id)}>Delete</button>
+              <div className="trailer-Box">
+                <h2>{trailer.trailerName}</h2>
+                <p><strong>Genres:</strong> {trailer.genres.join(', ')}</p>
+                <p><strong>Min Age Limit:</strong> {trailer.minAgeLimit}</p>
+                <p><strong>Release Year:</strong> {trailer.releaseYear}</p>
+                <p><strong>Cast:</strong> {trailer.cast.join(', ')}</p>
+                <a href={trailer.link} target="_blank" rel="noopener noreferrer">Watch Trailer</a>
+                <p></p>
+                <button className="icon-button" onClick={() => handleEdit(trailer)}>
+                <i class="fa-regular fa-pen-to-square"></i>
+                </button>
+                <button button className="icon-button" onClick={() => confirmDelete(trailer._id)}>
+                <i class="fa-regular fa-trash-can"></i>
+                </button>
               </div>
               </>
               )}
             </li>
           ))}
+
+      {/* {trailers.map((trailer) => (
+        isEditing === trailer._id ? (
+            <EditTrailerForm
+                key={trailer._id}
+                trailer={trailer}
+                onClose={() => setIsEditing(null)}
+                onUpdate={handleUpdate}
+            />
+        ) : (
+            <Trailer
+                key={trailer._id}
+                trailer={trailer}
+                onEdit={handleEdit}
+                onDelete={confirmDelete}
+            />
+        )))} */}
         </ul>
-            </>
+        </>
       ) : (
         <p>No trailers found for this user.</p>
       )}
@@ -104,6 +165,7 @@ const UserContentDashboard = () => {
             }}
           />
         </div>
+      {showConfirmation &&  <ConfirmationDialog />}
     </div>
   );
 };

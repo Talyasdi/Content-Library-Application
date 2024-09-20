@@ -2,14 +2,16 @@ import React from 'react';
 import './pagination.css'
 
 const PageButton = ({ page, currPage, handlePageChange }) => (
-  <button
+  <button 
     key={page}
     name={`page-${page}`}
     onClick={() => handlePageChange(page)}
     disabled={page === currPage}
     aria-disabled={page === currPage}
-    className={`pagination-button ${page === currPage ? "active" : ""}`}
-    style={{ fontWeight: page === currPage ? 'bold' : 'normal' }}
+    className={`number-button ${page === currPage ? "active" : ""}`}
+    style={{ fontWeight: page === currPage ? 'bold' : 'normal',
+      color: page === currPage ? '#a375d5' : 'black' 
+      }}
   >
     {page}
   </button>
@@ -39,36 +41,36 @@ const Pagination = ({ pagination }) => {
     <div>
       <button 
         name="first"
-        className={`pagination-button ${currPage === 1 ? "disabled" : ""}`}
+        className={`icon-button ${currPage === 1 ? "disabled" : ""}`}
         disabled={currPage === 1}
         onClick={() => handlePageChange(1)}
       >
-        &laquo;
+        <i class="fa-solid fa-angles-left"></i>
       </button>
       <button
         name="previous"
-        className={`pagination-button ${currPage === 1 ? "disabled" : ""}`}
+        className={`icon-button ${currPage === 1 ? "disabled" : ""}`}
         disabled={currPage === 1}
         onClick={() => handlePageChange(currPage - 1)}
       >
-        &lt;
+        <i class="fa-solid fa-angle-left"></i>
       </button>
       {pages}
       <button
         name="next"
-        className={`pagination-button ${currPage === totalPages ? "disabled" : ""}`}
+        className={`icon-button ${currPage === totalPages ? "disabled" : ""}`}
         disabled={currPage === totalPages}
         onClick={() => handlePageChange(currPage + 1)}
       >
-        &gt;
+        <i class="fa-solid fa-angle-right"></i>
       </button>
       <button
         name="last"
-        className={`pagination-button ${currPage === totalPages ? "disabled" : ""}`}
+        className={`icon-button ${currPage === totalPages ? "disabled" : ""}`}
         disabled={currPage === totalPages}
         onClick={() => handlePageChange(totalPages)}
       >
-        &raquo;
+        <i class="fa-solid fa-angles-right"></i>
       </button>
     </div>
   );

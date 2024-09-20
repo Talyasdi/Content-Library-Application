@@ -1,5 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap');
+
 .pagination {
     display: flex;
     justify-content: center; /* Center pagination horizontally */
     margin-top: 1rem; /* Optional: Add space above the pagination */
+    font-family: "Poppins";
   }
+

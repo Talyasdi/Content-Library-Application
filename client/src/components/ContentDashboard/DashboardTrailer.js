@@ -9,7 +9,6 @@ const Trailer = ({ trailer }) => {
       <p><strong>Release Year:</strong> {trailer.releaseYear}</p>
       <p><strong>Cast:</strong> {trailer.cast.join(', ')}</p>
       <a href={trailer.link} target="_blank" rel="noopener noreferrer">Watch Trailer</a>
-      <p><em>Uploaded by {trailer.userName}</em></p>
     </div>
   );
 };
@@ -20,6 +19,8 @@ const trailerBoxStyle = {
   margin: '10px',
   borderRadius: '8px',
   backgroundColor: '#f9f9f9',
+  flex: '1 1 30%', // Adjust the percentage as needed
+  maxWidth: '500px', // Set a maximum width for each box
 };
 
 export default Trailer;
