@@ -38,3 +38,29 @@
     color: white;
   }
   
+  /* Styling for sorting dropdown */
+  select {
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: 200px; /* Adjust width as needed */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-family: "Poppins";
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+    transition: border-color 0.3s;
+  }
+  
+  select:focus {
+    border-color: var(--primary);
+    outline: none;
+  }
+  
+  /* Optional styles for better aesthetics */
+  select option {
+    padding: 10px;
+    font-family: "Poppins";
+  }

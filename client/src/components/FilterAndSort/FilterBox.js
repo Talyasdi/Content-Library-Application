@@ -13,7 +13,6 @@ const FilterBox = () => {
   
   const [sortBy, setSortBy] = useState(''); // State for sorting criteria
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isSortingModalOpen, setIsSortingModalOpen] = useState(false); // State for sorting modal
   const [availableGenres, setAvailableGenres] = useState([]);
   const [trailers, setTrailers] = useState([]);
   const { user } = useAuthContext();
@@ -36,10 +35,6 @@ const FilterBox = () => {
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
-  };
-
-  const toggleSortingModal = () => {
-    setIsSortingModalOpen(!isSortingModalOpen);
   };
 
   const handleGenreClick = (genre) => {
@@ -86,9 +81,9 @@ const FilterBox = () => {
   };
 
   // Handle sorting logic
-  const handleSort = (criteria) => {
+  const handleSortChange = (e) => {
+    const criteria = e.target.value;
     setSortBy(criteria);
-    setIsSortingModalOpen(false); // Close the sorting modal
   };
 
   // Sorting function
@@ -110,9 +105,14 @@ const FilterBox = () => {
     <div>
       {/* Button to open the filter modal */}
       <button onClick={toggleModal}>Filter Trailers</button>
-      
-      {/* Button to open the sorting modal */}
-      <button onClick={toggleSortingModal}>Sort Trailers</button>
+
+      {/* Dropdown for sorting */}
+      <select id="sortSelect" value={sortBy} onChange={handleSortChange}>
+        <option value="">Select Sorting Option</option>
+        <option value="releaseYear">Sort by Release Year</option>
+        <option value="minAgeLimit">Sort by Minimum Age Limit</option>
+        <option value="name">Sort A-Z by Trailer Name</option>
+      </select>
 
       {/* Modal for filtering */}
       {isModalOpen && (
@@ -162,19 +162,6 @@ const FilterBox = () => {
             {/* Filter Button */}
             <button onClick={handleFilter}>Apply Filters</button>
             <button onClick={toggleModal}>Close</button>
-          </div>
-        </div>
-      )}
-
-      {/* Modal for sorting */}
-      {isSortingModalOpen && (
-        <div className="modal">
-          <div className="modal-content">
-            <h2>Sort Trailers</h2>
-            <button onClick={() => handleSort('releaseYear')}>Sort by Release Year</button>
-            <button onClick={() => handleSort('minAgeLimit')}>Sort by Minimum Age Limit</button>
-            <button onClick={() => handleSort('name')}>Sort A-Z by Trailer Name</button>
-            <button onClick={toggleSortingModal}>Close</button>
           </div>
         </div>
       )}
