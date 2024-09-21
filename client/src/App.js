@@ -11,7 +11,7 @@ import Login from "./pages/Login";
 
 import LibraryView from './pages/LibraryViewPage/LibraryViewPage';
 import TrailerPage  from './pages/TrailerPage/TrailerPage';
-import NotFound from './pages/NotFoundPage/NotFound';
+import NotFound from './pages/NotFoundPage';
 
 function App() {
   const { user } = useAuthContext();
