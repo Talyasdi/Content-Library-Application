@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { useLogout } from "../hooks/useLogout";
 import { useAuthContext } from "../hooks/useAuthContext";
@@ -11,7 +12,7 @@ const NavBar = () => {
     window.location.href = "/";
   };
 
-  return (
+return (
     <header>
       <div className="container">
         <nav>
@@ -26,6 +27,7 @@ const NavBar = () => {
               <span>Welcome {user.userName}!</span>
               <Link to="/">HomePage</Link>
               <Link to="/dashboard">My Dashboard</Link>
+              <Link to="/upload-trailer">Upload a new Trailer</Link> {/* New link added */}
               <button onClick={handleLogout}>Logout</button>
             </div>
           )}
@@ -34,4 +36,5 @@ const NavBar = () => {
     </header>
   );
 };
+
 export default NavBar;

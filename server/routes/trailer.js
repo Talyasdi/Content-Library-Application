@@ -1,26 +1,23 @@
+
 const express = require("express");
 const requireAuth = require("../middleware/requireAuth");
 
 const {
   filterTrailers,
-  getDistinctGenres,
   getUserTrailers,
   updateTrailer,
   deleteTrailer,
+  checkTrailerExists, // NEW
+  uploadTrailer // NEW
 } = require("../controllers/trailerController");
-
-console.log('getDistinctGenres:', getDistinctGenres);
 
 const router = express.Router();
 
 //require authentication for all trailer routes
 router.use(requireAuth);
 
-// GET filter trailers
+// Route to filter trailers
 router.get("/trailers/filter", filterTrailers);
-
-// GET distinct genres
-router.get('/genres', getDistinctGenres);
 
 // GET user's trailers
 router.get("/email", getUserTrailers);
@@ -30,5 +27,12 @@ router.put("/:id", updateTrailer);
 
 // DELETE user's trailer
 router.delete("/:id", deleteTrailer);
+
+// POST - upload a new (user) trailer 
+router.post('/',uploadTrailer);
+
+// POST - check if trailer exists
+router.post('/check-trailer', checkTrailerExists); // Add this line
+
 
 module.exports = router;
