@@ -1,54 +1,32 @@
-
-/* .trailerCard {
-    background-color: #ff799d;
+.trailerCard {
+    background-color: #f9f9f9;
     border-radius: 15px;
-    padding: 20px;
-    margin: 10px 20px;
-    /* padding-left: 0px;
-    padding-right: 0px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    height: 150px;
-    width: 150px;
-    
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-  } */
-  .trailerCard {
-    background-color: #ff799d;
-    border-radius: 15px;
+    border: 1px solid #ccc;
     padding: 20px;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    height: 200px; /* Increased height to allow for fixed content */
-    width: 150px;
+    height: 250px; /* Increased height to allow for fixed content */
+    width: 200px;
     margin: 5px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Ensures equal spacing */
     align-items: center;
     text-decoration: none;
+    text-size-adjust: 100%;
+    border-style:double ;
 }
+
 .trailerCard:hover {
-  box-shadow: 5px 5px 5px rgba(58, 121, 94, 0.524);
+    box-shadow: 5px 5px 5px rgba(58, 121, 94, 0.524);
 }
 
 .trailerLink {
     text-decoration: none;
 }
 
-.appLogo {
-    height: 40px;
-    width: 40px;
-    margin-bottom: 5px; /* Fixed margin for spacing */
-}
-
 .trailerName {
     font-size: 20px;
-    color: #fff;
+    color: #a375d5;
     margin: 5px 0;
     height: 150px; /* Fixed height to keep the title area consistent */
 }
@@ -56,19 +34,17 @@
 .genresList {
     list-style-type: none;
     padding: 5px;
-    /* margin: 5px 0 0; */
-    display:flex;
-    /* justify-content: center; */
-    flex-wrap: wrap;
-    height: 200px; /* Fixed height for the genres area */  
+    display:flexbox;
+    height: 450px; /* Fixed height for the genres area */  
 }
 
 .genreItem {
-    background-color: #ffe0e9;
-    border-radius: 12px;
+    /* background-color: #a375d5; */
+    border-radius: 10px;
     height: 20px;
-    padding: 5px 5px;
+    padding: 0px 5px;
     margin: 5px;
-    font-size: 14px;
-    color: #ff799d;
+    font-size: 17px;
+    color: rgb(43, 39, 43);
+    font-weight: bold;
 }
