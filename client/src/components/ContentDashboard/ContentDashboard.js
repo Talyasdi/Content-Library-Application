@@ -4,6 +4,8 @@ import Pagination from '../Pagination/Pagination';
 import EditTrailerForm from './EditTrailerForm';
 import './ContentDashboard.css';
 import { useAuthContext } from '../../hooks/useAuthContext';
+import PopupMessage from './PopupMessage';
+import popcorn from '../../assets/popcorn.png'
 
 const UserContentDashboard = () => {
   const [trailers, setTrailers] = useState([]);
@@ -15,6 +17,8 @@ const UserContentDashboard = () => {
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [trailerToDelete, setTrailerToDelete] = useState(null);
   const { user } = useAuthContext();
+  const [popupMessage, setPopupMessage] = useState('');
+  const [showPopup, setShowPopup] = useState(false);
 
   const fetchTrailers = useCallback(async () => {
     if (!user) return;
@@ -63,6 +67,7 @@ const UserContentDashboard = () => {
         setShowConfirmation(false);
         setTrailerToDelete(null);
         setTrailers(trailers.filter((trailer) => trailer._id !== trailerToDelete));
+        showPopupMessage('Trailer deleted successfully');
       }
      catch (err) {
       alert('Failed to delete trailer. Please try again.');
@@ -96,9 +101,26 @@ const UserContentDashboard = () => {
     </div>
   );
 
+  const showPopupMessage = (message) => {
+    setPopupMessage(message);
+    setShowPopup(true);
+  };
+  
+  const hidePopup = () => {
+    setShowPopup(false);
+  };
+
   return (
     <div>
-      <h1  style={{ fontSize: '2.5rem' }}><center>My Trailers</center></h1>
+      <h1  style={{ fontSize: '2.5rem' }}><center>
+      <img src={popcorn} style={{ width: '48px', height: '48px', marginRight: '20px' }} />
+        My Trailers
+        <img src={popcorn} style={{ width: '48px', height: '48px', marginLeft: '20px'}} />
+        </center></h1>
+      <button className="upload-button">
+      <i class="fa-solid fa-plus" style={{ color: 'white', fontSize: '24px'}}></i>
+      Add New Trailer
+      </button>
       {error && <p>{error}</p>}
       {trailers.length > 0 ? (
         <>
@@ -112,6 +134,7 @@ const UserContentDashboard = () => {
                   trailer={trailer}
                   onClose={() => setIsEditing(null)}
                   onUpdate={handleUpdate}
+                  showPopupMessage={showPopupMessage}
                 />
               ) : (
                 <>
@@ -123,10 +146,10 @@ const UserContentDashboard = () => {
                 <p><strong>Cast:</strong> {trailer.cast.join(', ')}</p>
                 <a href={trailer.link} target="_blank" rel="noopener noreferrer">Watch Trailer</a>
                 <p></p>
-                <button className="icon-button" onClick={() => handleEdit(trailer)}>
+                <button className="icon-button" onClick={() => handleEdit(trailer) } title="Edit Trailer">
                 <i class="fa-regular fa-pen-to-square"></i>
                 </button>
-                <button button className="icon-button" onClick={() => confirmDelete(trailer._id)}>
+                <button button className="icon-button" onClick={() => confirmDelete(trailer._id) } title="Delete Trailer">
                 <i class="fa-regular fa-trash-can"></i>
                 </button>
               </div>
@@ -134,27 +157,10 @@ const UserContentDashboard = () => {
               )}
             </li>
           ))}
-
-      {/* {trailers.map((trailer) => (
-        isEditing === trailer._id ? (
-            <EditTrailerForm
-                key={trailer._id}
-                trailer={trailer}
-                onClose={() => setIsEditing(null)}
-                onUpdate={handleUpdate}
-            />
-        ) : (
-            <Trailer
-                key={trailer._id}
-                trailer={trailer}
-                onEdit={handleEdit}
-                onDelete={confirmDelete}
-            />
-        )))} */}
         </ul>
         </>
       ) : (
-        <p>No trailers found for this user.</p>
+        <p><center>No trailers found for this user.</center></p>
       )}
         <div className="pagination">
           <Pagination
@@ -166,6 +172,7 @@ const UserContentDashboard = () => {
           />
         </div>
       {showConfirmation &&  <ConfirmationDialog />}
+      {showPopup && <PopupMessage message={popupMessage} onClose={hidePopup} />}
     </div>
   );
 };

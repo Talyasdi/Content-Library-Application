@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './EditTrailerForm.css'
 import { useAuthContext } from '../../hooks/useAuthContext';
 
-const EditTrailerForm = ({ trailer, onClose, onUpdate }) => {
+const EditTrailerForm = ({ trailer, onClose, onUpdate, showPopupMessage }) => {
   const [formData, setFormData] = useState({
     trailerName: trailer.trailerName,
     genres: trailer.genres.join(', '), 
@@ -37,6 +36,7 @@ const EditTrailerForm = ({ trailer, onClose, onUpdate }) => {
         }});
       onUpdate(); 
       onClose(); 
+      showPopupMessage('Trailer updated successfully');
     } catch (err) {
       console.error('Error updating trailer', err);
     }
