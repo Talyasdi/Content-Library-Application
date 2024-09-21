@@ -24,7 +24,7 @@ const NavBar = () => {
           )}
           {user && (
             <div>
-              <span>Welcome {user.userName}!</span>
+              <span><b>Welcome {user.userName}!</b></span>
               <Link to="/homepage">HomePage</Link>
               <Link to="/dashboard">My Dashboard</Link>
               <Link to="/trailers">Suggested Trailers</Link>

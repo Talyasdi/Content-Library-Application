@@ -37,7 +37,7 @@ const trailerBoxStyle = {
   padding: '20px',
   margin: '10px',
   borderRadius: '8px',
-  backgroundColor: '#f9f9f9'
+  backgroundColor: '#f9f9f9',
 };
 
 export default Trailer;
