@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './EditTrailerForm.css'
+import { useAuthContext } from '../../hooks/useAuthContext';
 
-const EditTrailerForm = ({ trailer, onClose, onUpdate }) => {
+const EditTrailerForm = ({ trailer, onClose, onUpdate, showPopupMessage }) => {
   const [formData, setFormData] = useState({
     trailerName: trailer.trailerName,
     genres: trailer.genres.join(', '), 
@@ -19,6 +19,8 @@ const EditTrailerForm = ({ trailer, onClose, onUpdate }) => {
     }));
   };
 
+  const { user } = useAuthContext();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -26,16 +28,22 @@ const EditTrailerForm = ({ trailer, onClose, onUpdate }) => {
         ...formData,
         genres: formData.genres.split(',').map((genre) => genre.trim()), 
         cast: formData.cast.split(',').map((actor) => actor.trim()), 
-      });
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+          'Content-Type': 'application/json',
+        }});
       onUpdate(); 
       onClose(); 
+      showPopupMessage('Trailer updated successfully');
     } catch (err) {
       console.error('Error updating trailer', err);
     }
   };
 
   return (
-    <div className="form-group">
+      <div className="overlay">
       <form className="editTrailer" onSubmit={handleSubmit} >
         <label>
           Trailer Name:
