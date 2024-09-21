@@ -1,6 +1,5 @@
 const Trailer = require('../models/trailerModel');
 
-// Function to filter trailers
 const filterTrailers = async (req, res) => {
     try {
         const { genres, minAgeLimit, releaseYear } = req.query;
@@ -11,7 +10,7 @@ const filterTrailers = async (req, res) => {
             filter.genres = { $in: genres.split(',') };
         }
         if (minAgeLimit) {
-            filter.minAgeLimit = { $gte: minAgeLimit };
+            filter.minAgeLimit = { $lte: minAgeLimit };
         }
         if (releaseYear) {
             filter.releaseYear = releaseYear;
@@ -24,6 +23,18 @@ const filterTrailers = async (req, res) => {
         res.status(400).json({ message: 'Error filtering trailers', error });
     }
 };
+
+const getDistinctGenres = async (req, res) => {
+  try {
+      const distinctGenres = await Trailer.distinct('genres');
+      res.status(200).json(distinctGenres);
+  } catch (error) {
+      console.error('Error fetching distinct genres:', error);
+      res.status(400).json({ message: 'Error fetching genres' });
+  }
+};
+
+
 
 const getUserTrailers = async(req, res) => {
     const { email } = req.query;
@@ -81,4 +92,4 @@ const updateTrailer = async (req, res) => {
   };
 
 
-module.exports = { filterTrailers, getUserTrailers, updateTrailer, deleteTrailer };
+module.exports = { filterTrailers, getDistinctGenres, getUserTrailers, updateTrailer, deleteTrailer };

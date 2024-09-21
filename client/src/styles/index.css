@@ -106,3 +106,15 @@ form.signup, form.login, form.editTrailer {
   background: #fff;
   border-radius: 10px;
 }
+
+/* Home Page */
+.home {
+  text-align: center;
+  padding: 20px;
+}
+
+.headline {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #53474F;
+}
