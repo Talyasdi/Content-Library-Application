@@ -3,16 +3,16 @@ import ReactDOM from 'react-dom/client';
 import './styles/global.css'; 
 import "./styles/index.css";
 import App from './App';
-import { TrailerProvider } from './context/TrailerContext';
 import { AuthContextProvider } from "./context/AuthContext";
+// import { TrailerProvider } from './context/TrailerContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <AuthContextProvider>
-      <TrailerProvider>
+      {/* <TrailerProvider> */}
         <App /> 
-      </TrailerProvider>
+      {/* </TrailerProvider> */}
     </AuthContextProvider>
   </React.StrictMode>
 );

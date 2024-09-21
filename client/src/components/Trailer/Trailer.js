@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactPlayer from 'react-player'; 
-import styles from '../TrailerLibraryView/TrailerView.module.css'
-
+import styles from './Trailer.css';
 
 const Trailer = ({ trailer }) => {
 
@@ -16,7 +15,7 @@ const Trailer = ({ trailer }) => {
 
 
   return (
-    <div style={trailerBoxStyle}>
+    <div className={styles.trailerCard}>
       <h2>{trailer.trailerName}</h2>
 
       {trailer.link && (
@@ -62,12 +61,12 @@ const Trailer = ({ trailer }) => {
   );
 };
 
-const trailerBoxStyle = {
-  border: '1px solid #ccc',
-  padding: '20px',
-  margin: '10px',
-  borderRadius: '8px',
-  backgroundColor: '#f9f9f9',
-};
+// const trailerBoxStyle = {
+//   border: '1px solid #ccc',
+//   padding: '20px',
+//   margin: '10px',
+//   borderRadius: '8px',
+//   backgroundColor: '#f9f9f9',
+// };
 
 export default Trailer;

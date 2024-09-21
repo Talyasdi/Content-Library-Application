@@ -161,20 +161,16 @@ import ReactPlayer from 'react-player';
 import styles from './ItemView.module.css'; 
 
 
-const ItemView = ({ item }) => {
+const ItemView = ({ trailer }) => {
   return (
+    <>
+    <h1>Hit Play and Enjoy!</h1>
     <div className={styles.trailerCard}>
-      <img src="/project-logo.png" alt="Logo" className={styles.appLogo} />
-      <h2 className={styles.trailerName}>{item.trailerName}</h2>
-
-      <h3 className={styles.releaseYear}>Release Year: {item.releaseYear}</h3>
-      <p className={styles.minAge}><b>Minimum age limit:</b> {item.minAgeLimit}</p>
-
       {/* Render the trailer video using ReactPlayer */}
-      {item.link && (
+      {trailer.link && (
         <div className={styles.videoContainer}>
           <ReactPlayer 
-            url={item.link}  // ReactPlayer will handle different platforms
+            url={trailer.link}  // ReactPlayer will handle different platforms
             className={styles.trailerVideo}
             width="560" 
             height="315"
@@ -184,21 +180,31 @@ const ItemView = ({ item }) => {
         </div>
       )}
 
-      <b className={styles.genresLabel}>Genres:</b>
+
+  <div className={styles.dataContainer}>
+  <h2 className={styles.trailerName}>{trailer.trailerName}</h2>
+    <p><b>Release Year: </b> {trailer.releaseYear}</p>
+    <p><b>Min Age Limit:</b> {trailer.minAgeLimit}</p>
+      <p><b>Genres:</b>
       <ul className={styles.genresList}>
-        {item.genres && item.genres.map((genre, index) => (
+        {trailer.genres && trailer.genres.map((genre, index) => (
           <li key={index} className={styles.genreItem}>{genre}</li>
         ))}
       </ul>
+      </p>
 
-      <b className={styles.castLabel}>Cast:</b>
+     <p><b>Cast:</b>
       <ul className={styles.castList}>
-        {item.cast && item.cast.map((member, index) => (
+        {trailer.cast && trailer.cast.map((member, index) => (
           <li key={index} className={styles.castItem}>{member}</li>
         ))}
       </ul>
+      </p>
     </div>
+    </div>
+    </>
   );
+
 }
 
 export default ItemView;

@@ -120,11 +120,15 @@ form.signup, form.login, form.editTrailer {
 }
 
 
-
+/*LibraryView Page */
+.pageContainer {
+  display : grid;
+  justify-content: center;
+}
 /* Default layout: 1 card per row for small screens*/
 .trailersContainer {
   display:grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   justify-content: center;
   gap: 20px; 
   padding:20px;
@@ -143,16 +147,17 @@ form.signup, form.login, form.editTrailer {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Adjust to show more cards on desktop */
   }
 }
+
 /* Pagination styles */
 .pagination {
   display: flex;
   justify-content: center; /* Centers the pagination buttons */
   align-items: center;
-  margin-top: 20px; /* Adds space between trailers and pagination */
+  margin-top: 1rem; /* Adds space between trailers and pagination */
 }
 
 .pagination button {
-  background-color: #007bff; /* Change this to your desired color */
+  background-color: #ff799d;
   color: white;
   border: none;
   padding: 10px 15px;
@@ -162,11 +167,12 @@ form.signup, form.login, form.editTrailer {
 }
 
 .pagination button:hover {
-  background-color: #0056b3; /* Darker shade on hover */
+  background-color: #cccccc; /* Darker shade on hover */
 }
 
 .pagination button:disabled {
   background-color: #cccccc;
+  color: #ff799d;
   cursor: not-allowed;
 }
 

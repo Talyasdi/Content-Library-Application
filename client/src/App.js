@@ -9,8 +9,8 @@ import NavBar from "./components/NavBar";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 
-import LibraryView from './pages/LibraryViewPage/LibraryViewPage';
-import TrailerPage  from './pages/TrailerPage/TrailerPage';
+import LibraryView from './pages/LibraryViewPage';
+import TrailerPage  from './pages/TrailerPage';
 import NotFound from './pages/NotFoundPage';
 
 function App() {
@@ -22,7 +22,6 @@ function App() {
         <NavBar />
         <div className="pages">
           <Routes>
-            <Route path="/" element={<Home />} />
             <Route path="*" element={<NotFound />} />
             <Route
               path="/"
