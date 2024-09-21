@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import api from '../../services/api';
 import Trailer from '../Trailer/Trailer';
 import { useAuthContext } from '../../hooks/useAuthContext';
-import './FilterBox.css'; 
+import './FilterAndSortBox.css'; 
 
-const FilterBox = () => {
+const FilterSortBox = () => {
   const [filters, setFilters] = useState({
     genres: [],
     minAgeLimit: '',
@@ -176,4 +176,4 @@ const FilterBox = () => {
   );
 };
 
-export default FilterBox;
+export default FilterSortBox;

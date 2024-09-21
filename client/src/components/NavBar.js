@@ -8,7 +8,7 @@ const NavBar = () => {
 
   const handleLogout = () => {
     logout();
-    window.location.href = "/homepage";
+    window.location.href = "/";
   };
 
   return (
@@ -24,7 +24,7 @@ const NavBar = () => {
           {user && (
             <div>
               <span>Welcome {user.userName}!</span>
-              <Link to="/homepage">HomePage</Link>
+              <Link to="/">HomePage</Link>
               <Link to="/dashboard">My Dashboard</Link>
               <button onClick={handleLogout}>Logout</button>
             </div>
