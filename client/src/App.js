@@ -4,11 +4,11 @@ import UserContentDashboard from "./components/ContentDashboard/ContentDashboard
 import { useAuthContext } from "./hooks/useAuthContext";
 
 // pages & components
-import Home from "./pages/HomePage/HomePage";
+import Home from "./pages/HomePage";
 import NavBar from "./components/NavBar";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
-import UploadTrailer from "./components/UploadTrailer"; // Import the UploadTrailer component
+import UploadTrailer from "./components/Trailer/UploadTrailer"; // Import the UploadTrailer component
 
 function App() {
   const { user } = useAuthContext();

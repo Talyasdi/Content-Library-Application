@@ -1,13 +1,11 @@
 import React from 'react';
-import styles from './Home.module.css';
-import FilterBox from '../../components/FilterAndSort/FilterBox';
+import FilterSortBox from '../components/FilterAndSort/FilterAndSortBox';
 import TrailerForm from '../../components/TrailerForm'
-
 
 
 const Home = () => {
   return (
-    <div className={styles.home}>
+    <div className="home">
        <div>	
         <FilterBox />
        </div> 
@@ -15,5 +13,6 @@ const Home = () => {
     </div>  
   )
 }
+
 
 export default Home
