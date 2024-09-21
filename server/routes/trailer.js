@@ -3,6 +3,7 @@ const requireAuth = require("../middleware/requireAuth");
 
 const {
   filterTrailers,
+  getDistinctGenres,
   getUserTrailers,
   updateTrailer,
   deleteTrailer,
@@ -10,13 +11,18 @@ const {
   getSingleTrailer
 } = require("../controllers/trailerController");
 
+console.log('getDistinctGenres:', getDistinctGenres);
+
 const router = express.Router();
 
 //require authentication for all trailer routes
 router.use(requireAuth);
 
-// Route to filter trailers
+// GET filter trailers
 router.get("/trailers/filter", filterTrailers);
+
+// GET distinct genres
+router.get('/genres', getDistinctGenres);
 
 // GET user's trailers
 router.get("/email", getUserTrailers);

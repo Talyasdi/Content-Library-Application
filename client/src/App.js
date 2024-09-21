@@ -4,7 +4,7 @@ import UserContentDashboard from './components/ContentDashboard/ContentDashboard
 import { useAuthContext } from "./hooks/useAuthContext";
 
 //pages & components
-import Home from "./pages/HomePage/HomePage";
+import Home from "./pages/HomePage";
 import NavBar from "./components/NavBar";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
@@ -25,16 +25,16 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="*" element={<NotFound />} />
             <Route
-              path="/homepage"
+              path="/"
               element={user ? <Home /> : <Navigate to="/login" />}
             />
             <Route
               path="/signup"
-              element={!user ? <Signup /> : <Navigate to="/homepage" />}
+              element={!user ? <Signup /> : <Navigate to="/" />}
             />
             <Route
               path="/login"
-              element={!user ? <Login /> : <Navigate to="/homepage" />}
+              element={!user ? <Login /> : <Navigate to="/" />}
             />
             <Route
               path="/dashboard"

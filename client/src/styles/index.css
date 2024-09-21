@@ -107,6 +107,19 @@ form.signup, form.login, form.editTrailer {
   border-radius: 10px;
 }
 
+/* Home Page */
+.home {
+  text-align: center;
+  padding: 20px;
+}
+
+.headline {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #53474F;
+}
+
+
 
 /* Default layout: 1 card per row for small screens*/
 .trailersContainer {

@@ -8,7 +8,7 @@ const NavBar = () => {
 
   const handleLogout = () => {
     logout();
-    window.location.href = "/homepage";
+    window.location.href = "/";
   };
 
   return (
@@ -24,8 +24,8 @@ const NavBar = () => {
           )}
           {user && (
             <div>
-              <span><b>Welcome {user.userName}!</b></span>
-              <Link to="/homepage">HomePage</Link>
+              <span>Welcome {user.userName}!</span>
+              <Link to="/">HomePage</Link>
               <Link to="/dashboard">My Dashboard</Link>
               <Link to="/trailers">Suggested Trailers</Link>
               <button onClick={handleLogout}>Logout</button>
