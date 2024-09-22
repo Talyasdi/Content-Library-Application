@@ -15,36 +15,10 @@ const Trailer = ({ trailer}) => {
             <li key={index} className={styles.genreItem}>{genre}</li>
           ))}
         </ul>
+        <p className={styles.trailerUserName}>Uploaded By {trailer.userName}</p>
       </div>
      </Link>
   );
 };
 
 export default Trailer;
-
-
-   
-
-
-
-
-
-
-
-
-
-
-
-
-   
-
-
-
-
-
-
-
-
-
-
-

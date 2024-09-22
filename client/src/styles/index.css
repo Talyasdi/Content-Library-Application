@@ -109,8 +109,7 @@ form.signup, form.login, form.editTrailer {
 
 /* Home Page */
 .home {
-  text-align: center;
-  padding: 20px;
+  display: grid; 
 }
 
 .headline {

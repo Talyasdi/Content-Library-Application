@@ -26,7 +26,7 @@ const NavBar = () => {
               <span>Welcome {user.userName}!</span>
               <Link to="/">HomePage</Link>
               <Link to="/dashboard">My Dashboard</Link>
-              <Link to="/trailers">Suggested Trailers</Link>
+              {/* <Link to="/trailers">Suggested Trailers</Link> */}
               <button onClick={handleLogout}>Logout</button>
             </div>
           )}

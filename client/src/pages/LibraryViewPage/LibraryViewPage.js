@@ -1,7 +1,7 @@
 import useTrailers from '../../hooks/useTrailers';
 import Trailer from '../../components/TrailerLibraryView/TrailerView';
 import Pagination from '../../components/Pagination/Pagination';
-import styles from './LibraryViewPage/LibraryView.module.css';
+import styles from '../LibraryViewPage/LibraryView.module.css';
 
 const LibraryView = () => {
   const { trailers, loading, error, pagination, notFound } = useTrailers();

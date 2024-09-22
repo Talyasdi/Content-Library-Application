@@ -9,12 +9,13 @@ import NavBar from "./components/NavBar";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 
-import LibraryView from './pages/LibraryViewPage';
+import LibraryView from './pages/LibraryViewPage/LibraryViewPage';
 import TrailerPage  from './pages/TrailerPage';
 import NotFound from './pages/NotFoundPage';
 
 function App() {
   const { user } = useAuthContext();
+  console.log('User ', user);
 
   return (
     <div className="App">
