@@ -1,0 +1,63 @@
+.trailerCard {
+    background-color: #f9f9f9;
+    border-radius: 15px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 300px; /* Increased height to allow for fixed content */
+    width: 300px;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    text-size-adjust: 100%;
+    border-style:double ;
+}
+
+.trailerCard:hover {
+    box-shadow: 5px 5px 5px rgba(58, 121, 94, 0.524);
+}
+
+.trailerLink {
+    text-decoration: none;
+}
+
+.trailerName {
+    font-size: 20px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-style: italic;
+    font-weight:bolder;
+    color: #a375d5;
+    margin: 5px 0;
+    height: 150px; /* Fixed height to keep the title area consistent */
+}
+
+.genresList {
+    list-style-type: none;
+    padding: 5px;
+    display:flexbox;
+    height: 450px; /* Fixed height for the genres area */  
+}
+
+.genreItem {
+    width:auto;
+    height: auto;
+    margin: 5px;
+    font-size: 17px;
+    color: rgb(43, 39, 43);
+    font-weight:600;
+    /* background-color: #e5dbef;
+    border-radius: 8px;
+    border: 1px solid #ccc; */
+
+}
+
+.trailerUserName{
+    align-self: flex-start;
+    height: 10px;
+    color: #724e9a;
+    text-decoration-line: overline;
+    margin-bottom: 0%;
+}
