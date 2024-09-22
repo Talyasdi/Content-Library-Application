@@ -90,10 +90,10 @@ const deleteTrailer = async (req, res) => {
 };
 
 
-const getAllTrailers = async (req, res) => {
+const getTrailersByAge = async (req, res) => {
   const { age } = req.query; // Get age from query string
   const page = parseInt(req.query._page) || 1;
-  const limit = parseInt(req.query._limit); // Default limit to 10 if not provided
+  const limit = parseInt(req.query._limit);
   
   if (!age) {
     return res.status(400).json({ msg: 'User age is required' });
@@ -141,5 +141,5 @@ const getSingleTrailer = async (req, res) => {
 }
 
 module.exports = { filterTrailers, getDistinctGenres, getUserTrailers, updateTrailer, deleteTrailer, getSingleTrailer, 
-  getAllTrailers };
+  getTrailersByAge };
 

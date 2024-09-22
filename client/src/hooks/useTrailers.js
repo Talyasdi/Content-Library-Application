@@ -1,17 +1,20 @@
 import { useState, useEffect, useCallback } from 'react';
-import axios from 'axios';
-import {useAuthContext} from './useAuthContext'
+import api from '../services/api';
+import { useSearchParams } from 'react-router-dom';
+import { useAuthContext } from './useAuthContext'; 
 
-// Custom hook to fetch and manage trailers
 const useTrailers = () => {
   const [notFound, setNotFound] = useState(false);
   const [trailers, setTrailers] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [activePage, setActivePage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const trailersPerPage = 2;
-  const {user} = useAuthContext();  // Access user from auth context
+  const { user } = useAuthContext();  
+  const [searchParams, setSearchParams] = useSearchParams();
+  
+  // Get the current page from URL query params (default to page 1 if not found)
+  const activePage = parseInt(searchParams.get('page')) || 1;
 
   const getTrailers = useCallback(async () => {
     if (!user) {
@@ -22,12 +25,12 @@ const useTrailers = () => {
     setNotFound(false);
 
     try {
-      const response = await axios.get('http://localhost:5000/api/trailer/trailers', {
+      const response = await api.get(`/trailer/trailers`,{
         headers: {
           Authorization: `Bearer ${user.token}`,
         },
         params: {
-          age: user.age,   // Pass the age parameter only
+          age: user.age,  // Pass the age parameter only
           _page: activePage,
           _limit: trailersPerPage,
         },
@@ -40,6 +43,7 @@ const useTrailers = () => {
         setNotFound(true);
       }
 
+      // Parse the total count from headers and calculate total pages
       const totalCount = parseInt(response.headers['x-total-count'], 10);
       const totalPagesCount = Math.ceil(totalCount / trailersPerPage);
       setTotalPages(totalPagesCount);
@@ -55,8 +59,9 @@ const useTrailers = () => {
     getTrailers();
   }, [getTrailers]);
 
+  // Handle page change and update URL
   const handlePageChange = (page) => {
-    setActivePage(page);
+    setSearchParams({ page });  // Update URL query param
   };
 
   const pagination = {

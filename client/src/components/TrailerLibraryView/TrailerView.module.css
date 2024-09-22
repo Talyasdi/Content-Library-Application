@@ -5,8 +5,8 @@
     padding: 20px;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    height: 250px; /* Increased height to allow for fixed content */
-    width: 200px;
+    height: 300px; /* Increased height to allow for fixed content */
+    width: 300px;
     margin: 5px;
     display: flex;
     flex-direction: column;

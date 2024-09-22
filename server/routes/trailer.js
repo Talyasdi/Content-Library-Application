@@ -7,7 +7,7 @@ const {
   getUserTrailers,
   updateTrailer,
   deleteTrailer,
-  getAllTrailers,
+  getTrailersByAge,
   getSingleTrailer
 } = require("../controllers/trailerController");
 
@@ -34,8 +34,7 @@ router.put("/:id", updateTrailer);
 router.delete('/:id', deleteTrailer)
 
 // GET all trailers
-//router.get('/', getAllTrailers)
-router.get('/trailers', getAllTrailers)
+router.get('/trailers', getTrailersByAge)
 
 // GET a single trailer
 router.get('/trailers/:id', getSingleTrailer)

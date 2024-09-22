@@ -5,12 +5,8 @@ import LibraryView from './LibraryViewPage/LibraryViewPage';
 const Home = () => {
   return (
     <div className="home">
-      {/* <div className={styles.FilterBox}>  */}
-        <FilterSortBox /> 
-      {/* </div> */}
-      {/* <div className={styles.LibraryViewBox}>  */}
-        <LibraryView /> 
-      {/* </div> */}
+      <FilterSortBox /> 
+      <LibraryView /> 
     </div>
   );
 };
