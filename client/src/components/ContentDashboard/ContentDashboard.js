@@ -151,6 +151,7 @@ const UserContentDashboard = () => {
                 </button>
                 <button button className="icon-button" onClick={() => confirmDelete(trailer._id) } title="Delete Trailer">
                 <i class="fa-regular fa-trash-can"></i>
+
                 </button>
               </div>
               </>
