@@ -10,7 +10,7 @@
 body {
   background: #f1f1f1;
   margin: 0;
-  font-family: "Poppins"; 
+  font-family: "Poppins";
 }
 header {
   background: #fff;
@@ -47,9 +47,7 @@ header a {
 /* form */
 label, input {
   display: block;
-  font-weight: normal;
 }
-
 input {
   padding: 10px;
   margin-top: 10px;
@@ -88,92 +86,18 @@ div.success {
   border-radius: 4px;
   margin: 20px 0;
 }
-
 /* navbar */
 nav {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  background-color: #fff;
-  padding: 15px 20px;
-  font-size: 16px;
 }
-
 nav a {
-  margin-right: 20px;
-  color: #333;
-  font-weight: 400;
-  transition: color 0.3s ease; 
-}
-
-nav a:hover {
-  color: var(--primary); /* Change color on hover */
+  margin-right: 10px;
 }
 nav span {
-  margin: 0 10px; /* Small margins for inline text */
-  font-weight: 600; /* Bold for emphasis on text */
-  color: var(--primary); /* Primary color for highlights */
+  margin: 10px;
 }
-
-nav .user-menu {
-  position: relative;
-  cursor: pointer;
-  font-weight: 600;
-  color: var(--primary);
-  user-select: none; /* Prevents text selection when clicking */
-  font-size: 16px;
-}
-
-nav .dropdown-menu {
-  position: absolute;
-  top: 130%;
-  left: 0;
-  background-color: #fff;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  overflow: hidden;
-  z-index: 10;
-  min-width: 150px;
-}
-
-nav .dropdown-menu a,
-nav .dropdown-menu button {
-  display: block;
-  padding: 10px 20px;
-  color: #333;
-  text-decoration: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  text-align: left;
-  width: 100%;
-  font-family: "Poppins", sans-serif;
-  font-size: 16px;
-  margin-bottom: 5px;
-}
-
-nav .dropdown-menu a:hover,
-nav .dropdown-menu button:hover {
-  background-color: var(--primary);
-  color: #fff;
-}
-
-nav .dropdown-menu button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-weight: 400;
-}
-.avatar {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  margin-right: 8px;
-  vertical-align: middle;
-}
-
-
-/* forms */
+/* auth forms */
 form.signup, form.login, form.editTrailer {
   display: flexbox;
   max-width: 400px;
@@ -181,7 +105,6 @@ form.signup, form.login, form.editTrailer {
   padding: 20px;
   background: #fff;
   border-radius: 10px;
-  font-weight: normal;
 }
 
 /* Home Page */
