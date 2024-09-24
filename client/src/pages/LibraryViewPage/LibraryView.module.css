@@ -1,0 +1,30 @@
+/* Default layout: 1 card per row for small screens*/
+.trailersContainer {
+    display: flex;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    justify-content: center;
+    align-items: center;
+    gap: 20px; 
+    padding: 30px;
+    margin-top: 0px;
+  }
+  
+  /* For tablets and medium-sized screens (2 cards per row) */
+  @media (min-width: 600px) {
+    .trailersContainer {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Bigger min size on tablets */
+    }
+  }
+  
+  /* For desktops and larger screens (3 or more cards per row) */
+  @media (min-width: 1024px) {
+    .trailersContainer {
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Adjust to show more cards on desktop */
+    }
+  }
+  
+  h2{
+    text-align: center; 
+    margin-bottom: 0px;
+    font-size: 40px;
+  }

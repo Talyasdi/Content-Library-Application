@@ -9,6 +9,10 @@ import NavBar from "./components/NavBar";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 
+import LibraryView from './pages/LibraryViewPage/LibraryViewPage';
+import TrailerPage  from './pages/TrailerPage';
+import NotFound from './pages/NotFoundPage';
+
 function App() {
   const { user } = useAuthContext();
 
@@ -36,6 +40,15 @@ function App() {
                 user ? <UserContentDashboard /> : <Navigate to="/login" />
               }
             />
+            <Route
+              path="/trailers"
+              element={user ? <LibraryView /> : <Navigate to="/login" />}
+            />
+            <Route
+              path="/trailers/:id"
+              element={user ? <TrailerPage /> : <Navigate to="/login" />}
+            />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
       </BrowserRouter>

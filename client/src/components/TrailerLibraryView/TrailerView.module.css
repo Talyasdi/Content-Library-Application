@@ -1,0 +1,89 @@
+.trailerCard {
+    /* background-color: #f9f9f9;
+    border-radius: 15px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 300px; 
+    width: 300px;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    text-size-adjust: 100%;
+    border-style:double ; */
+    display: flex;
+flex-direction: column;
+justify-content: space-between;
+
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    flex: 1 1 30%;
+    max-width: 600px;
+    color :black;
+    height: 300px; 
+    width: 400px;
+}
+
+.trailerCard:hover {
+    box-shadow: 5px 5px 5px rgba(58, 121, 94, 0.524);
+}
+
+.trailerLink {
+    text-decoration: none;
+}
+
+.trailerName {
+    font-size: 40px;
+    /* font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-style: italic; */
+    font-weight:bolder;
+    /* color: #a375d5; */
+    margin: 5px 0;
+    /* height: 150px;  */
+    /* Fixed height to keep the title area consistent */
+}
+
+.genresList {
+    list-style-type: none;
+    padding: 5px;
+    display:flex;
+    /* height: 450px; */
+     /* Fixed height for the genres area */
+     flex-wrap: wrap;
+}
+.genresList li {
+    flex: 1 1 20%; 
+    /* Make each item take 45% of the width, adjust for 2 items per row */
+    box-sizing: border-box; /* Ensure padding and borders are included in the width */
+    padding: 10px; /* Adjust padding for spacing inside the items */
+    background-color: #f0f0f0;/*#e5dbef*/ /* Optional background color */
+    margin: 5px; /* Optional margin for spacing between rows */
+}
+/* .genreItem {
+    width:auto;
+    height: auto;
+    margin: 5px;
+    font-size: 17px;
+    color: rgb(43, 39, 43);
+    font-weight:600;
+    /* background-color: #e5dbef;
+    border-radius: 8px;
+    border: 1px solid #ccc; 
+
+} */
+
+.trailerUserName{
+    align-self: flex-start;
+    height: 10px;
+    color: #724e9a;
+    text-decoration-line: overline;
+    /* margin-bottom: 0%; */
+    align-self: flex-end;
+
+}
