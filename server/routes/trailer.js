@@ -7,8 +7,6 @@ const {
   getUserTrailers,
   updateTrailer,
   deleteTrailer,
-  getTrailersByAge,
-  getSingleTrailer
 } = require("../controllers/trailerController");
 
 console.log('getDistinctGenres:', getDistinctGenres);
@@ -32,11 +30,5 @@ router.put("/:id", updateTrailer);
 
 // DELETE user's trailer
 router.delete("/:id", deleteTrailer);
-
-// GET all trailers
-router.get('/trailers', getTrailersByAge)
-
-// GET a single trailer
-router.get('/trailers/:id', getSingleTrailer)
 
 module.exports = router;
