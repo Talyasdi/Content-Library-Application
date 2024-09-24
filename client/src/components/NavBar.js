@@ -1,20 +1,14 @@
 import { Link } from "react-router-dom";
 import { useLogout } from "../hooks/useLogout";
 import { useAuthContext } from "../hooks/useAuthContext";
-import { useState } from "react";
 
 const NavBar = () => {
   const { logout } = useLogout();
   const { user } = useAuthContext();
-  const [menuOpen, setMenuOpen] = useState(false);
 
   const handleLogout = () => {
     logout();
     window.location.href = "/";
-  };
-
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
   };
 
   return (
@@ -28,18 +22,11 @@ const NavBar = () => {
             </div>
           )}
           {user && (
-            <div className="user-menu">
-              <span class="menu-icon" onClick={toggleMenu}>&#9776;</span>
-              <span class="user-menu">
-                Welcome {user.userName}! 👋
-              </span>
-              {menuOpen && (
-                <div className="dropdown-menu">
-                  <Link to="/">HomePage</Link>
-                  <Link to="/dashboard">My Dashboard</Link>
-                  <button onClick={handleLogout}>Logout</button>
-                </div>
-              )}
+            <div>
+              <span>Welcome {user.userName}!</span>
+              <Link to="/">HomePage</Link>
+              <Link to="/dashboard">My Dashboard</Link>
+              <button onClick={handleLogout}>Logout</button>
             </div>
           )}
         </nav>
