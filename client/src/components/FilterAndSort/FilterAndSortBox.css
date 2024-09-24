@@ -2,17 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap');
 
 /* Layout */
-:root {
-  --primary: #8e5bb0;
-  --error: #e7195a;
-  --success: #30c68a;
-}
-
-body {
-  background: #f1f1f1;
-  margin: 0;
-  font-family: "Poppins";
-}
 
 header {
   background: #fff;
@@ -37,12 +26,6 @@ h3 {
     margin-top: 10px; 
     margin-bottom: 0px;
   }
-
-.pages {
-  max-width: 1400px;
-  padding: 20px;
-  margin: 0 auto;
-}
 
 .button {
   background: var(--primary);
