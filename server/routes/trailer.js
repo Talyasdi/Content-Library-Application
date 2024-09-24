@@ -7,6 +7,8 @@ const {
   getUserTrailers,
   updateTrailer,
   deleteTrailer,
+  getTrailersByAge,
+  getSingleTrailer
 } = require("../controllers/trailerController");
 
 console.log('getDistinctGenres:', getDistinctGenres);
