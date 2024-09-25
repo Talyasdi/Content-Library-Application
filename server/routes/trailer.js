@@ -8,7 +8,9 @@ const {
   updateTrailer,
   deleteTrailer,
   getTrailersByAge,
-  getSingleTrailer
+  getSingleTrailer,
+  checkTrailerExists,
+  uploadTrailer
 } = require("../controllers/trailerController");
 
 console.log('getDistinctGenres:', getDistinctGenres);
@@ -38,5 +40,11 @@ router.get('/trailers', getTrailersByAge)
 
 // GET a single trailer
 router.get('/trailers/:id', getSingleTrailer)
+
+// POST - upload a new (user) trailer 
+router.post('/',uploadTrailer);
+
+// POST - check if trailer exists
+router.post('/check-trailer', checkTrailerExists); 
 
 module.exports = router;

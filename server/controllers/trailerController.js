@@ -142,5 +142,45 @@ const updateTrailer = async (req, res) => {
     }
   }
 
+
+  
+// New function to check if a trailer with the same name already exists
+const checkTrailerExists = async (req, res) => {
+  const { trailerName } = req.body;
+
+  try {
+    // CASE INSENSITIVE CHECK
+    const existingTrailer = await Trailer.findOne({ 
+      trailerName: { $regex: new RegExp(`^${trailerName}$`, 'i') } 
+    });
+
+    if (existingTrailer) {
+      return res.status(200).json({ exists: true, message: "Trailer already exists" });
+    } else {
+      return res.status(200).json({ exists: false, message: "Trailer name is available" });
+    }
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+
+// upload a new trailer 
+const uploadTrailer = async (req, res) => {
+    const {trailerName, genres, minAgeLimit, releaseYear, cast, link} = req.body
+
+    // uploading (meaning adding) document to the database
+    try {
+        const trailer =  await Trailer.create({trailerName, genres, minAgeLimit, releaseYear, cast, link})
+        res.status(200).json(trailer)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
+}; 
+
+
+
+ 
+
 module.exports = { filterTrailers, getDistinctGenres, getUserTrailers, updateTrailer, deleteTrailer, getSingleTrailer, 
-  getTrailersByAge };
+  getTrailersByAge, checkTrailerExists, uploadTrailer };

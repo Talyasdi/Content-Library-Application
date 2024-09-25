@@ -19,6 +19,13 @@ const FilterSortBox = () => {
 
   useEffect(() => {
     const fetchGenres = async () => {
+     // CHECK IF USER IS NULL OR TOKEN IS MISSING
+     if (!user || !user.token) {
+       console.error('User not authenticated');
+       return; // EXIT IF USER IS NOT AUTHENTICATED
+     }
+      
+
       try {
         const response = await api.get('/trailer/genres', {
           headers: {
@@ -31,7 +38,7 @@ const FilterSortBox = () => {
       }
     };
     fetchGenres();
-  }, [user.token]);
+  }, [user]);
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -55,6 +62,12 @@ const FilterSortBox = () => {
   };
 
   const handleFilter = async () => {
+    // CHECK IF USER IS NULL OR TOKEN IS MISSING
+    if (!user || !user.token) {
+      console.error('User not authenticated');
+      return; // EXIT IF USER IS NOT AUTHENTICATED
+    }
+    
     try {
       const queryParams = new URLSearchParams();
       if (filters.genres.length > 0) {

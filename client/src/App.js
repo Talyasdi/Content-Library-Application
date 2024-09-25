@@ -8,6 +8,8 @@ import Home from "./pages/HomePage";
 import NavBar from "./components/NavBar";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
+import UploadTrailer from "./components/UploadTrailer"; 
+
 
 import LibraryView from './pages/LibraryViewPage/LibraryViewPage';
 import TrailerPage  from './pages/TrailerPage';
@@ -49,6 +51,10 @@ function App() {
               element={user ? <TrailerPage /> : <Navigate to="/login" />}
             />
             <Route path="*" element={<NotFound />} />
+            <Route
+              path="/upload-trailer" // New route for the upload trailer page
+              element={user ? <UploadTrailer /> : <Navigate to="/login" />}
+            />
           </Routes>
         </div>
       </BrowserRouter>

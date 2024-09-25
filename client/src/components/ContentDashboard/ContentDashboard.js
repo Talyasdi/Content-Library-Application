@@ -118,8 +118,10 @@ const UserContentDashboard = () => {
         <img src={popcorn} style={{ width: '48px', height: '48px', marginLeft: '20px'}} />
         </center></h1>
       <button className="upload-button">
-      <i class="fa-solid fa-plus" style={{ color: 'white', fontSize: '24px'}}></i>
-      Add New Trailer
+        <Link to="/upload-trailer" style={{ textDecoration: 'none', color: 'white' }}>
+          <i className="fa-solid fa-plus" style={{ fontSize: '24px' }}></i>
+          Add New Trailer
+        </Link>
       </button>
       {error && <p>{error}</p>}
       {trailers.length > 0 ? (
