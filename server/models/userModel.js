@@ -47,12 +47,15 @@ userSchema.statics.signup = async function (
     throw Error("Invalid email");
   }
 
-  if (password !== repPassword) {
-    throw Error("Passwords do not match");
+  if (!validator.isStrongPassword(password)) {
+    
+    throw Error(
+      "Password is not strong enough:\n • At least 8 characters\n • At least 1 uppercase letter\n • At least 1 lowercase letter\n • At least 1 number\n • At least 1 special character"
+    );
   }
 
-  if (!validator.isStrongPassword(password)) {
-    throw Error("Password is not strong enough");
+  if (password !== repPassword) {
+    throw Error("Passwords do not match");
   }
 
   const exists = await this.findOne({ email });
@@ -76,7 +79,6 @@ userSchema.statics.signup = async function (
 
 //login static method
 userSchema.statics.login = async function (email, password) {
-
   if (!email || !password) {
     throw Error("All fields must be filled");
   }
