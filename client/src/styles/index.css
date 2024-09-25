@@ -164,19 +164,36 @@ nav .dropdown-menu button {
 }
 .logout-btn i,
 .logout-btn .material-icons {
-  margin-right: 8px; /* Add space between the icon and the text */
-  font-size: 16px; /* Adjust the icon size */
+  margin-right: 8px; 
+  font-size: 16px; 
 }
 /* auth forms */
+
 form.signup, form.login, form.editTrailer {
   display: flexbox;
   max-width: 400px;
   margin: 40px auto;
-  padding: 20px;
+  padding: 30px;
   background: #fff;
-  border-radius: 10px;
+  border-radius: 30px;
 }
 
+.container-password-input, .container-email-input {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  margin: 10px 0;
+}
+
+.container-password-input i, .container-email-input i {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  color: #373636;
+  font-size: 18px;
+  pointer-events: none;
+}
 
 /* Home Page */
 .home {

@@ -13,28 +13,29 @@ const Login = () => {
   return (
     <form className="login" onSubmit={handleSubmit}>
       <h2>Login</h2>
-      <div className="input-login-group">
-        <label>
-          Email:
+      <div className="input-login-box">
+        <div className="container-email-input">
           <input
             type="email"
             value={email}
+            placeholder="Email"
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-        </label>
-        <label>
-          Password:
-          {/* <i class="fas fa-lock"></i> */}
+          <i class="fas fa-envelope"></i>
+        </div>
+
+        <div className="container-password-input">
           <input
             type="password"
-            placeholder="Password "
+            placeholder="Password"
             class="input-field-password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        </label>
+          <i class="fas fa-lock"></i>
+        </div>
       </div>
       {err && <div className="error">{err}</div>}
       <button disabled={isLoading}>Login</button>
