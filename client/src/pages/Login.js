@@ -11,7 +11,7 @@ const Login = () => {
     login(email, password);
   };
   return (
-    <form className="login" onSubmit={handleSubmit}>
+    <form className="login" noValidate onSubmit={handleSubmit}>
       <h2>Login</h2>
       <div className="input-login-box">
         <div className="container-email-input">
