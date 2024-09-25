@@ -9,7 +9,7 @@ const useTrailers = (filterString = '') => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [totalPages, setTotalPages] = useState(1);
-  const trailersPerPage = 2;
+  const trailersPerPage = 6;
   const { user } = useAuthContext();
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -49,6 +49,9 @@ const useTrailers = (filterString = '') => {
       const totalPagesCount = Math.ceil(totalCount / trailersPerPage);
       setTotalPages(totalPagesCount);
     } catch (err) {
+      if (err.code === 422){
+
+      }
       setError('Error fetching trailers');
       console.error(err);
     } finally {
