@@ -159,9 +159,9 @@ const FilterSortBox = () => {
               </div>
             </div>
 
-            <button onClick={toggleModal}>Close</button>
-            {/* Add the "Filter" button to apply changes */}
             <button onClick={applyFilters}>Filter</button>
+            <button onClick={toggleModal}>Close</button>
+
           </div>
         </div>
       )}
