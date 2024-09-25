@@ -24,10 +24,10 @@ export const useLogin = () => {
         setIsLoading(false);
       } else {
         setIsLoading(false);
-        setErr(data.message);
+        setErr(data.msg);
       }
     } catch (error) {
-      setErr(error.message);
+      setErr(error.msg);
     }
   };
   return { login, err, isLoading };
