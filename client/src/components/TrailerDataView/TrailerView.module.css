@@ -1,0 +1,63 @@
+h1 {
+    text-align: center;
+    /* font-style: italic;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+  }
+
+  .trailerCard {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 800px;
+    height: 400px;
+    margin: 20px auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-size-adjust: 100%;
+    text-align: center; 
+  }
+
+  .videoContainer {
+    flex: 1;
+    margin-top: 40px;
+    text-align: center;
+    height: 300px;
+    max-width: 60%;
+    margin-left: 20px;
+  }
+
+  .trailerVideo {
+    max-width: 100%;
+    height : 300px;
+    border-radius: 8px;
+  } 
+  
+  .trailerName {
+    font-style:oblique;
+    text-align: center;
+    font-size: 30px;
+    margin: 5px 0;
+    color: black;
+  }
+  
+  .genresList, .castList {
+    display: grid;
+    list-style-type:none;
+    padding: 0;
+    margin: 0 0;
+  }
+  
+  .genreItem, .castItem{
+    color: #332f2f;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+
+  .dataContainer{
+  text-size-adjust: 100%;
+  flex: 1;
+  max-width: 35%;
+  padding: 0;
+}
