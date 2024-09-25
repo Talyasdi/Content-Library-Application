@@ -1,27 +1,44 @@
 const Trailer = require('../models/trailerModel');
 
 const filterTrailers = async (req, res) => {
-    try {
-        console.log(req.query);
-        const { genres, minAgeLimit, releaseYear, age } = req.query;
-        let filter = {};
+  try {
+    const { genres, minAgeLimit, releaseYear, age, _page, _limit } = req.query;
+    let filter = {};
 
-        if (genres) {
-            filter.genres = { $in: genres.split(',') };
-        }
-        if (minAgeLimit) {
-            filter.minAgeLimit = { $lte: minAgeLimit };
-        }
-        if (releaseYear) {
-            filter.releaseYear = releaseYear;
-        }
-
-        const trailers = await Trailer.find(filter);
-        res.status(200).json(trailers);
-    } catch (error) {
-        console.error('Error filtering trailers:', error); // Log the error for debugging
-        res.status(400).json({ message: 'Error filtering trailers', error });
+    if (genres) {
+      filter.genres = { $in: genres.split(',') };
     }
+    if (minAgeLimit) {
+      filter.minAgeLimit = { $lte: minAgeLimit };
+    }
+    if (releaseYear) {
+      filter.releaseYear = releaseYear;
+    }
+    if (age) {
+      filter.minAgeLimit = { $lte: age }; // Add the age condition
+    }
+
+    const page = parseInt(_page) || 1;
+    const limit = parseInt(_limit) || 10;
+
+    // Get total count of trailers matching the filter
+    const totalCount = await Trailer.countDocuments(filter);
+
+    // Fetch trailers with pagination
+    const trailers = await Trailer.find(filter)
+      .skip((page - 1) * limit)
+      .limit(limit);
+
+    // Set response headers for pagination
+    res.setHeader('x-total-count', totalCount);
+    res.setHeader('Access-Control-Expose-Headers', 'x-total-count');
+
+    // Return the filtered trailers
+    res.status(200).json(trailers);
+  } catch (error) {
+    console.error('Error filtering trailers:', error); // Log the error for debugging
+    res.status(400).json({ message: 'Error filtering trailers', error });
+  }
 };
 
 const getDistinctGenres = async (req, res) => {
