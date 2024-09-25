@@ -14,7 +14,7 @@ const Signup = () => {
     await signup(username, email, password, repPassword, age);
   };
   return (
-    <form className="signup" onSubmit={handleSubmit}>
+    <form className="signup" noValidate onSubmit={handleSubmit}>
       <h2>Signup</h2>
       <label>
         Username:
@@ -62,7 +62,9 @@ const Signup = () => {
         />
       </label>
       <button disabled={isLoading}>Signup</button>
-      {err && <div className="error">{err}</div>}
+      {err && <div className="error" >  {err.split('\n').map((line, index) => (
+      <div key={index}>{line}</div> // Render each line in a new <div>
+    ))}</div>}
       {success && <div className="success">You've successfully signed up</div>}
     </form>
   );
