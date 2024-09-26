@@ -399,6 +399,7 @@ const FilterSortBox = () => {
   const [availableGenres, setAvailableGenres] = useState([]);
   const { user } = useAuthContext();
   const [validationMessage, setValidationMessage] = useState(''); // State for validation message
+  const [isErrorModalOpen, setIsErrorModalOpen] = useState(false); // State for error modal
 
   useEffect(() => {
     const fetchGenres = async () => {
@@ -416,6 +417,14 @@ const FilterSortBox = () => {
     fetchGenres();
   }, [user.token]);
 
+
+  const showErrorModal = () => {
+    setIsErrorModalOpen(true); // Open error modal
+  };
+  
+  const closeErrorModal = () => {
+    setIsErrorModalOpen(false); // Close error modal
+  };
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
     setValidationMessage(''); // Clear message when modal is toggled
@@ -457,10 +466,12 @@ const FilterSortBox = () => {
 
   const applyFilters = () => {
     // Check if the minimum age limit exceeds the user's age
-    if (tempFilters.minAgeLimit && parseInt(tempFilters.minAgeLimit) > user.age) {
-      setValidationMessage(`Minimum age limit cannot exceed your age (${user.age}).`);
-      return; // Stop applying filters
-    }
+if (tempFilters.minAgeLimit && parseInt(tempFilters.minAgeLimit) > user.age) {
+  setValidationMessage(`Minimum age limit cannot exceed your age (${user.age}).`);
+  showErrorModal(); // Show error modal
+  return; // Stop applying filters
+}
+
 
     setFilters(tempFilters);
     toggleModal(); // Close the modal after applying the filters
@@ -553,6 +564,16 @@ const FilterSortBox = () => {
             </div>
 
             {validationMessage && <p className="error-message">{validationMessage}</p>} {/* Display error message */}
+            {isErrorModalOpen && (
+  <div className="modal">
+    <div className="modal-content">
+      <h2>Error</h2>
+      <p>{validationMessage}</p>
+      <button onClick={closeErrorModal}>Close</button>
+    </div>
+  </div>
+)}
+
 
             <button onClick={applyFilters}>Filter</button>
             <button onClick={clearFilters}>Clear</button> {/* Clear button */}
