@@ -11,6 +11,12 @@ body {
   background: #f1f1f1;
   margin: 0;
   font-family: "Poppins";
+  background-image: url('../assets/top-view-cinema-clapperboard-with-popcorn.jpg');
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-color: rgba(255, 255, 255, 0.8);
 }
 header {
   background: #fff;
