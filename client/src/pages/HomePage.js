@@ -7,9 +7,10 @@ const Home = ({ successMessage }) => { // Receive success message as prop
     <div className="home">
       <FilterSortBox />
       {successMessage && <div className="success">{successMessage}</div>} {/* Display success message */}
-      <LibraryView />
     </div>    
   );
 };
 
 export default Home;
+
+
