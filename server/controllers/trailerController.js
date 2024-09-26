@@ -179,8 +179,5 @@ const uploadTrailer = async (req, res) => {
 }; 
 
 
-
- 
-
 module.exports = { filterTrailers, getDistinctGenres, getUserTrailers, updateTrailer, deleteTrailer, getSingleTrailer, 
   getTrailersByAge, checkTrailerExists, uploadTrailer };
