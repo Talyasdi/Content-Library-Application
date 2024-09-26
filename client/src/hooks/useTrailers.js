@@ -3,7 +3,7 @@ import api from '../services/api';
 import { useSearchParams } from 'react-router-dom';
 import { useAuthContext } from './useAuthContext'; 
 
-const useTrailers = (filterString = '', filters) => {
+const useTrailers = (filterString = '') => {
   const [notFound, setNotFound] = useState(false);
   const [trailers, setTrailers] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -12,6 +12,7 @@ const useTrailers = (filterString = '', filters) => {
   const trailersPerPage = 6;
   const { user } = useAuthContext();
   const [searchParams, setSearchParams] = useSearchParams();
+  const userAge = user.age;
 
   const activePage = parseInt(searchParams.get('page')) || 1;
 
@@ -57,7 +58,7 @@ const useTrailers = (filterString = '', filters) => {
     } finally {
       setLoading(false);
     }
-  }, [activePage, trailersPerPage, user.age, filterString]);
+  }, [activePage, trailersPerPage, userAge, filterString]);
 
   useEffect(() => {
     getTrailers();
@@ -67,17 +68,32 @@ const useTrailers = (filterString = '', filters) => {
   //   setSearchParams({ page });
   // };
 
+  // const handlePageChange = (page) => {
+  //   // Append the filters to the search params
+  //   const searchParamsObj = {
+  //     page,
+  //     genres: filterString.genres,
+  //     minAgeLimit: filterString.minAgeLimit,
+  //     releaseYear: filterString.releaseYear
+  //   };
+  //   setSearchParams(searchParamsObj);
+  // };
   const handlePageChange = (page) => {
-    // Append the filters to the search params
-    const searchParamsObj = {
-      page,
-      genres: filters.genres.join(','),
-      minAgeLimit: filters.minAgeLimit,
-      releaseYear: filters.releaseYear
-    };
-    setSearchParams(searchParamsObj);
-  };
-  
+  const searchParamsObj = { page };
+
+  if (filterString.genres) {
+    searchParamsObj.genres = filterString.genres;
+  }
+  if (filterString.minAgeLimit) {
+    searchParamsObj.minAgeLimit = filterString.minAgeLimit;
+  }
+  if (filterString.releaseYear) {
+    searchParamsObj.releaseYear = filterString.releaseYear;
+  }
+
+  setSearchParams(searchParamsObj);
+};
+
 
   const pagination = {
     currPage: activePage,
@@ -85,7 +101,7 @@ const useTrailers = (filterString = '', filters) => {
     handlePageChange: handlePageChange,
   };
 
-  return { trailers, loading, error, pagination, notFound };
+  return { trailers, loading, error, pagination, notFound, filterString};
 };
 
 export default useTrailers;
