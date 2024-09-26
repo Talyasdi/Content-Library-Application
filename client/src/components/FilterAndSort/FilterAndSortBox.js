@@ -113,7 +113,7 @@ const FilterSortBox = () => {
       <select id="sortSelect" value={sortBy} onChange={handleSortChange}>
         <option value="">Select Sorting Option</option>
         <option value="releaseYear">Sort by Release Year</option>
-        <option value="minAgeLimit">Sort by Minimum Age Limit</option>
+        <option value="minAgeLimit">Sort by Age Limit</option>
         <option value="name">Sort A-Z by Trailer Name</option>
       </select>
 
@@ -138,13 +138,13 @@ const FilterSortBox = () => {
 
             <div className="filter-container">
               <div className="filter-item">
-                <h3>Minimum Age Limit:</h3>
+                <h3>Age Limit:</h3>
                 <input
                   type="number"
                   name="minAgeLimit"
                   value={tempFilters.minAgeLimit}
                   onChange={handleInputChange}
-                  placeholder="Enter minimum age limit"
+                  placeholder="Enter age limit"
                 />
               </div>
               <div className="filter-item">

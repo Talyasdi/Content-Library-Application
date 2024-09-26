@@ -57,7 +57,7 @@ const useTrailers = (filterString = '') => {
     } finally {
       setLoading(false);
     }
-  }, [activePage, trailersPerPage, user.age, filterString]);
+  }, [activePage, trailersPerPage, user, filterString]);
 
   useEffect(() => {
     getTrailers();

@@ -42,7 +42,7 @@ const NavBar = () => {
                 <div className="dropdown-menu">
                   <Link to="/" onClick={closeMenu}>HomePage</Link>
                   <Link to="/dashboard" onClick={closeMenu}>My Dashboard</Link>
-                  <button onClick={() => { handleLogout(); closeMenu(); }}>Logout</button>
+                  <button className="logout-btn" onClick={() => { handleLogout(); closeMenu(); }}><i class="fas fa-sign-out-alt"></i>Logout</button>
                 </div>
               )}
             </div>
