@@ -164,20 +164,36 @@ const checkTrailerExists = async (req, res) => {
   }
 };
 
-
 // upload a new trailer 
 const uploadTrailer = async (req, res) => {
-    const {trailerName, genres, minAgeLimit, releaseYear, cast, link} = req.body
+  const { trailerName, genres, minAgeLimit, releaseYear, cast, link, userEmail, userName } = req.body;
 
-    // uploading (meaning adding) document to the database
-    try {
-        const trailer =  await Trailer.create({trailerName, genres, minAgeLimit, releaseYear, cast, link})
-        res.status(200).json(trailer)
-    } catch (error) {
-        res.status(400).json({error: error.message})
-    }
-}; 
+  // Check if userEmail and userName are provided
+  if (!userEmail || !userName) {
+      return res.status(400).json({ error: 'userEmail and userName are required.' });
+  }
+
+  // uploading (meaning adding) document to the database
+  try {
+      const trailer = await Trailer.create({
+          trailerName,
+          genres,
+          minAgeLimit,
+          releaseYear,
+          cast,
+          link,
+          userEmail,
+          userName
+      });
+      res.status(200).json(trailer);
+  } catch (error) {
+      res.status(400).json({ error: error.message });
+  }
+};
+
 
 
 module.exports = { filterTrailers, getDistinctGenres, getUserTrailers, updateTrailer, deleteTrailer, getSingleTrailer, 
   getTrailersByAge, checkTrailerExists, uploadTrailer };
+
+

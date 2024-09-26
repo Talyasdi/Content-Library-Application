@@ -13,7 +13,6 @@ const UploadTrailer = () => {
 
   // Function to check if the trailer name exists
   const checkTrailerName = async (name) => {
-    console.log('checkTrailerName function called');   
     try {
       const response = await api.post(
         'http://localhost:5000/api/trailer/check-trailer',
@@ -29,7 +28,6 @@ const UploadTrailer = () => {
       const result = response.data; // Directly access the data
 
       if (result.exists) {
-        console.log("Error message is being set in the state");
         setTrailerStatus("We're sorry, this trailer already exists in our system, so you can't upload it");
         setIsTrailerAvailable(false);
       } else {
@@ -59,6 +57,32 @@ const UploadTrailer = () => {
       setIsTrailerAvailable(false);
     }
   };
+
+  // Function to upload the trailer
+   const uploadTrailer = async (trailerData) => {
+     try {
+       const response = await api.post(
+         'http://localhost:5000/api/trailer', // Make sure this matches your backend route
+         trailerData,
+         {
+           headers: {
+             'Content-Type': 'application/json',
+             'Authorization': `Bearer ${user.token}`, // Include the token for authorization
+            },
+          }
+        );
+    
+        const data = response.data;
+        if (response.status === 200) {
+         setTrailerStatus('Trailer uploaded successfully!');
+         // Optionally reset the form or handle success feedback
+        }
+      } catch (error) {
+        console.error('Error uploading trailer:', error);
+        setTrailerStatus('Error uploading trailer');
+      }
+    };
+
 
   return (
     <div>
