@@ -29,7 +29,7 @@ const Login = () => {
           <input
             type="password"
             placeholder="Password"
-            class="input-field-password"
+            className="input-field-password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
@@ -38,6 +38,7 @@ const Login = () => {
         </div>
       </div>
       {err && <div className="error">{err}</div>}
+      <div><a href="/forgot-password">Forgot Password?</a></div>
       <button disabled={isLoading}>Login</button>
     </form>
   );

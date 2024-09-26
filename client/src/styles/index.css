@@ -173,9 +173,9 @@ nav .dropdown-menu button {
   margin-right: 8px; 
   font-size: 16px; 
 }
-/* auth forms */
+/* forms */
 
-form.signup, form.login, form.editTrailer {
+form.signup, form.login, form.editTrailer, form.forgot-password-form, form.reset-pass-form {
   display: flexbox;
   max-width: 400px;
   margin: 40px auto;
