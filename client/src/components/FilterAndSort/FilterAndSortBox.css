@@ -228,3 +228,8 @@ select option {
   top: 90px; /* Distance from the top of the page */
   left: 90px; /* Distance from the left side of the page */
 }
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+}
