@@ -6,6 +6,8 @@ import './ContentDashboard.css';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import PopupMessage from './PopupMessage';
 import popcorn from '../../assets/popcorn.png'
+import { Link } from 'react-router-dom';
+
 
 const UserContentDashboard = () => {
   const [trailers, setTrailers] = useState([]);
@@ -117,7 +119,7 @@ const UserContentDashboard = () => {
         My Trailers
         <img src={popcorn} style={{ width: '48px', height: '48px', marginLeft: '20px'}} />
         </center></h1>
-      <button className="upload-button">
+        <button className="upload-button">
         <Link to="/upload-trailer" style={{ textDecoration: 'none', color: 'white' }}>
           <i className="fa-solid fa-plus" style={{ fontSize: '24px' }}></i>
           Add New Trailer
