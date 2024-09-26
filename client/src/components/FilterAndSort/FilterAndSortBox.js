@@ -79,7 +79,7 @@ const FilterSortBox = () => {
   };
 
   const filterString = generateFilterString();
-  const { trailers, loading, error, pagination, notFound } = useTrailers(filterString);
+  const { trailers, loading, error, pagination, notFound } = useTrailers(filterString, tempFilters);
 
   // Handle the "Filter" button click
   const applyFilters = () => {
@@ -166,9 +166,10 @@ const FilterSortBox = () => {
         </div>
       )}
 
-      <LibraryView trailers={sortedTrailers} loading={loading} error={error} notFound={notFound} pagination={pagination} />
+      <LibraryView trailers={sortedTrailers} loading={loading} error={error} notFound={notFound} pagination={pagination} filters={tempFilters} />
     </div>
   );
 };
 
 export default FilterSortBox;
+

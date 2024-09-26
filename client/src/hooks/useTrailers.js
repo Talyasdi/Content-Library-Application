@@ -3,7 +3,7 @@ import api from '../services/api';
 import { useSearchParams } from 'react-router-dom';
 import { useAuthContext } from './useAuthContext'; 
 
-const useTrailers = (filterString = '') => {
+const useTrailers = (filterString = '', filters) => {
   const [notFound, setNotFound] = useState(false);
   const [trailers, setTrailers] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -63,9 +63,21 @@ const useTrailers = (filterString = '') => {
     getTrailers();
   }, [getTrailers]);
 
+  // const handlePageChange = (page) => {
+  //   setSearchParams({ page });
+  // };
+
   const handlePageChange = (page) => {
-    setSearchParams({ page });
+    // Append the filters to the search params
+    const searchParamsObj = {
+      page,
+      genres: filters.genres.join(','),
+      minAgeLimit: filters.minAgeLimit,
+      releaseYear: filters.releaseYear
+    };
+    setSearchParams(searchParamsObj);
   };
+  
 
   const pagination = {
     currPage: activePage,
@@ -77,3 +89,5 @@ const useTrailers = (filterString = '') => {
 };
 
 export default useTrailers;
+
+
