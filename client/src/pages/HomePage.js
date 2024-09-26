@@ -8,7 +8,7 @@ const Home = ({ successMessage }) => { // Receive success message as prop
       <FilterSortBox />
       {successMessage && <div className="success">{successMessage}</div>} {/* Display success message */}
       <LibraryView />
-    </div>
+    </div>    
   );
 };
 

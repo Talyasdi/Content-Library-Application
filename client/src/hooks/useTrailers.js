@@ -3,17 +3,16 @@ import api from '../services/api';
 import { useSearchParams } from 'react-router-dom';
 import { useAuthContext } from './useAuthContext'; 
 
-const useTrailers = () => {
+const useTrailers = (filterString = '') => {
   const [notFound, setNotFound] = useState(false);
   const [trailers, setTrailers] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [totalPages, setTotalPages] = useState(1);
-  const trailersPerPage = 2;
-  const { user } = useAuthContext();  
+  const trailersPerPage = 6;
+  const { user } = useAuthContext();
   const [searchParams, setSearchParams] = useSearchParams();
-  
-  // Get the current page from URL query params (default to page 1 if not found)
+
   const activePage = parseInt(searchParams.get('page')) || 1;
 
   const getTrailers = useCallback(async () => {
@@ -25,14 +24,17 @@ const useTrailers = () => {
     setNotFound(false);
 
     try {
-      const response = await api.get(`/trailer/trailers`,{
-        headers: {
+      console.log(filterString);
+      console.log(`/trailer/trailers${filterString ? `/filter?${filterString}` : ''}`);
+      const response = await api.get(`/trailer/trailers${filterString ? `/filter?${filterString}` : ''}`,{
+      headers: {
           Authorization: `Bearer ${user.token}`,
         },
         params: {
-          age: user.age,  // Pass the age parameter only
+          age: user.age, // Pass the age parameter only
           _page: activePage,
-          _limit: trailersPerPage,
+          _limit: trailersPerPage
+        
         },
       });
 
@@ -43,25 +45,26 @@ const useTrailers = () => {
         setNotFound(true);
       }
 
-      // Parse the total count from headers and calculate total pages
       const totalCount = parseInt(response.headers['x-total-count'], 10);
       const totalPagesCount = Math.ceil(totalCount / trailersPerPage);
       setTotalPages(totalPagesCount);
     } catch (err) {
+      if (err.code === 422){
+
+      }
       setError('Error fetching trailers');
       console.error(err);
     } finally {
       setLoading(false);
     }
-  }, [activePage, trailersPerPage, user.age]);
+  }, [activePage, trailersPerPage, user, filterString]);
 
   useEffect(() => {
     getTrailers();
   }, [getTrailers]);
 
-  // Handle page change and update URL
   const handlePageChange = (page) => {
-    setSearchParams({ page });  // Update URL query param
+    setSearchParams({ page });
   };
 
   const pagination = {
@@ -70,7 +73,7 @@ const useTrailers = () => {
     handlePageChange: handlePageChange,
   };
 
-  return { trailers, loading, error, pagination, notFound };
+  return { trailers, setTrailers, loading, error, pagination, notFound };
 };
 
 export default useTrailers;

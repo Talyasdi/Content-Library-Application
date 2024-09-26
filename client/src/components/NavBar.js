@@ -17,6 +17,11 @@ const NavBar = () => {
     setMenuOpen(!menuOpen);
   };
 
+  // Function to close the menu after an action
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
+
   return (
     <header>
       <div className="container">
@@ -29,17 +34,15 @@ const NavBar = () => {
           )}
           {user && (
             <div className="user-menu">
-              <span class="menu-icon" onClick={toggleMenu}>
-                &#9776;
+              <span className="menu-icon" onClick={toggleMenu}>&#9776;</span>
+              <span className="user-menu">
+                Welcome {user.userName}! 👋
               </span>
-              <span class="user-menu">Welcome {user.userName}! 👋</span>
               {menuOpen && (
                 <div className="dropdown-menu">
-                  <Link to="/">HomePage</Link>
-                  <Link to="/dashboard">My Dashboard</Link>
-                  <button className="logout-btn" onClick={handleLogout}>
-                    <i class="fas fa-sign-out-alt"></i>Logout
-                  </button>
+                  <Link to="/" onClick={closeMenu}>HomePage</Link>
+                  <Link to="/dashboard" onClick={closeMenu}>My Dashboard</Link>
+                  <button className="logout-btn" onClick={() => { handleLogout(); closeMenu(); }}><i class="fas fa-sign-out-alt"></i>Logout</button>
                 </div>
               )}
             </div>
@@ -49,4 +52,5 @@ const NavBar = () => {
     </header>
   );
 };
+
 export default NavBar;
