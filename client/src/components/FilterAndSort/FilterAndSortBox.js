@@ -380,8 +380,10 @@ import LibraryView from '../../pages/LibraryViewPage/LibraryViewPage';
 import api from '../../services/api';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import './FilterAndSortBox.css';
+import { useNavigate } from 'react-router-dom';
 
 const FilterSortBox = () => {
+  const navigate = useNavigate();
   const [tempFilters, setTempFilters] = useState({
     genres: [],
     minAgeLimit: '',
@@ -472,7 +474,7 @@ if (tempFilters.minAgeLimit && parseInt(tempFilters.minAgeLimit) > user.age) {
   return; // Stop applying filters
 }
 
-
+  navigate(`/?page=1`)
     setFilters(tempFilters);
     toggleModal(); // Close the modal after applying the filters
   };
