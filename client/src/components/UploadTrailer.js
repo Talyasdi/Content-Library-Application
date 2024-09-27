@@ -28,10 +28,12 @@ const UploadTrailer = () => {
       const result = response.data; // Directly access the data
 
       if (result.exists) {
-        setTrailerStatus("We're sorry, this trailer already exists in our system, so you can't upload it");
+        // THIS CHANGE: MESSAGE DESIGN FOR TRAILER ALREADY EXISTS
+        setTrailerStatus(<div className="error">We're sorry, this trailer already exists in our system, so you can't upload it.</div>);
         setIsTrailerAvailable(false);
       } else {
-        setTrailerStatus('This trailer does not exist in our database, we will be happy if you add it now, thanks!');
+        // THIS CHANGE: MESSAGE DESIGN FOR TRAILER NOT EXISTING
+        setTrailerStatus(<div className="success">This trailer does not exist in our database, we will be happy if you add it now, thanks!</div>);
         setIsTrailerAvailable(true);
       }
     } catch (error) {
@@ -40,6 +42,7 @@ const UploadTrailer = () => {
       setIsTrailerAvailable(false);
     }
   };
+
 
   // Handle input change
   const handleInputChange = (event) => {
@@ -74,8 +77,8 @@ const UploadTrailer = () => {
     
         const data = response.data;
         if (response.status === 200) {
-         setTrailerStatus('Trailer uploaded successfully!');
-         // Optionally reset the form or handle success feedback
+          setTrailerStatus(<div className="success">Trailer uploaded successfully!</div>); // SUCCESS MESSAGE
+          // Optionally reset the form or handle success feedback
         }
       } catch (error) {
         console.error('Error uploading trailer:', error);
@@ -103,3 +106,7 @@ const UploadTrailer = () => {
 };
 
 export default UploadTrailer;
+
+
+
+

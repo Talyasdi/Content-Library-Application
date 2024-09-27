@@ -213,29 +213,37 @@ form.signup, form.login, form.editTrailer {
   color: #53474F;
 }
 
-
 /* new trailer form */
-label, input {
+form.new-trailer-form label {
   display: block;
+  text-align: center; /* CENTERS THE LABEL TEXT */
+  padding: 10px; /* ADDED PADDING FOR LABELS */
+  border-radius: 4px; /* ROUNDED CORNERS FOR LABEL BACKGROUND */
+  margin-bottom: 20px; /* ADDED MARGIN TO SEPARATE LABELS FROM INPUTS */
+  font-weight: 500;
+  color: #000; /* ENSURES LABEL TEXT IS BLACK */
+  font-size: 1.2em; /* CHANGED SIZE OF FONT TO BE SIMILAR TO 'Upload Trailer' */
 }
-input {
-  padding: 10px;
-  margin-top: 10px;
-  margin-bottom: 20px;
-  width: 100%;
-  border: 1px solid #ddd;
+
+/* NEW MESSAGE STYLES - ADDED STYLES FOR SUCCESS AND ERROR MESSAGES */
+div.trailer-exists {
+  padding: 10px; 
+  background: #e6fbe6; /* SAME BACKGROUND AS SUCCESS MESSAGE */
+  border: 1px solid var(--success); /* SAME BORDER AS SUCCESS MESSAGE */
+  color: var(--success); /* SAME TEXT COLOR AS SUCCESS MESSAGE */
   border-radius: 4px;
-  box-sizing: border-box;
+  margin: 20px 0;
 }
-form button {
-  background: var(--primary);
-  border: 0;
-  color: #fff;
-  padding: 10px;
-  font-family: "Poppins";
+
+div.trailer-not-exists {
+  padding: 10px; 
+  background: #ffefef; /* SAME BACKGROUND AS ERROR MESSAGE */
+  border: 1px solid var(--error); /* SAME BORDER AS ERROR MESSAGE */
+  color: var(--error); /* SAME TEXT COLOR AS ERROR MESSAGE */
   border-radius: 4px;
-  cursor: pointer;
+  margin: 20px 0;
 }
+
 div.error {
   padding: 10px;
   background: #ffefef;
@@ -244,3 +252,13 @@ div.error {
   border-radius: 4px;
   margin: 20px 0;
 }
+
+.centered-header {
+  text-align: center; /* Centers the text */
+  font-size: 24px; /* Change this size to match the Upload Trailer size */
+  margin: 20px 0; /* Adds some margin for spacing */
+  font-weight: bold; /* MAKES THE TEXT BOLD */
+}
+
+
+

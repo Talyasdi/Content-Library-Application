@@ -40,9 +40,16 @@ const TrailerForm = () => {
     const json = await response.json();
 
     if (!response.ok) {
-      setError(json.error);
+      // THIS CHANGE: ADDED CONDITIONAL ERROR MESSAGE FOR ALREADY EXISTING TRAILER
+      if (json.error.includes('already exists')) {
+        setError(`We're sorry, this trailer already exists in our system, so you can't upload it.`);
+      } else {
+        // THIS CHANGE: ADDED CONDITIONAL ERROR MESSAGE FOR TRAILER NOT EXISTING
+        setError(`This trailer does not exist in our database, we will be happy if you add it now, thanks!`);
+      }
       setSuccessMessage(null); // Clear success message on error
     }
+
     if (response.ok) {
       setTrailerName('');
       setGenres('');
@@ -61,8 +68,8 @@ const TrailerForm = () => {
   };
 
   return (
-    <form className="create" onSubmit={handleSubmit}>
-      <h3>Add a New Trailer</h3>
+    <form className="new-trailer-form" onSubmit={handleSubmit}>
+      <h3 className="centered-header">Add a New Trailer</h3>
 
       <label>Trailer Name:</label>
       <input
@@ -116,3 +123,5 @@ const TrailerForm = () => {
 };
 
 export default TrailerForm;
+
+
