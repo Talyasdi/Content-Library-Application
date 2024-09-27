@@ -122,7 +122,7 @@ const UserContentDashboard = () => {
         <button className="upload-button">
         <Link to="/upload-trailer" style={{ textDecoration: 'none', color: 'white' }}>
           <i className="fa-solid fa-plus" style={{ fontSize: '24px' }}></i>
-          Add New Trailer
+          {' '}Add New Trailer
         </Link>
       </button>
       {error && <p>{error}</p>}
