@@ -29,11 +29,11 @@ const UploadTrailer = () => {
 
       if (result.exists) {
         // THIS CHANGE: MESSAGE DESIGN FOR TRAILER ALREADY EXISTS
-        setTrailerStatus(<div className="error">We're sorry, this trailer already exists in our system, so you can't upload it.</div>);
+        setTrailerStatus(<div className="error">We're sorry, this trailer already exists in our system, so you can't upload it😬</div>);
         setIsTrailerAvailable(false);
       } else {
         // THIS CHANGE: MESSAGE DESIGN FOR TRAILER NOT EXISTING
-        setTrailerStatus(<div className="success">This trailer does not exist in our database, we will be happy if you add it now, thanks!</div>);
+        setTrailerStatus(<div className="success">This trailer does not exist in our database, we will be happy if you add it now, thanks!🙏🏻</div>);
         setIsTrailerAvailable(true);
       }
     } catch (error) {
@@ -56,7 +56,7 @@ const UploadTrailer = () => {
     if (trailerName.trim()) {
       checkTrailerName(trailerName);
     } else {
-      setTrailerStatus('Please enter a trailer name.');
+      setTrailerStatus(<div className="error">Please enter a trailer name</div>);
       setIsTrailerAvailable(false);
     }
   };
@@ -89,17 +89,19 @@ const UploadTrailer = () => {
 
   return (
     <div>
-      <h2>Upload Trailer</h2>
+      <h2 className="centered-header">Upload Trailer</h2>
       <input
         type="text"
         value={trailerName}
         onChange={handleInputChange}
         placeholder="Enter trailer name"
       />
-      <button onClick={handleCheckClick}>Check Trailer Name</button>
+      <div className="center-button-container">
+        <button type="button" className="check-trailer-button" onClick={handleCheckClick}>Check Trailer Name</button>
+      </div>
       <p>{trailerStatus}</p>
       
-      {/* Show TrailerForm only if the trailer is available */}
+      {/* Show Trailer Form only if the trailer is available */}
       {isTrailerAvailable && <TrailerForm />}
     </div>
   );
