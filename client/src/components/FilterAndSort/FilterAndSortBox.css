@@ -3,7 +3,7 @@
 
 /* Layout */
 :root {
-  --primary: #8e5bb0;
+  --primary: #d5c09f;
   --error: #e7195a;
   --success: #30c68a;
 }
@@ -173,7 +173,7 @@ button {
 }
 
 button:hover {
-  background: #8e5bb0; /* Darker shade for hover effect */
+  background: #96866c; /* Darker shade for hover effect */
 }
 
 label {

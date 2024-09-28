@@ -11,7 +11,7 @@ const PageButton = ({ page, currPage, handlePageChange }) => (
     aria-disabled={page === currPage}
     className={`number-button ${page === currPage ? 'active' : ''}`}
     style={{ fontWeight: page === currPage ? 'bold' : 'normal',
-      color: page === currPage ? '#a375d5' : 'black',
+      color: page === currPage ? '#d5c09f' : 'black',
     }}
   >
     {page}

@@ -3,7 +3,7 @@
 
 /* layout */
 :root {
-  --primary: #a375d5;
+  --primary: #d5c09f;
   --error: #e7195a;
   --success: #30c68a;
 }
@@ -114,9 +114,9 @@ nav a:hover {
   color: var(--primary); /* Change color on hover */
 }
 nav span {
-  margin: 0 10px; /* Small margins for inline text */
-  font-weight: 600; /* Bold for emphasis on text */
-  color: var(--primary); /* Primary color for highlights */
+  margin: 0 10px; 
+  font-weight: 600; 
+  color: var(--primary);
 }
 
 nav .user-menu {
