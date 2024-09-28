@@ -58,7 +58,32 @@
 }
 
 .genresList li {
-    font-size: 16px;
-    margin: 5px; 
-    /* background-color: #e5dbef; */
+    flex: 1 1 20%; 
+    /* Make each item take 45% of the width, adjust for 2 items per row */
+    box-sizing: border-box; /* Ensure padding and borders are included in the width */
+    padding: 10px; /* Adjust padding for spacing inside the items */
+    background-color: #f0f0f0;/*#e5dbef*/ /* Optional background color */
+    margin: 5px; /* Optional margin for spacing between rows */
+}
+/* .genreItem {
+    width:auto;
+    height: auto;
+    margin: 5px;
+    font-size: 17px;
+    color: rgb(43, 39, 43);
+    font-weight:600;
+    /* background-color: #e5dbef;
+    border-radius: 8px;
+    border: 1px solid #ccc; 
+
+} */
+
+.trailerUserName{
+    align-self: flex-start;
+    height: 10px;
+    color: #99886e;
+    text-decoration-line: overline;
+    /* margin-bottom: 0%; */
+    align-self: flex-end;
+
 }

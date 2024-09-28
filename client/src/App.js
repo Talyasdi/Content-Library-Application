@@ -8,10 +8,11 @@ import Home from "./pages/HomePage";
 import NavBar from "./components/NavBar";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
-
-import LibraryView from './pages/LibraryViewPage/LibraryViewPage';
-import TrailerPage  from './pages/TrailerPage';
-import NotFound from './pages/NotFoundPage';
+import LibraryView from "./pages/LibraryViewPage/LibraryViewPage";
+import TrailerPage from "./pages/TrailerPage";
+import NotFound from "./pages/NotFoundPage";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 
 function App() {
   const { user } = useAuthContext();
@@ -33,6 +34,14 @@ function App() {
             <Route
               path="/login"
               element={!user ? <Login /> : <Navigate to="/" />}
+            />
+            <Route
+              path="/forgot-password"
+              element={!user ? <ForgotPassword /> : <Navigate to="/" />}
+            />
+            <Route
+              path="/reset-password/:token"
+              element={!user ? <ResetPassword /> : <Navigate to="/" />}
             />
             <Route
               path="/dashboard"

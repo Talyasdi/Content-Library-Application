@@ -9,25 +9,11 @@ const TrailerPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  
-  // const handleBackClick = () => {
-  //   const fromPage = location.state?.fromPage || 1; // Get the page we came from, default to page 1
-  //   navigate(`/?page=${fromPage}`);
-  // };
-  
-  // Handle back navigation
-  // const handleBackClick = () => {
-  //   const fromPage = location.state?.fromPage || 1;  // Retrieve the page
-  //   const fromFilters = location.state?.filters || {};  // Retrieve the filters from state
-  //   navigate(-1, { state: { filters: fromFilters, fromPage } });  // Navigate back with state
-  // };
   const handleBackClick = () => {
-    const fromPage = location.state?.fromPage || 1;  // Retrieve the page
-    const fromFilters = location.state?.filters || '';  // Retrieve the filters
-    navigate(`/?page=${fromPage}&${fromFilters}`);
+    const fromPage = location.state?.fromPage || 1;  // Retrieve the page from the state
+    const fromFilters = location.state?.filters || '';  // Retrieve the filters from the state
+    navigate(`/?page=${fromPage}&${fromFilters}`);  // Use the filters in the navigation URL
   };
-  
-  
 
   return (
     <div>
@@ -42,7 +28,7 @@ const TrailerPage = () => {
             cursor: 'pointer',           
             fontSize: '15px',            
             padding: '15px'              
-            }}> 
+          }}> 
             <GoArrowLeft />
             Back to Trailers
           </button>

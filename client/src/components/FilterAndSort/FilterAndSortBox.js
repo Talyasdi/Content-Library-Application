@@ -75,7 +75,7 @@ const FilterSortBox = () => {
 
   const generateFilterString = () => {
     const queryParams = new URLSearchParams();
-    if (filters.genres.length > 0) {
+    if (filters.genres && filters.genres.length > 0) {
       queryParams.append('genres', filters.genres.join(','));
     }
     if (filters.minAgeLimit) {
@@ -94,7 +94,6 @@ const FilterSortBox = () => {
     // Check if the minimum age limit exceeds the user's age
 if (tempFilters.minAgeLimit && parseInt(tempFilters.minAgeLimit) > user.age) {
   setValidationMessage(`Minimum age limit cannot exceed your age (${user.age}).`);
-  showErrorModal(); // Show error modal
   return; // Stop applying filters
 }
 
