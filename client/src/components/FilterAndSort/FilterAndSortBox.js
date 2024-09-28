@@ -4,16 +4,16 @@ import LibraryView from '../../pages/LibraryViewPage/LibraryViewPage';
 import api from '../../services/api';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import './FilterAndSortBox.css';
+import { useNavigate } from 'react-router-dom';
 
 const FilterSortBox = () => {
-  // Temporary filters for the modal (these change without triggering the API call)
+  const navigate = useNavigate();
   const [tempFilters, setTempFilters] = useState({
     genres: [],
     minAgeLimit: '',
     releaseYear: ''
   });
 
-  // Actual filters that are applied when user clicks "Filter"
   const [filters, setFilters] = useState({
     genres: [],
     minAgeLimit: '',
@@ -24,6 +24,8 @@ const FilterSortBox = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [availableGenres, setAvailableGenres] = useState([]);
   const { user } = useAuthContext();
+  const [validationMessage, setValidationMessage] = useState(''); // State for validation message
+  const [isErrorModalOpen, setIsErrorModalOpen] = useState(false); // State for error modal
 
   useEffect(() => {
     const fetchGenres = async () => {
@@ -41,11 +43,19 @@ const FilterSortBox = () => {
     fetchGenres();
   }, [user.token]);
 
+
+  const showErrorModal = () => {
+    setIsErrorModalOpen(true); // Open error modal
+  };
+  
+  const closeErrorModal = () => {
+    setIsErrorModalOpen(false); // Close error modal
+  };
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
+    setValidationMessage(''); // Clear message when modal is toggled
   };
 
-  // Update temp filters when user interacts with the modal
   const handleGenreClick = (genre) => {
     setTempFilters((prevFilters) => ({
       ...prevFilters,
@@ -63,7 +73,6 @@ const FilterSortBox = () => {
     });
   };
 
-  // Generate filter string based on applied filters (not tempFilters)
   const generateFilterString = () => {
     const queryParams = new URLSearchParams();
     if (filters.genres.length > 0) {
@@ -78,14 +87,35 @@ const FilterSortBox = () => {
     return queryParams.toString();
   };
 
-  const filterString = generateFilterString();
-  const { trailers, loading, error, pagination, notFound } = useTrailers(filterString);
+  const FilterString = generateFilterString();
+  const { trailers, loading, error, pagination, notFound } = useTrailers(FilterString);
 
-  // Handle the "Filter" button click
   const applyFilters = () => {
-    // Apply the tempFilters as actual filters
+    // Check if the minimum age limit exceeds the user's age
+if (tempFilters.minAgeLimit && parseInt(tempFilters.minAgeLimit) > user.age) {
+  setValidationMessage(`Minimum age limit cannot exceed your age (${user.age}).`);
+  showErrorModal(); // Show error modal
+  return; // Stop applying filters
+}
+
     setFilters(tempFilters);
+    navigate(`/?page=1`);
     toggleModal(); // Close the modal after applying the filters
+  };
+
+  const clearFilters = () => {
+    setTempFilters({
+      genres: [],
+      minAgeLimit: '',
+      releaseYear: ''
+    });
+    setFilters({
+      genres: [],
+      minAgeLimit: '',
+      releaseYear: ''
+    });
+    navigate(`/?page=1`);
+    toggleModal(); // Close the modal after clearing the filters
   };
 
   const handleSortChange = (e) => {
@@ -108,14 +138,15 @@ const FilterSortBox = () => {
 
   return (
     <div>
-      <button onClick={toggleModal}>Filter Trailers</button>
-
-      <select id="sortSelect" value={sortBy} onChange={handleSortChange}>
-        <option value="">Select Sorting Option</option>
-        <option value="releaseYear">Sort by Release Year</option>
-        <option value="minAgeLimit">Sort by Age Limit</option>
-        <option value="name">Sort A-Z by Trailer Name</option>
-      </select>
+      <div className='FilterSortBoxes'>
+        <button onClick={toggleModal}>Filter Trailers</button>
+        <select id="sortSelect" value={sortBy} onChange={handleSortChange}>
+          <option value="">Select Sorting Option</option>
+          <option value="releaseYear">Sort by Release Year</option>
+          <option value="minAgeLimit">Sort by Minimum Age Limit</option>
+          <option value="name">Sort A-Z by Trailer Name</option>
+        </select>
+      </div>
 
       {isModalOpen && (
         <div className="modal">
@@ -159,9 +190,21 @@ const FilterSortBox = () => {
               </div>
             </div>
 
-            <button onClick={applyFilters}>Filter</button>
-            <button onClick={toggleModal}>Close</button>
+            {validationMessage && <p className="error-message">{validationMessage}</p>} {/* Display error message */}
+            {isErrorModalOpen && (
+  <div className="modal">
+    <div className="modal-content">
+      <h2>Error</h2>
+      <p>{validationMessage}</p>
+      <button onClick={closeErrorModal}>Close</button>
+    </div>
+  </div>
+)}
 
+
+            <button onClick={applyFilters}>Filter</button>
+            <button onClick={clearFilters}>Clear</button> {/* Clear button */}
+            <button onClick={toggleModal}>Close</button>
           </div>
         </div>
       )}
