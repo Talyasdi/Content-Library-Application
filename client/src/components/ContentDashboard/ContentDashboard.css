@@ -63,7 +63,7 @@ button{
 }
 
 .number-button:hover {
-  color: #a375d5;
+  color: #96866c;
 }
 
 .number-button {
@@ -84,7 +84,7 @@ button i {
 }
 
 button:hover i {
-  color: #a375d5;
+  color: #96866c;
 }
 
 .upload-button {

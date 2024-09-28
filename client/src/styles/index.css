@@ -3,7 +3,7 @@
 
 /* layout */
 :root {
-  --primary: #a375d5;
+  --primary: #d5c09f;
   --error: #e7195a;
   --success: #30c68a;
 }
@@ -114,9 +114,9 @@ nav a:hover {
   color: var(--primary); /* Change color on hover */
 }
 nav span {
-  margin: 0 10px; /* Small margins for inline text */
-  font-weight: 600; /* Bold for emphasis on text */
-  color: var(--primary); /* Primary color for highlights */
+  margin: 0 10px; 
+  font-weight: 600; 
+  color: var(--primary);
 }
 
 nav .user-menu {
@@ -173,9 +173,9 @@ nav .dropdown-menu button {
   margin-right: 8px; 
   font-size: 16px; 
 }
-/* auth forms */
+/* forms */
 
-form.signup, form.login, form.editTrailer {
+form.signup, form.login, form.editTrailer, form.forgot-password-form, form.reset-pass-form {
   display: flexbox;
   max-width: 400px;
   margin: 40px auto;
