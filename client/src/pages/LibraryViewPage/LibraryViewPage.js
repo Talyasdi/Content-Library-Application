@@ -1,10 +1,12 @@
 import Trailer from '../../components/TrailerLibraryView/TrailerView';
 import Pagination from '../../components/Pagination/Pagination';
 import styles from '../LibraryViewPage/LibraryView.module.css';
+import { useLocation } from 'react-router-dom';
 
 const LibraryView = ({ trailers, loading, error, pagination, notFound, filters}) => {
   const { currPage } = pagination; // Get current page
-
+  const location = useLocation();
+  const restoredFilters = location.state?.filters || filters;
   return (
     <div>
        {error && <p>{error}</p>}
@@ -16,7 +18,7 @@ const LibraryView = ({ trailers, loading, error, pagination, notFound, filters})
               <div className={styles.trailersContainer}>
                 {trailers.map((trailer) => (
                   <li key={trailer._id}>
-                    <Trailer trailer={trailer} activePage={currPage} filters={filters}  /> {/* Pass active page */}
+                    <Trailer trailer={trailer} activePage={currPage} filters={restoredFilters}  /> {/* Pass active page */}
                   </li>
                 ))}
               </div>
