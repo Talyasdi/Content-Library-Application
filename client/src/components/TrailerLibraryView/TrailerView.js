@@ -15,7 +15,9 @@ const Trailer = ({ trailer, activePage }) => {
 
         <ul className={styles.genresList}>
           {trailer.genres.map((genre, index) => (
-            <li key={index} className={styles.genreItem}>{genre}</li>
+            <li key={index} className={styles.genreItem}>
+              {genre.charAt(0).toUpperCase() + genre.slice(1)}
+            </li>
           ))}
         </ul>
         <p className={styles.trailerUserName}>Uploaded By {trailer.userName}</p>

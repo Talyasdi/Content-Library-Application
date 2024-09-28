@@ -191,36 +191,38 @@ const uploadTrailer = async (req, res) => {
 
   // Check if userEmail and userName are provided
   if (!userEmail || !userName) {
-      return res.status(400).json({ error: 'userEmail and userName are required.' });
+    return res.status(400).json({ error: 'userEmail and userName are required.' });
   }
 
-  // Split genres into an array and trim whitespace
-  let genresArray = genres.split(',').map(genre => genre.trim());
+  // Split genres into an array, trim whitespace, and capitalize the first letter
+  let genresArray = genres.split(',').map(genre => {
+    return genre.trim().charAt(0).toUpperCase() + genre.trim().slice(1).toLowerCase();
+  });
 
-  // Create a unique array of genres using a Set with lowercase for comparison
+  // Create a unique array of genres (case-insensitive comparison)
   let uniqueGenres = [...new Set(genresArray.map(genre => genre.toLowerCase()))];
 
   // uploading (meaning adding) document to the database
   try {
-      const trailer = await Trailer.create({
-          trailerName,
-          genres: genresArray, // Store the original input
-          minAgeLimit,
-          releaseYear,
-          cast,
-          link,
-          userEmail,
-          userName
-      });
+    const trailer = await Trailer.create({
+      trailerName,
+      genres: genresArray, // Store the properly formatted genres
+      minAgeLimit,
+      releaseYear,
+      cast,
+      link,
+      userEmail,
+      userName
+    });
 
-      // Filter the trailers using uniqueGenres for case-insensitive comparison
-      const filteredTrailers = await Trailer.find({
-          genres: { $in: uniqueGenres }
-      });
+    // Filter the trailers using uniqueGenres for case-insensitive comparison
+    const filteredTrailers = await Trailer.find({
+      genres: { $in: uniqueGenres }
+    });
 
-      res.status(200).json({ trailer, filteredTrailers });
+    res.status(200).json({ trailer, filteredTrailers });
   } catch (error) {
-      res.status(400).json({ error: error.message });
+    res.status(400).json({ error: error.message });
   }
 };
 
