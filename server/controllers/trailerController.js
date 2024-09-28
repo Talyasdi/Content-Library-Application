@@ -7,7 +7,8 @@ const filterTrailers = async (req, res) => {
     let filter = {};
 
     if (genres) {
-      filter.genres = { $in: genres.split(',') };
+      const normalizedGenres = genres.split(',').map(genre =>  new RegExp(`^${genre.trim()}$`, 'i'));
+      filter.genres = { $in: normalizedGenres };
     }
     if (minAgeLimit) {
       filter.minAgeLimit = { $lte: minAgeLimit };
@@ -39,15 +40,20 @@ const filterTrailers = async (req, res) => {
   }
 };
 
+
+
 const getDistinctGenres = async (req, res) => {
   try {
       const distinctGenres = await Trailer.distinct('genres');
-      res.status(200).json(distinctGenres);
+      const uniqueGenres = [...new Set(distinctGenres.map(genre => genre.toLowerCase()))];
+      res.status(200).json(uniqueGenres);
   } catch (error) {
       console.error('Error fetching distinct genres:', error);
       res.status(400).json({ message: 'Error fetching genres' });
   }
 };
+
+
 
 
 
@@ -179,7 +185,7 @@ const checkTrailerExists = async (req, res) => {
   }
 };
 
-// upload a new trailer 
+// upload a new trailer  
 const uploadTrailer = async (req, res) => {
   const { trailerName, genres, minAgeLimit, releaseYear, cast, link, userEmail, userName } = req.body;
 
@@ -188,11 +194,17 @@ const uploadTrailer = async (req, res) => {
       return res.status(400).json({ error: 'userEmail and userName are required.' });
   }
 
+  // Split genres into an array and trim whitespace
+  let genresArray = genres.split(',').map(genre => genre.trim());
+
+  // Create a unique array of genres using a Set with lowercase for comparison
+  let uniqueGenres = [...new Set(genresArray.map(genre => genre.toLowerCase()))];
+
   // uploading (meaning adding) document to the database
   try {
       const trailer = await Trailer.create({
           trailerName,
-          genres,
+          genres: genresArray, // Store the original input
           minAgeLimit,
           releaseYear,
           cast,
@@ -200,11 +212,18 @@ const uploadTrailer = async (req, res) => {
           userEmail,
           userName
       });
-      res.status(200).json(trailer);
+
+      // Filter the trailers using uniqueGenres for case-insensitive comparison
+      const filteredTrailers = await Trailer.find({
+          genres: { $in: uniqueGenres }
+      });
+
+      res.status(200).json({ trailer, filteredTrailers });
   } catch (error) {
       res.status(400).json({ error: error.message });
   }
 };
+
 
 
 

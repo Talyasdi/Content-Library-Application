@@ -146,6 +146,11 @@ const FilterSortBox = () => {
 
   const sortedTrailers = sortTrailers(trailers);
 
+  const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
+  
+
   return (
     <div>
       <button onClick={toggleModal}>Filter Trailers</button>
@@ -166,11 +171,11 @@ const FilterSortBox = () => {
               <div className="genres-list">
                 {availableGenres.map((genre) => (
                   <button
-                    key={genre}
-                    onClick={() => handleGenreClick(genre)}
-                    className={tempFilters.genres.includes(genre) ? 'selected' : ''}
+                    key={genre.toLowerCase()}
+                    onClick={() => handleGenreClick(genre.toLowerCase())}
+                    className={tempFilters.genres.includes(genre.toLowerCase()) ? 'selected' : ''}
                   >
-                    {genre}
+                    {capitalizeFirstLetter(genre)}
                   </button>
                 ))}
               </div>
