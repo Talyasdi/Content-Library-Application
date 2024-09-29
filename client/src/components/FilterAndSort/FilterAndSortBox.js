@@ -269,7 +269,8 @@ if (tempFilters.minAgeLimit && parseInt(tempFilters.minAgeLimit) > user.age) {
         </div>
       )}
      {/* <LibraryView trailers={sortedTrailers} loading={loading} error={error} notFound={notFound} pagination={pagination} filters={filterString} /> */}
-      <LibraryView trailers={sortedTrailers} loading={loading} error={error} notFound={notFound} pagination={pagination}  filters={FilterString}/>
+      <LibraryView trailers={sortedTrailers} loading={loading} error={error} notFound={notFound} 
+      pagination={pagination}  filters={FilterString}/>
     </div>
   );
 };

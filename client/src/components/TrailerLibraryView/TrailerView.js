@@ -5,6 +5,7 @@ import ReactPlayer from 'react-player';
 
 // trailer card in library view
 const Trailer = ({ trailer, activePage, filters }) => {
+  //const {currPage, totalPages} = getPages;
   return (
     <Link 
       to={`/trailers/${trailer._id}`} 

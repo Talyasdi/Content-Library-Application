@@ -9,7 +9,7 @@ const TrailerPage = () => {
   const { trailer, loading, error } = useTrailer(id);
   const navigate = useNavigate();
   const location = useLocation();
-  const fromFilters = location.state?.filters || ''; 
+  const fromFilters = location.state?.filters || '';
 
   const getFiltersFromState = (state) => {
     const filters = state?.filters || {}; // Get the filters from state, default to empty object
@@ -25,19 +25,30 @@ const TrailerPage = () => {
     return queryParams.toString(); // Return the query parameters as a string
   };
 
-  const handleBackClick = () => {
-    const fromPage = location.state?.fromPage || 1;  // Retrieve the page
-     const params = new URLSearchParams(location.search); // Keep the original search params
-     params.set('page', fromPage); // Set the page parameter
-     navigate(`/?page=1&${fromFilters}`, { state: { filters: fromFilters} });
+  // const handleBackClick = () => {
 
-    // navigate(`/?${params.toString()}`, { state: { filters: fromFilters } }); // Use the complete params string
-    // const currentFilters = getFiltersFromState(location.state); // Get the current filters from state
-    // const currentPage = location.state?.page || 1; // Get the current page from state
-    // navigate({
-    //   pathname: '/',
-    //   search: `?page=${currentPage}&${currentFilters}`,
-    // });
+  //   const fromPage = location.state?.fromPage || 1;  // Retrieve the page
+  //    const params = new URLSearchParams(location.search); // Keep the original search params
+  //    params.set('page', fromPage); // Set the page parameter
+  //    console.log('fromPage', fromPage);
+  //    navigate(`/?page=${fromPage}&${fromFilters}`, { state: { filters: fromFilters} });
+
+  //   // navigate(`/?${params.toString()}`, { state: { filters: fromFilters } }); // Use the complete params string
+  //   // const currentFilters = getFiltersFromState(location.state); // Get the current filters from state
+  //   // const currentPage = location.state?.page || 1; // Get the current page from state
+  //   // navigate({
+  //   //   pathname: '/',
+  //   //   search: `?page=${currentPage}&${currentFilters}`,
+  //   // });
+  // };
+  const handleBackClick = () => {
+    const fromPage = location.state?.fromPage || 1; // Retrieve the page number
+    const params = new URLSearchParams(location.search); // Keep the original search params
+    const fromFilters = location.state?.filters || ''; // Keep the filters
+    navigate(`/?page=1`);
+    setTimeout(() => {
+      navigate(`/?page=${fromPage}&${fromFilters}`, { state: { filters: fromFilters } });
+    }, 500); // Delay the navigation for 500ms
   };
   
 

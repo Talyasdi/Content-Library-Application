@@ -4,9 +4,10 @@ import styles from '../LibraryViewPage/LibraryView.module.css';
 import { useLocation } from 'react-router-dom';
 
 const LibraryView = ({ trailers, loading, error, pagination, notFound, filters}) => {
-  const { currPage } = pagination; // Get current page
+  const { currPage, totalPages } = pagination; // Get current page
   const location = useLocation();
   const restoredFilters = location.state?.filters || filters;
+  const filteredPages = location.state?.getPages || totalPages;
   return (
     <div>
        {error && <p>{error}</p>}
