@@ -73,7 +73,7 @@ const useTrailers = (filterString = '') => {
     handlePageChange: handlePageChange,
   };
 
-  return { trailers, loading, error, pagination, notFound };
+  return { trailers, setTrailers, loading, error, pagination, notFound };
 };
 
 export default useTrailers;

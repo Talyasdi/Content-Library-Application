@@ -1,21 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import UserContentDashboard from "./components/ContentDashboard/ContentDashboard";
 import { useAuthContext } from "./hooks/useAuthContext";
-
-//pages & components
 import Home from "./pages/HomePage";
 import NavBar from "./components/NavBar";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
-import LibraryView from "./pages/LibraryViewPage/LibraryViewPage";
-import TrailerPage from "./pages/TrailerPage";
-import NotFound from "./pages/NotFoundPage";
+import UploadTrailer from "./components/UploadTrailer"; 
+import LibraryView from './pages/LibraryViewPage/LibraryViewPage';
+import TrailerPage  from './pages/TrailerPage';
+import NotFound from './pages/NotFoundPage';
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 
 function App() {
   const { user } = useAuthContext();
+  const [successMessage, setSuccessMessage] = useState(null); // State for success message
 
   return (
     <div className="App">
@@ -25,7 +25,12 @@ function App() {
           <Routes>
             <Route
               path="/"
-              element={user ? <Home /> : <Navigate to="/login" />}
+              element={user ? <Home successMessage={successMessage} /> : <Navigate to="/login" />}
+            />
+            {/* Pass the setSuccessMessage to the UploadTrailer component */}
+            <Route
+              path="/upload-trailer"
+              element={user ? <UploadTrailer setSuccessMessage={setSuccessMessage} /> : <Navigate to="/login" />}
             />
             <Route
               path="/signup"

@@ -244,3 +244,108 @@ form.signup, form.login, form.editTrailer, form.forgot-password-form, form.reset
   margin-bottom: 20px;
   color: #53474F;
 }
+
+/* new trailer form */
+form.new-trailer-form label {
+  display: block;
+  text-align: center; /* CENTERS THE LABEL TEXT */
+  padding: 10px; /* ADDED PADDING FOR LABELS */
+  border-radius: 4px; /* ROUNDED CORNERS FOR LABEL BACKGROUND */
+  margin-bottom: 20px; /* ADDED MARGIN TO SEPARATE LABELS FROM INPUTS */
+  font-weight: 800;
+  color: #000; /* ENSURES LABEL TEXT IS BLACK */
+  font-size: 1.2em; /* CHANGED SIZE OF FONT TO BE SIMILAR TO 'Upload Trailer' */
+}
+
+/* Modify the input box size */
+form.new-trailer-form input[type="text"], 
+form.new-trailer-form input[type="number"], 
+form.new-trailer-form input[type="email"], 
+form.new-trailer-form input[type="password"], 
+form.new-trailer-form textarea {
+  width: 50%; /* MAKES THE INPUT BOX SHORTER, ADJUST AS NEEDED */
+  margin: 0 auto; /* CENTERS THE INPUT BOX */
+  display: block;
+  padding: 10px; /* ADDED PADDING FOR INPUT FIELDS */
+  border: 1px solid #ccc; /* INPUT BORDER STYLE */
+  border-radius: 4px; /* ROUNDED CORNERS FOR INPUT */
+  font-size: 1em; /* INPUT FONT SIZE */
+}
+
+/* Center the "Enter trailer name" input field in UploadTrailer */
+input[type="text"][placeholder="Enter trailer name"] {
+  width: 50%; /* SAME WIDTH AS OTHER INPUT FIELDS */
+  margin: 0 auto; /* CENTERS THE INPUT BOX */
+  display: block;
+  padding: 10px; /* SAME PADDING AS OTHER INPUT FIELDS */
+  border: 1px solid #ccc; /* SAME BORDER STYLE */
+  border-radius: 4px; /* SAME ROUNDED CORNERS */
+  font-size: 1em; /* SAME FONT SIZE */
+}
+
+/* Center buttons in the trailer form only */
+.new-trailer-form button.check-trailer-button,
+.new-trailer-form button.upload-trailer-button {
+  display: block;
+  margin: 20px auto; /* Centers the buttons */
+  padding: 10px 20px; /* Adds padding for the buttons */
+  border: none;
+  border-radius: 4px;
+  background-color: var(--primary); /* Button background color */
+  color: white; /* Button text color */
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.new-trailer-form button.check-trailer-button:hover,
+.new-trailer-form button.upload-trailer-button:hover {
+  background-color: var(--primary); /* Darker blue on hover */
+}
+
+
+/* NEW MESSAGE STYLES - ADDED STYLES FOR SUCCESS AND ERROR MESSAGES */
+div.trailer-exists, div.trailer-not-exists, div.success, div.error {
+  width: 50%; /* WIDTH OF THE MESSAGE BOXES */
+  padding: 10px; 
+  margin: 20px auto; /* CENTERS THE MESSAGE BOXES */
+  border-radius: 4px;
+}
+
+div.trailer-exists, div.success {
+  background: #e6fbe6; /* SUCCESS BACKGROUND COLOR */
+  border: 1px solid var(--success); /* SUCCESS BORDER COLOR */
+  color: var(--success); /* SUCCESS TEXT COLOR */
+}
+
+div.trailer-not-exists, div.error {
+  background: #ffefef; /* ERROR BACKGROUND COLOR */
+  border: 1px solid var(--error); /* ERROR BORDER COLOR */
+  color: var(--error); /* ERROR TEXT COLOR */
+}
+
+.centered-header {
+  text-align: center; /* Centers the text */
+  font-size: 24px; /* Change this size to match the Upload Trailer size */
+  margin: 20px 0; /* Adds some margin for spacing */
+  font-weight: bold; /* MAKES THE TEXT BOLD */
+}
+
+.center-button-container {
+  text-align: center; /* Centers content inside this container */
+}
+
+.check-trailer-button {
+  display: inline-block; /* Inline-block works better with text-align center */
+  margin: 20px auto; /* Apply auto margin as a fallback */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--primary);
+  color: white;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+
+
+

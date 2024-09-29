@@ -77,15 +77,33 @@ button{
   color: #000000;
 }
 
+ 
 button i {
   font-size: 1.8rem; 
   color: #000000;
   font-family: "Poppins";
+  position: relative;
+  top: -2px;  
+  vertical-align: middle;
 }
 
 button:hover i {
   color: #96866c;
 }
+
+button j {
+  font-size: 1.8rem; 
+  color: #fff;
+  font-family: "Poppins";
+  position: relative;
+  top: -2px;  
+  vertical-align: middle;
+}
+
+button:hover j {
+  color: #e0d0b6;
+}
+
 
 .upload-button {
   position: fixed;

@@ -7,7 +7,8 @@ const filterTrailers = async (req, res) => {
     let filter = {};
 
     if (genres) {
-      filter.genres = { $in: genres.split(',') };
+      const normalizedGenres = genres.split(',').map(genre =>  new RegExp(`^${genre.trim()}$`, 'i'));
+      filter.genres = { $in: normalizedGenres };
     }
     if (minAgeLimit) {
       filter.minAgeLimit = { $lte: minAgeLimit };
@@ -39,15 +40,20 @@ const filterTrailers = async (req, res) => {
   }
 };
 
+
+
 const getDistinctGenres = async (req, res) => {
   try {
       const distinctGenres = await Trailer.distinct('genres');
-      res.status(200).json(distinctGenres);
+      const uniqueGenres = [...new Set(distinctGenres.map(genre => genre.toLowerCase()))];
+      res.status(200).json(uniqueGenres);
   } catch (error) {
       console.error('Error fetching distinct genres:', error);
       res.status(400).json({ message: 'Error fetching genres' });
   }
 };
+
+
 
 
 
@@ -157,5 +163,73 @@ const updateTrailer = async (req, res) => {
     }
   }
 
+
+  
+// New function to check if a trailer with the same name already exists
+const checkTrailerExists = async (req, res) => {
+  const { trailerName } = req.body;
+
+  try {
+    // CASE INSENSITIVE CHECK
+    const existingTrailer = await Trailer.findOne({ 
+      trailerName: { $regex: new RegExp(`^${trailerName}$`, 'i') } 
+    });
+
+    if (existingTrailer) {
+      return res.status(200).json({ exists: true, message: "Trailer already exists" });
+    } else {
+      return res.status(200).json({ exists: false, message: "Trailer name is available" });
+    }
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+// upload a new trailer  
+const uploadTrailer = async (req, res) => {
+  const { trailerName, genres, minAgeLimit, releaseYear, cast, link, userEmail, userName } = req.body;
+
+  // Check if userEmail and userName are provided
+  if (!userEmail || !userName) {
+    return res.status(400).json({ error: 'userEmail and userName are required.' });
+  }
+
+  // Split genres into an array, trim whitespace, and capitalize the first letter
+  let genresArray = genres.split(',').map(genre => {
+    return genre.trim().charAt(0).toUpperCase() + genre.trim().slice(1).toLowerCase();
+  });
+
+  // Create a unique array of genres (case-insensitive comparison)
+  let uniqueGenres = [...new Set(genresArray.map(genre => genre.toLowerCase()))];
+
+  // uploading (meaning adding) document to the database
+  try {
+    const trailer = await Trailer.create({
+      trailerName,
+      genres: genresArray, // Store the properly formatted genres
+      minAgeLimit,
+      releaseYear,
+      cast,
+      link,
+      userEmail,
+      userName
+    });
+
+    // Filter the trailers using uniqueGenres for case-insensitive comparison
+    const filteredTrailers = await Trailer.find({
+      genres: { $in: uniqueGenres }
+    });
+
+    res.status(200).json({ trailer, filteredTrailers });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+
+
+
 module.exports = { filterTrailers, getDistinctGenres, getUserTrailers, updateTrailer, deleteTrailer, getSingleTrailer, 
-  getTrailersByAge };
+  getTrailersByAge, checkTrailerExists, uploadTrailer };
+
+

@@ -10,7 +10,7 @@ export const useLogin = () => {
     setIsLoading(true);
     setErr(null);
 
-    const response = await fetch("api/user/login", {
+    const response = await fetch("http://localhost:5000/api/user/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -22,7 +22,7 @@ export const useLogin = () => {
       setIsLoading(false);
       setErr(data.msg);
     } else {
-      localStorage.setItem("user", JSON.stringify(data));
+      localStorage.setItem("token", data.token);
       dispatch({ type: "LOGIN", payload: data });
       setIsLoading(false);
       setErr(null);

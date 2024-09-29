@@ -27,6 +27,13 @@ const FilterSortBox = () => {
 
   useEffect(() => {
     const fetchGenres = async () => {
+     // CHECK IF USER IS NULL OR TOKEN IS MISSING
+     if (!user || !user.token) {
+       console.error('User not authenticated');
+       return; // EXIT IF USER IS NOT AUTHENTICATED
+     }
+      
+
       try {
         const response = await api.get('/trailer/genres', {
           headers: {
@@ -39,7 +46,7 @@ const FilterSortBox = () => {
       }
     };
     fetchGenres();
-  }, [user.token]);
+  }, [user]);
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -63,6 +70,39 @@ const FilterSortBox = () => {
     });
   };
 
+  const handleFilter = async () => {
+    // CHECK IF USER IS NULL OR TOKEN IS MISSING
+    if (!user || !user.token) {
+      console.error('User not authenticated');
+      return; // EXIT IF USER IS NOT AUTHENTICATED
+    }
+    
+    try {
+      const queryParams = new URLSearchParams();
+      if (filters.genres.length > 0) {
+        queryParams.append('genres', filters.genres.join(','));
+      }
+      if (filters.minAgeLimit) {
+        queryParams.append('minAgeLimit', filters.minAgeLimit);
+      }
+      if (filters.releaseYear) {
+        queryParams.append('releaseYear', filters.releaseYear);
+      }
+
+      const queryString = queryParams.toString();
+      const response = await api.get(`/trailer/trailers/filter?${queryString}`, {
+        headers: {
+          Authorization: `Bearer ${user.token}`
+        }
+      });
+
+      setTrailers(response.data);
+      toggleModal();
+    } catch (error) {
+      console.error('Error fetching trailers:', error);
+    }
+  };
+
   // Generate filter string based on applied filters (not tempFilters)
   const generateFilterString = () => {
     const queryParams = new URLSearchParams();
@@ -79,7 +119,7 @@ const FilterSortBox = () => {
   };
 
   const filterString = generateFilterString();
-  const { trailers, loading, error, pagination, notFound } = useTrailers(filterString);
+  const { trailers, setTrailers, loading, error, pagination, notFound } = useTrailers(filterString);
 
   // Handle the "Filter" button click
   const applyFilters = () => {
@@ -106,6 +146,11 @@ const FilterSortBox = () => {
 
   const sortedTrailers = sortTrailers(trailers);
 
+  const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
+  
+
   return (
     <div>
       <button onClick={toggleModal}>Filter Trailers</button>
@@ -126,11 +171,11 @@ const FilterSortBox = () => {
               <div className="genres-list">
                 {availableGenres.map((genre) => (
                   <button
-                    key={genre}
-                    onClick={() => handleGenreClick(genre)}
-                    className={tempFilters.genres.includes(genre) ? 'selected' : ''}
+                    key={genre.toLowerCase()}
+                    onClick={() => handleGenreClick(genre.toLowerCase())}
+                    className={tempFilters.genres.includes(genre.toLowerCase()) ? 'selected' : ''}
                   >
-                    {genre}
+                    {capitalizeFirstLetter(genre)}
                   </button>
                 ))}
               </div>
