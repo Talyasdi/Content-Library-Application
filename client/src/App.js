@@ -10,6 +10,8 @@ import UploadTrailer from "./components/UploadTrailer";
 import LibraryView from './pages/LibraryViewPage/LibraryViewPage';
 import TrailerPage  from './pages/TrailerPage';
 import NotFound from './pages/NotFoundPage';
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 
 function App() {
   const { user } = useAuthContext();
