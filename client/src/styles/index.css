@@ -3,7 +3,7 @@
 
 /* layout */
 :root {
-  --primary: #a375d5;
+  --primary: #d5c09f;
   --error: #e7195a;
   --success: #30c68a;
 }
@@ -21,13 +21,12 @@ body {
 header {
   background: #fff;
 }
-header .container {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 10px 20px;
+header nav{
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+  max-width: auto;
+  margin: 0 auto;
 }
 header a {
   color: #333;
@@ -72,6 +71,8 @@ form button {
   font-family: "Poppins";
   border-radius: 4px;
   cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
 }
 div.error {
   padding: 10px;
@@ -93,6 +94,7 @@ div.success {
   border-radius: 4px;
   margin: 20px 0;
 }
+
 /* navbar */
 nav {
   display: flex;
@@ -100,7 +102,9 @@ nav {
   justify-content: space-between;
   background-color: #fff;
   padding: 15px 20px;
-  font-size: 16px;
+  font-size: 18px;
+  max-width: 95%;
+  height: 40px;
 }
 
 nav a {
@@ -111,12 +115,12 @@ nav a {
 }
 
 nav a:hover {
-  color: var(--primary); /* Change color on hover */
+  color: var(--primary); 
 }
 nav span {
-  margin: 0 10px; /* Small margins for inline text */
-  font-weight: 600; /* Bold for emphasis on text */
-  color: var(--primary); /* Primary color for highlights */
+  margin: 0 10px; 
+  font-weight: 600; 
+  color: var(--primary);
 }
 
 nav .user-menu {
@@ -124,7 +128,7 @@ nav .user-menu {
   cursor: pointer;
   font-weight: 600;
   color: var(--primary);
-  user-select: none; /* Prevents text selection when clicking */
+  user-select: none;
   font-size: 16px;
 }
 
@@ -173,9 +177,37 @@ nav .dropdown-menu button {
   margin-right: 8px; 
   font-size: 16px; 
 }
-/* auth forms */
 
-form.signup, form.login, form.editTrailer {
+.auth-menu-container {
+  display: flex;
+  justify-content: flex-start;
+  flex-grow: 1;
+}
+
+.logo {
+  display: flex;
+  justify-content: flex-end; 
+}
+
+.logo img {
+  max-height: 100%;
+  height: 200px;
+}
+.signup-link {
+  border: 2px;
+  padding: 7px 12px; 
+  border-radius: 4px; 
+  background-color: var(--primary);
+  color: rgb(66, 65, 65);
+  transition: background-color 0.3s ease;
+}
+.signup-link:hover {
+  background-color: #99886e; 
+  color: #fff;
+}
+
+/* forms */
+form.signup, form.login, form.editTrailer, form.forgot-password-form, form.reset-pass-form {
   display: flexbox;
   max-width: 400px;
   margin: 40px auto;
