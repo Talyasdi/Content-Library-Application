@@ -104,17 +104,32 @@ const useTrailers = (filterString = '') => {
   //   };
   //   setSearchParams(searchParamsObj);
   // };
-  const handlePageChange = (page) => {
+
+  
+//   const handlePageChange = (page) => {
+//   const searchParamsObj = { page };
+
+//   if (filterString && filterString.genres) { //filters instead of filterString 
+//     searchParamsObj.genres = filterString.genres;
+//   }
+//   if (filterString && filterString.minAgeLimit) {
+//     searchParamsObj.minAgeLimit = filterString.minAgeLimit;
+//   }
+//   if (filterString && filterString.releaseYear) {
+//     searchParamsObj.releaseYear = filterString.releaseYear;
+//   }
+
+//   setSearchParams(searchParamsObj);
+// };
+
+const handlePageChange = (page) => {
   const searchParamsObj = { page };
 
-  if (filterString && filterString.genres) { //filters instead of filterString 
-    searchParamsObj.genres = filterString.genres;
-  }
-  if (filterString && filterString.minAgeLimit) {
-    searchParamsObj.minAgeLimit = filterString.minAgeLimit;
-  }
-  if (filterString && filterString.releaseYear) {
-    searchParamsObj.releaseYear = filterString.releaseYear;
+  if (filterString) {
+    const queryParams = new URLSearchParams(filterString);
+    queryParams.forEach((value, key) => {
+      searchParamsObj[key] = value;
+    });
   }
 
   setSearchParams(searchParamsObj);

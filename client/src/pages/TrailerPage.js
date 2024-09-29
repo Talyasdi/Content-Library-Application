@@ -28,7 +28,10 @@ const TrailerPage = () => {
   const handleBackClick = () => {
     const fromPage = location.state?.fromPage || 1;  // Retrieve the page
      const params = new URLSearchParams(location.search); // Keep the original search params
-    navigate(`/?page=${fromPage}&${fromFilters}`, { state: { filters: fromFilters} });
+     params.set('page', fromPage); // Set the page parameter
+     navigate(`/?page=1&${fromFilters}`, { state: { filters: fromFilters} });
+
+    // navigate(`/?${params.toString()}`, { state: { filters: fromFilters } }); // Use the complete params string
     // const currentFilters = getFiltersFromState(location.state); // Get the current filters from state
     // const currentPage = location.state?.page || 1; // Get the current page from state
     // navigate({

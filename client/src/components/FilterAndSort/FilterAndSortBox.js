@@ -34,9 +34,11 @@ const FilterSortBox = () => {
   const genres = params.get('genres') ? params.get('genres').split(',') : [];
   const minAgeLimit = params.get('minAgeLimit') || '';
   const releaseYear = params.get('releaseYear') || '';
-  
+
   setFilters({ genres, minAgeLimit, releaseYear });
+  setTempFilters({ genres, minAgeLimit, releaseYear }); // Set temp filters for modal pre-fill
 }, [location.search]);
+
   
   useEffect(() => {
     const fetchGenres = async () => {
@@ -115,7 +117,19 @@ const FilterSortBox = () => {
 //     setFilters(tempFilters);
 //     toggleModal(); // Close the modal after applying the filters
 //   };
+function generateFilterString1(tempFilters) {
+  const params = new URLSearchParams();
 
+  // Loop through the tempFilters object and add each key-value pair to the params
+  for (const key in tempFilters) {
+    if (tempFilters[key]) {
+      params.append(key, tempFilters[key]);
+    }
+  }
+
+  // Return the filter string in a query parameter format
+  return params.toString();
+}
   const applyFilters = () => {
       // Check if the minimum age limit exceeds the user's age
 if (tempFilters.minAgeLimit && parseInt(tempFilters.minAgeLimit) > user.age) {
@@ -139,7 +153,10 @@ if (tempFilters.minAgeLimit && parseInt(tempFilters.minAgeLimit) > user.age) {
     // }
 
     // console.log('searchParams: ',FilterString);
-    navigate(`/?page=1&${FilterString}`);
+    const filterQueryString = generateFilterString1(tempFilters); // Updated to use tempFilters
+    // navigate(`/?page=1&${filterQueryString}`);
+    navigate(`/?page=1&${filterQueryString}`, { state: { filters: filterQueryString } });
+    // navigate(`/?page=1&${FilterString}`);
     toggleModal(); // Close the modal after applying the filters
   };
 
