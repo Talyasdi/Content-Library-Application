@@ -12,6 +12,7 @@ const useTrailers = (filterString = '') => {
   const trailersPerPage = 6;
   const { user } = useAuthContext();
   const [searchParams, setSearchParams] = useSearchParams();
+  const userAge = user.age;
 
   const activePage = parseInt(searchParams.get('page')) || 1;
 
@@ -57,15 +58,42 @@ const useTrailers = (filterString = '') => {
     } finally {
       setLoading(false);
     }
-  }, [activePage, trailersPerPage, user, filterString]);
+  }, [activePage, trailersPerPage, userAge, filterString]);
 
   useEffect(() => {
     getTrailers();
   }, [getTrailers]);
 
+  // const handlePageChange = (page) => {
+  //   setSearchParams({ page });
+  // };
+
+  // const handlePageChange = (page) => {
+  //   // Append the filters to the search params
+  //   const searchParamsObj = {
+  //     page,
+  //     genres: filterString.genres,
+  //     minAgeLimit: filterString.minAgeLimit,
+  //     releaseYear: filterString.releaseYear
+  //   };
+  //   setSearchParams(searchParamsObj);
+  // };
   const handlePageChange = (page) => {
-    setSearchParams({ page });
-  };
+  const searchParamsObj = { page };
+
+  if (filterString.genres) {
+    searchParamsObj.genres = filterString.genres;
+  }
+  if (filterString.minAgeLimit) {
+    searchParamsObj.minAgeLimit = filterString.minAgeLimit;
+  }
+  if (filterString.releaseYear) {
+    searchParamsObj.releaseYear = filterString.releaseYear;
+  }
+
+  setSearchParams(searchParamsObj);
+};
+
 
   const pagination = {
     currPage: activePage,
@@ -73,7 +101,9 @@ const useTrailers = (filterString = '') => {
     handlePageChange: handlePageChange,
   };
 
-  return { trailers, setTrailers, loading, error, pagination, notFound };
+  return { trailers, loading, error, pagination, notFound, filterString};
 };
 
 export default useTrailers;
+
+

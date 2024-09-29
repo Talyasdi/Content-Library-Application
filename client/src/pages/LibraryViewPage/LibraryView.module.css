@@ -1,6 +1,7 @@
 /* Default layout: 1 card per row for small screens*/
 .trailersContainer {
     display: flex;
+    flex-wrap: wrap;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     justify-content: center;
     align-items: center;

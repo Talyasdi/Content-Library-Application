@@ -1,15 +1,7 @@
 .trailerCard {
-    /* background-color: #f9f9f9;
-    border-radius: 15px;
-    border: 1px solid #ccc;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    height: 300px; 
-    width: 300px;
-    margin: 5px;
     display: flex;
     flex-direction: column;
+<<<<<<< HEAD
     align-items: center;
     text-decoration: none;
     text-size-adjust: 100%;
@@ -19,47 +11,71 @@
 flex-direction: column;
 justify-content: space-between;
 
+=======
+>>>>>>> origin/sortingAndFilteringImplement
     border: 1px solid #ccc;
-    padding: 20px;
-    margin: 10px;
-    border-radius: 8px;
+    border-radius: 10px;
     background-color: #f9f9f9;
-    flex: 1 1 30%;
-    max-width: 600px;
     color :black;
+<<<<<<< HEAD
     height: 300px; 
     width: 400px; 
+=======
+    height: 250px; 
+    width: 270px;
+    position: relative; /* Added */
+>>>>>>> origin/sortingAndFilteringImplement
 }
 
 
 
 .trailerCard:hover {
-    box-shadow: 5px 5px 5px rgba(58, 121, 94, 0.524);
+    box-shadow: 5px 5px 5px  #603e82;
+}
+
+.trailerCard::after {
+    content: "! Tap to uncover all the DETAILS !"; /* Added */
+    position: absolute; /* Added */
+    top:80%; /* Added */
+    left: 50%; /* Added */
+    transform: translate(-50%, -50%); /* Added */
+    font-size: 18px; /* Added */
+    color: white; /* Added */
+    background-color: rgba(0, 0, 0, 0.7); /* Added */
+    padding: 5px 5px; /* Added */
+    border-radius: 5px; /* Added */
+    opacity: 0; /* Added */
+    transition: opacity 0.3s ease-in-out; /* Added */
+    pointer-events: none; /* Added */
+}
+
+.trailerCard:hover::after {
+    opacity: 1; /* Added */
 }
 
 .trailerLink {
     text-decoration: none;
 }
 
+/* .trailerVideo{
+    border-radius: 10px;
+    border: 1px solid #ccc;
+} */
+
 .trailerName {
-    font-size: 40px;
-    /* font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-style: italic; */
     font-weight:bolder;
-    /* color: #a375d5; */
-    margin: 5px 0;
-    /* height: 150px;  */
-    /* Fixed height to keep the title area consistent */
+    font-size: 18px;
+    margin: 0px 0;
 }
 
 .genresList {
     list-style-type: none;
-    padding: 5px;
+    margin: 0px 0;
+    padding: 0px;
     display:flex;
-    /* height: 450px; */
-     /* Fixed height for the genres area */
-     flex-wrap: wrap;
+    flex-wrap: wrap;
 }
+
 .genresList li {
     flex: 1 1 20%; 
     /* Make each item take 45% of the width, adjust for 2 items per row */
