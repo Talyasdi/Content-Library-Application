@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import api from '../services/api';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useAuthContext } from './useAuthContext'; 
 
 const useTrailers = (filterString = '') => {
@@ -15,6 +15,7 @@ const useTrailers = (filterString = '') => {
   const userAge = user.age;
 
   const activePage = parseInt(searchParams.get('page')) || 1;
+  const navigate = useNavigate();
 
   const getTrailers = useCallback(async () => {
     if (!user) {
@@ -78,22 +79,32 @@ const useTrailers = (filterString = '') => {
   //   };
   //   setSearchParams(searchParamsObj);
   // };
-  const handlePageChange = (page) => {
+
+//   const handlePageChange = (page) => {
+//   const searchParamsObj = { page };
+
+//   if (filterString.genres) {
+//     searchParamsObj.genres = filterString.genres;
+//   }
+//   if (filterString.minAgeLimit) {
+//     searchParamsObj.minAgeLimit = filterString.minAgeLimit;
+//   }
+//   if (filterString.releaseYear) {
+//     searchParamsObj.releaseYear = filterString.releaseYear;
+//   }
+
+//   setSearchParams(searchParamsObj);
+// };
+const handlePageChange = (page) => {
   const searchParamsObj = { page };
-
-  if (filterString.genres) {
-    searchParamsObj.genres = filterString.genres;
+  if (filterString) {
+    const queryParams = new URLSearchParams(filterString);
+    queryParams.forEach((value, key) => {
+      searchParamsObj[key] = value;
+    });
   }
-  if (filterString.minAgeLimit) {
-    searchParamsObj.minAgeLimit = filterString.minAgeLimit;
-  }
-  if (filterString.releaseYear) {
-    searchParamsObj.releaseYear = filterString.releaseYear;
-  }
-
   setSearchParams(searchParamsObj);
 };
-
 
   const pagination = {
     currPage: activePage,

@@ -233,6 +233,7 @@ select option {
 .error-message {
   color: red;
   margin-top: 10px;
+  font-weight: bold;
 }
 .modal {
   position: fixed;

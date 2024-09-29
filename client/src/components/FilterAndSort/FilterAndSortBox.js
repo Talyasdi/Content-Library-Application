@@ -4,10 +4,11 @@ import LibraryView from '../../pages/LibraryViewPage/LibraryViewPage';
 import api from '../../services/api';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import './FilterAndSortBox.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const FilterSortBox = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [tempFilters, setTempFilters] = useState({
     genres: [],
     minAgeLimit: '',
@@ -26,6 +27,18 @@ const FilterSortBox = () => {
   const { user } = useAuthContext();
   const [validationMessage, setValidationMessage] = useState(''); // State for validation message
   const [isErrorModalOpen, setIsErrorModalOpen] = useState(false); // State for error modal
+
+
+   // Effect to set initial filters from URL
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const genres = params.get('genres') ? params.get('genres').split(',') : [];
+    const minAgeLimit = params.get('minAgeLimit') || '';
+    const releaseYear = params.get('releaseYear') || '';
+
+    setFilters({ genres, minAgeLimit, releaseYear });
+    setTempFilters({ genres, minAgeLimit, releaseYear }); // Set temp filters for modal pre-fill
+  }, [location.search]);
 
   useEffect(() => {
     const fetchGenres = async () => {
@@ -48,7 +61,7 @@ const FilterSortBox = () => {
       }
     };
     fetchGenres();
-  }, [user]);
+  }, [user.token]);
 
 
   const showErrorModal = () => {
@@ -97,6 +110,22 @@ const FilterSortBox = () => {
   const FilterString = generateFilterString();
   const { trailers, loading, error, pagination, notFound } = useTrailers(FilterString);
 
+
+  function generateFilterString1(tempFilters) {
+    const params = new URLSearchParams();
+  
+    // Loop through the tempFilters object and add each key-value pair to the params
+    for (const key in tempFilters) {
+      if (tempFilters[key]) {
+        params.append(key, tempFilters[key]);
+      }
+    }
+  
+    // Return the filter string in a query parameter format
+    return params.toString();
+  }
+
+
   const applyFilters = () => {
     // Check if the minimum age limit exceeds the user's age
 if (tempFilters.minAgeLimit && parseInt(tempFilters.minAgeLimit) > user.age) {
@@ -105,7 +134,9 @@ if (tempFilters.minAgeLimit && parseInt(tempFilters.minAgeLimit) > user.age) {
 }
 
     setFilters(tempFilters);
-    navigate(`/?page=1`);
+    // navigate(`/?page=1`);
+    const filterQueryString = generateFilterString1(tempFilters); // Updated to use tempFilters
+    navigate(`/?page=1&${filterQueryString}`, { state: { filters: filterQueryString } });
     toggleModal(); // Close the modal after applying the filters
   };
 

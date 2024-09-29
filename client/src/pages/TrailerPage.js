@@ -8,11 +8,14 @@ const TrailerPage = () => {
   const { trailer, loading, error } = useTrailer(id);
   const navigate = useNavigate();
   const location = useLocation();
-
   const handleBackClick = () => {
-    const fromPage = location.state?.fromPage || 1;  // Retrieve the page from the state
-    const fromFilters = location.state?.filters || '';  // Retrieve the filters from the state
-    navigate(`/?page=${fromPage}&${fromFilters}`);  // Use the filters in the navigation URL
+    const fromPage = location.state?.fromPage || 1; // Retrieve the page number
+    const params = new URLSearchParams(location.search); // Keep the original search params
+    const fromFilters = location.state?.filters || ''; // Keep the filters
+    navigate(`/?page=1`);
+    setTimeout(() => {
+      navigate(`/?page=${fromPage}&${fromFilters}`, { state: { filters: fromFilters } });
+    }, 500); // Delay the navigation for 500ms
   };
 
   return (
