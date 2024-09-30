@@ -6,6 +6,7 @@ h1 {
 
   .trailerCard {
     display: flex;
+    height: 100%;
     justify-content: space-between;
     align-items: flex-start;
     background-color: #f9f9f9;
@@ -60,4 +61,5 @@ h1 {
   flex: 1;
   max-width: 35%;
   padding: 0;
+  flex-grow: 1;
 }
