@@ -7,6 +7,7 @@ import { useAuthContext } from '../../hooks/useAuthContext';
 import PopupMessage from './PopupMessage';
 import popcorn from '../../assets/popcorn.png'
 import { Link } from 'react-router-dom';
+import TrailerDashboardView from './TrailerDashboaedView';
 
 
 const UserContentDashboard = () => {
@@ -14,7 +15,7 @@ const UserContentDashboard = () => {
   const [error, setError] = useState('');
   const [activePage, setActivePage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const trailersPerPage = 3;
+  const trailersPerPage = 2;
   const [isEditing, setIsEditing] = useState(null);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [trailerToDelete, setTrailerToDelete] = useState(null);
@@ -142,21 +143,11 @@ const UserContentDashboard = () => {
                 />
               ) : (
                 <>
-              <div className="trailer-Box">
-                <h2>{trailer.trailerName}</h2>
-                <p><strong>Genres:</strong> {trailer.genres.join(', ')}</p>
-                <p><strong>Min Age Limit:</strong> {trailer.minAgeLimit}</p>
-                <p><strong>Release Year:</strong> {trailer.releaseYear}</p>
-                <p><strong>Cast:</strong> {trailer.cast.join(', ')}</p>
-                <a href={trailer.link} target="_blank" rel="noopener noreferrer">Watch Trailer</a>
-                <p></p>
-                <button className="icon-button" onClick={() => handleEdit(trailer) } title="Edit Trailer">
-                <i class="fa-regular fa-pen-to-square"></i>
-                </button>
-                <button button className="icon-button" onClick={() => confirmDelete(trailer._id) } title="Delete Trailer">
-                <i class="fa-regular fa-trash-can"></i>
-                </button>
-              </div>
+                 <TrailerDashboardView
+                      trailer={trailer}
+                      handleEdit={handleEdit}
+                      confirmDelete={confirmDelete}
+                    />
               </>
               )}
             </li>

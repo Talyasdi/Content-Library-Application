@@ -11,6 +11,18 @@ button{
     margin: 0.1rem;
   }
 
+  .icon-button:hover {
+    background: #e0d0b6; /* Ensure no background color on hover */
+    border: none;     /* No border on hover */
+    color: inherit;   /* Keep the color same as normal */
+  }
+
+  .number-button:hover {
+    background: #e0d0b6; /* Ensure no background color on hover */
+    border: none;     /* No border on hover */
+    color: inherit;   /* Keep the color same as normal */
+  }
+
 .overlay {
   position: fixed;
   top: 0;
@@ -44,26 +56,20 @@ button{
   background-color: #f0f0f0;
 }
 
-.trailer-Box {
-  border: 1px solid #ccc;
-  padding: 20px;
-  margin: 10px;
-  border-radius: 8px;
-  background-color: #f9f9f9;
-  flex: 1 1 30%;
-  max-width: 600px;
-}
-
 .icon-button {
   background: transparent; 
   border: none;          
   padding: 0;            
   cursor: pointer;    
-  margin-right: 10px; 
+  margin-right: 1;
 }
 
-.number-button:hover {
-  color: #96866c;
+.icon-button button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  color: #000;
 }
 
 .number-button {
@@ -79,7 +85,7 @@ button{
 
  
 button i {
-  font-size: 1.8rem; 
+  font-size: 2rem; 
   color: #000000;
   font-family: "Poppins";
   position: relative;
@@ -104,9 +110,8 @@ button:hover j {
   color: #e0d0b6;
 }
 
-
 .upload-button {
-  position: fixed;
+  position: absolute;
   top: 90px;
   right: 40px;
   padding: 10px 20px;
@@ -117,5 +122,50 @@ button:hover j {
   display: flex; 
   align-items: center; 
   gap: 8px; 
+}
 
+.trailerDashCard {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 800px;
+  height: 400px;
+  margin: 20px auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  position: relative; 
+  margin-right: 10px;
+}
+
+.buttonContainer {
+  display: flex; 
+  justify-content: center;
+  align-items: center; 
+  gap: 20px; 
+  position: absolute; 
+  bottom: 25px; 
+  left: 50%; 
+  transform: translateX(-50%); 
+}
+
+.videoDashContainer {
+  flex: 1;
+  margin-top: 0;
+  text-align: center;
+  height: 320px;
+  max-width: 60%;
+  margin-left: 20px;
+}
+
+.dataDashContainer{
+  text-size-adjust: 100%;
+  flex: 1;
+  max-width: 35%;
+  padding: 0;
+  flex-grow: 1;
+  margin-bottom: 40px;
 }
