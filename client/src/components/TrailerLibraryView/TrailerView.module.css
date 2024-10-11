@@ -4,83 +4,88 @@
     border: 1px solid #ccc;
     border-radius: 10px;
     background-color: #f9f9f9;
-    color :black;
+    color: black;
     height: 250px; 
     width: 270px;
-    position: relative; /* Added */
+    position: relative;
 }
 
 .trailerCard:hover {
-    box-shadow: 5px 5px 5px  #603e82;
+    box-shadow: 5px 5px 5px  #968a6a;
 }
 
 .trailerCard::after {
-    content: "! Tap to uncover all the DETAILS !"; /* Added */
-    position: absolute; /* Added */
-    top:80%; /* Added */
-    left: 50%; /* Added */
-    transform: translate(-50%, -50%); /* Added */
-    font-size: 18px; /* Added */
-    color: white; /* Added */
-    background-color: rgba(0, 0, 0, 0.7); /* Added */
-    padding: 5px 5px; /* Added */
-    border-radius: 5px; /* Added */
-    opacity: 0; /* Added */
-    transition: opacity 0.3s ease-in-out; /* Added */
-    pointer-events: none; /* Added */
+    content: "Tap for details!";
+    position: absolute;
+    top: 85%; /* Adjust as needed for vertical placement */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 14px; /* Match the genre font size */
+    font-weight: bold;
+    color: #917b58; /* Match the genre text color */
+    background-color: #e4ded4; /* Match the genre background color */
+    padding: 5px 10px; /* Match the genre padding */
+    border-radius: 20px; /* Match the genre border radius */
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none;
+    white-space: nowrap; /* Prevent text from wrapping */
 }
 
 .trailerCard:hover::after {
-    opacity: 1; /* Added */
+    opacity: 1;
 }
 
 .trailerLink {
     text-decoration: none;
 }
 
-.videoContainer{
+.videoContainer {
     width: 100%;
     height: auto;
-    border-radius: 10px; /* Make sure the video respects the border-radius */
-    object-fit: cover; /* Ensure video scales nicely inside */
-    /* border-radius: 10px;
-    border: 1px solid #ccc; */
+    border-radius: 10px;
+    object-fit: cover;
 }
 
-.trailerVideo{
+.trailerVideo {
     width: 100%;
     height: auto;
-    border-radius: 10px; /* Make sure the video respects the border-radius */
-    object-fit: cover; /* Ensure video scales nicely inside */
-    /* border-radius: 10px;
-    border: 1px solid #ccc; */
-}
-
-.trailerCard iframe {
-    width: 100%;
-    height: 100%;
-    border-top-left-radius: 10px; /* Apply border-radius to the iframe */
-    border-top-right-radius: 10px;
-    object-fit: cover; /* For better scaling, if applicable */
+    border-radius: 10px;
+    object-fit: cover;
 }
 
 .trailerName {
-    font-weight:bolder;
+    font-weight: bolder;
     font-size: 18px;
-    margin: 0px 0;
+    margin: 0;
 }
 
 .genresList {
     list-style-type: none;
-    margin: 0px 0;
-    padding: 0px;
-    display:flex;
+    margin: 10px 0;
+    padding: 0;
+    display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    transition: opacity 0.3s ease-in-out; /* Smooth transition for visibility */
+    opacity: 1; /* Genres visible by default */
+}
+
+.trailerCard:hover .genresList {
+    opacity: 0; /* Hide genres on hover */
 }
 
 .genresList li {
-    font-size: 16px;
+    font-size: 14px;
     margin: 5px; 
-    /* background-color: #e5dbef; */
+    background-color: #e4ded4;
+    padding: 5px 10px;
+    border-radius: 20px;
+    text-align: center;
+    color: #917b58;
+    font-weight: bold;
+    max-width: 90px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
-

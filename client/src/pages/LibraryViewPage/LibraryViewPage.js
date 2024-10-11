@@ -14,7 +14,7 @@ const LibraryView = ({ trailers, loading, error, pagination, notFound, filters }
        {
         trailers.length > 0 ? (
           <div className={styles.pageContainer}>
-            <h2>Discover Your Next Favorite </h2>
+            <h2>Discover Your Next Favorite Trailer! </h2>
             <ul style={{ listStyleType: 'none', padding: 0, textAlign: 'center', margin: '0 auto' }}>
               <div className={styles.trailersContainer}>
                 {trailers.map((trailer) => (
