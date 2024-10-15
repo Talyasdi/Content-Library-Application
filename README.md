@@ -6,6 +6,7 @@ Welcome to the Movie Trailers Website! This project allows users to upload and s
 
 - **Upload Trailers**: Users can upload their favorite movie trailers.
 - **View Trailers**: Browse through trailers uploaded by other users.
+- **Filter and Sort Trailers**: Users can filter trailers by genre, age limit, and release year, and sort them according to various criteria for a personalized browsing experience.
 - **User Dashboard**: Each user has a dashboard where they can view, edit, or delete their uploaded trailers.
 - **Authentication**: Users can sign up, log in, and manage their accounts, including a "Forgot Password" feature.
 - **Home Page**: A user-friendly homepage displays all available trailers.
