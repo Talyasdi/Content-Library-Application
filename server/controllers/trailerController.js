@@ -40,8 +40,6 @@ const filterTrailers = async (req, res) => {
   }
 };
 
-
-
 const getDistinctGenres = async (req, res) => {
   try {
       const distinctGenres = await Trailer.distinct('genres');
@@ -52,10 +50,6 @@ const getDistinctGenres = async (req, res) => {
       res.status(400).json({ message: 'Error fetching genres' });
   }
 };
-
-
-
-
 
 const getUserTrailers = async(req, res) => {
     const { email } = req.query;
