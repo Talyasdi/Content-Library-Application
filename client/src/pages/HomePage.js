@@ -10,6 +10,5 @@ const Home = () => { // Receive success message as prop
   );
 };
 
+
 export default Home;
-
-
