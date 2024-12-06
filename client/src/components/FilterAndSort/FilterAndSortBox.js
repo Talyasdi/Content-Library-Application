@@ -101,7 +101,7 @@ const FilterSortBox = () => {
     }
   };
 
-  const { trailers, loading, error, pagination, notFound } = useTrailers(generateFilterString());
+  const { trailers, loading, error, pagination } = useTrailers(generateFilterString());
 
   return (
     <div>
@@ -171,7 +171,7 @@ const FilterSortBox = () => {
         </div>
       )}
 
-      <LibraryView trailers={sortTrailers(trailers)} loading={loading} error={error} notFound={notFound} pagination={pagination} />
+      <LibraryView trailers={sortTrailers(trailers)} loading={loading} error={error} pagination={pagination} />
     </div>
   );
 };
