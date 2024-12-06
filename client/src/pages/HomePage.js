@@ -1,6 +1,5 @@
 import React from 'react';
 import FilterSortBox from '../components/FilterAndSort/FilterAndSortBox';
-import LibraryView from './LibraryViewPage/LibraryViewPage';
 
 const Home = () => { // Receive success message as prop
   return (
@@ -9,6 +8,4 @@ const Home = () => { // Receive success message as prop
     </div>    
   );
 };
-
-
 export default Home;

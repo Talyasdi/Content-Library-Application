@@ -1,32 +1,66 @@
-/* Default layout: 1 card per row for small screens*/
+/* Default layout: 1 card per row for small screens */
 .trailersContainer {
-    display: flex;
-    flex-wrap: wrap;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    justify-content: center;
-    align-items: center;
-    gap: 20px; 
-    padding: 30px;
-    margin-top: 0px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px; 
+  padding: 30px;
+  margin-top: 0px;
+  /* Adding this line to ensure proper grid behavior */
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+}
+
+/* For tablets and medium-sized screens (2 cards per row) */
+@media (min-width: 600px) {
+  .trailersContainer {
+    /* Adjusting to have larger card minimum size on tablets */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
-  
-  /* For tablets and medium-sized screens (2 cards per row) */
-  @media (min-width: 600px) {
-    .trailersContainer {
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Bigger min size on tablets */
-    }
+}
+
+/* For desktops and larger screens (3 or more cards per row) */
+@media (min-width: 1024px) {
+  .trailersContainer {
+    /* Adjust to show more cards per row on desktop */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   }
-  
-  /* For desktops and larger screens (3 or more cards per row) */
-  @media (min-width: 1024px) {
-    .trailersContainer {
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Adjust to show more cards on desktop */
-    }
+}
+
+/* Styling for the page container */
+.pageContainer {
+  margin: 20px auto;
+  text-align: center;
+}
+
+/* Styling for the trailer list */
+.trailerList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 auto;
+}
+
+/* Title styling */
+h2 {
+  text-align: center; 
+  margin-bottom: 20px;
+  margin-top: 50px;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+/* Error and loading state styling */
+p {
+  font-size: 16px;
+  color: #333;
+}
+
+/* Additional media query to handle smaller text sizes on mobile screens */
+@media (max-width: 480px) {
+  h2 {
+    font-size: 28px;
   }
-  
-  h2{
-    text-align: center; 
-    margin-bottom: 0px;
-    margin-top: 50px;
-    font-size: 35px;
+  p {
+    font-size: 14px;
   }
+}
