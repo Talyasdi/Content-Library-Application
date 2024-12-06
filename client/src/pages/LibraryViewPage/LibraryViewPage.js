@@ -32,7 +32,7 @@ const LibraryView = ({ trailers, loading, error, pagination, notFound, filters }
         ) : loading ? (
           <p>Loading Trailers...</p>
         ) : (
-          <p>No appropriate trailers found.</p>
+          <p>No appropriate trailers found</p>
         )
       }
     </div>
