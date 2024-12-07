@@ -171,7 +171,7 @@ const FilterSortBox = () => {
         </div>
       )}
 
-      <LibraryView trailers={sortTrailers(trailers)} loading={loading} error={error} pagination={pagination} />
+        <LibraryView trailers={sortTrailers(trailers)} loading={loading} error={error} pagination={pagination} />
     </div>
   );
 };
