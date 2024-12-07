@@ -9,7 +9,6 @@ const LibraryView = ({ trailers, loading, error, pagination, filters }) => {
 
   // Get filters and page details from location state or fallback to default props
   const restoredFilters = location.state?.filters || filters;
-  const filteredPages = location.state?.getPages || totalPages;
 
   return (
     <div>

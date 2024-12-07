@@ -25,7 +25,6 @@ function App() {
               path="/"
               element={user ? <Home /> : <Navigate to="/login" />}
             />
-            {/* Pass the setSuccessMessage to the UploadTrailer component */}
             <Route
               path="/upload-trailer"
               element={user ? <UploadTrailer /> : <Navigate to="/login" />}
