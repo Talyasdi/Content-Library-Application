@@ -6,8 +6,6 @@ const trailerRoute = require('./routes/trailer');
 const userRoute = require("./routes/user");
 const requireAuth = require('./middleware/requireAuth'); // IMPORT YOUR AUTH MIDDLEWARE
 
-
-
 dotenv.config();
 
 // Constants

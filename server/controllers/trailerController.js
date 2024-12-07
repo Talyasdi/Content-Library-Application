@@ -2,7 +2,6 @@ const Trailer = require('../models/trailerModel');
 
 const filterTrailers = async (req, res) => {
   try {
-    console.log(req.query);
     const { genres, minAgeLimit, releaseYear, _page, _limit } = req.query;
     let filter = {};
 

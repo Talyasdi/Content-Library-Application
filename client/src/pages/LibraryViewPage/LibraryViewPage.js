@@ -3,13 +3,12 @@ import Pagination from '../../components/Pagination/Pagination';
 import styles from '../LibraryViewPage/LibraryView.module.css'; // Import CSS file
 import { useLocation } from 'react-router-dom';
 
-const LibraryView = ({ trailers, loading, error, pagination, notFound, filters }) => {
+const LibraryView = ({ trailers, loading, error, pagination, filters }) => {
   const location = useLocation();
   const { currPage, totalPages } = pagination;
 
   // Get filters and page details from location state or fallback to default props
   const restoredFilters = location.state?.filters || filters;
-  const filteredPages = location.state?.getPages || totalPages;
 
   return (
     <div>
